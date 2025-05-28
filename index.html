@@ -10,703 +10,632 @@
             padding: 0;
             box-sizing: border-box;
         }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 35%, #16213e 100%);
+        color: #ffffff;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 35%, #16213e 100%);
-            color: #ffffff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    /* Animated background particles */
+    .bg-particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.1;
+    }
 
-        /* Animated background particles */
-        .bg-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.1;
-        }
+    .particle {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: #64ffda;
+        border-radius: 50%;
+        animation: float 20s infinite linear;
+    }
 
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #64ffda;
-            border-radius: 50%;
-            animation: float 20s infinite linear;
-        }
+    @keyframes float {
+        0% { transform: translateY(100vh) translateX(0px); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+    }
 
-        @keyframes float {
-            0% { transform: translateY(100vh) translateX(0px); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
-        }
+    /* Hero Section */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem;
+        position: relative;
+        background: radial-gradient(ellipse at center, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+    }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            background: radial-gradient(ellipse at center, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
-        }
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3Cpattern id='grid' width='10' height='10' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 10 0 L 0 0 0 10' fill='none' stroke='%23333' stroke-width='0.5' opacity='0.3'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23grid)'/%3E%3C/svg%3E");
+        opacity: 0.2;
+        z-index: -1;
+        pointer-events: none;
+    }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3Cpattern id='grid' width='10' height='10' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 10 0 L 0 0 0 10' fill='none' stroke='%23333' stroke-width='0.5' opacity='0.3'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23grid)'/%3E%3C/svg%3E");
-            opacity: 0.2;
-            z-index: -1;
-            pointer-events: none;
-        }
+    .hero h1 {
+        font-size: clamp(3rem, 8vw, 8rem);
+        font-weight: 900;
+        background: linear-gradient(135deg, #64ffda 0%, #bb86fc 50%, #cf6679 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 2rem;
+        letter-spacing: -0.02em;
+        animation: glow 3s ease-in-out infinite alternate;
+    }
 
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 8rem);
-            font-weight: 900;
-            background: linear-gradient(135deg, #64ffda 0%, #bb86fc 50%, #cf6679 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 2rem;
-            letter-spacing: -0.02em;
-            animation: glow 3s ease-in-out infinite alternate;
-        }
+    @keyframes glow {
+        from { filter: drop-shadow(0 0 20px rgba(100, 255, 218, 0.3)); }
+        to { filter: drop-shadow(0 0 40px rgba(100, 255, 218, 0.6)); }
+    }
 
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 20px rgba(100, 255, 218, 0.3)); }
-            to { filter: drop-shadow(0 0 40px rgba(100, 255, 218, 0.6)); }
-        }
+    .tagline {
+        font-size: clamp(1.2rem, 3vw, 2rem);
+        max-width: 900px;
+        margin: 0 auto 3rem;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 300;
+        line-height: 1.5;
+    }
 
-        .tagline {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            max-width: 900px;
-            margin: 0 auto 3rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 300;
-            line-height: 1.5;
-        }
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 3rem auto;
+        padding: 0 2rem;
+    }
 
+    .feature-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(100, 255, 218, 0.2);
+        border-radius: 20px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+        transition: left 0.5s;
+    }
+
+    .feature-card:hover::before {
+        left: 100%;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(100, 255, 218, 0.4);
+        box-shadow: 0 20px 40px rgba(100, 255, 218, 0.1);
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .feature-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #64ffda;
+    }
+
+    .feature-desc {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+        padding: 4rem 2rem;
+        text-align: center;
+    }
+
+    .waitlist-form {
+        display: flex;
+        gap: 1rem;
+        max-width: 500px;
+        margin: 2rem auto;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .waitlist-form input[type="email"] {
+        flex: 1;
+        min-width: 280px;
+        padding: 1.2rem 1.5rem;
+        font-size: 1.1rem;
+        border: 2px solid rgba(100, 255, 218, 0.3);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        color: white;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+
+    .waitlist-form input[type="email"]:focus {
+        outline: none;
+        border-color: #64ffda;
+        box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.2);
+    }
+
+    .waitlist-form input[type="email"]::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .waitlist-form button {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        background: linear-gradient(135deg, #64ffda 0%, #bb86fc 100%);
+        color: #000;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .waitlist-form button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(100, 255, 218, 0.3);
+    }
+
+    .early-offer-button {
+        display: inline-block;
+        margin-top: 1.5rem;
+        padding: 1rem 2rem;
+        background: rgba(207, 102, 121, 0.2);
+        border: 2px solid #cf6679;
+        color: #cf6679;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+    .early-offer-button:hover {
+        background: #cf6679;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    /* Screenshots Section */
+    .screenshots-section {
+        padding: 6rem 2rem;
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        margin-bottom: 3rem;
+        background: linear-gradient(135deg, #ffffff 0%, #64ffda 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .screenshots-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .screenshot-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(187, 134, 252, 0.1) 100%);
+        border: 2px solid rgba(100, 255, 218, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .screenshot-container:hover {
+        border-color: rgba(100, 255, 218, 0.4);
+        transform: scale(1.02);
+    }
+
+    .screenshot-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 18px;
+        transition: transform 0.3s ease;
+    }
+
+    .screenshot-image:hover {
+        transform: scale(1.05);
+    }
+
+    .screenshot-placeholder {
+        aspect-ratio: 16/10;
+        background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(187, 134, 252, 0.1) 100%);
+        border: 2px solid rgba(100, 255, 218, 0.2);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.7);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .screenshot-placeholder:hover {
+        border-color: rgba(100, 255, 218, 0.4);
+        transform: scale(1.02);
+    }
+
+    /* FAQ Section */
+    .faq-section {
+        padding: 6rem 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .faq-item {
+        margin-bottom: 1.5rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .faq-question {
+        width: 100%;
+        padding: 1.5rem 2rem;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+        background: rgba(100, 255, 218, 0.05);
+    }
+
+    .faq-answer {
+        padding: 0 2rem 1.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    /* About Section */
+    .about-section {
+        padding: 6rem 2rem;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .about-text {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 3rem;
+        line-height: 1.7;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .social-links a {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba(100, 255, 218, 0.1);
+        border: 2px solid rgba(100, 255, 218, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #64ffda;
+        transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+        background: #64ffda;
+        color: #000;
+        transform: translateY(-3px);
+    }
+
+    /* Footer */
+    .footer {
+        padding: 3rem 2rem;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 4rem;
+    }
+
+    .footer p {
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 1rem;
+    }
+
+    .footer a {
+        color: #64ffda;
+        text-decoration: none;
+        margin: 0 1rem;
+        transition: color 0.3s ease;
+    }
+
+    .footer a:hover {
+        color: #bb86fc;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 3rem auto;
-            padding: 0 2rem;
+            grid-template-columns: 1fr;
+            padding: 0 1rem;
         }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .feature-card:hover::before {
-            left: 100%;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(100, 255, 218, 0.4);
-            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.1);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .feature-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #64ffda;
-        }
-
-        .feature-desc {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
+        
         .waitlist-form {
-            display: flex;
-            gap: 1rem;
-            max-width: 500px;
-            margin: 2rem auto;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        /* Override SendPulse form styles */
-        .sp-form[sp-id="246813"] {
-            background: none !important;
-            padding: 0 !important;
-            border: none !important;
-            width: 100% !important;
-        }
-
-        .sp-form-fields-wrapper {
-            width: 100% !important;
-            display: flex !important;
-            gap: 1rem !important;
-            flex-wrap: wrap !important;
-            justify-content: center !important;
-        }
-
-        /* Hide unnecessary SendPulse elements */
-        .sp-field[sp-id="sp-532f326f-55d7-41e1-a4fc-2ffbfde6c412"], /* Description */
-        .sp-control-label, /* Email label */
-        .sp-link-wrapper /* Provided by SendPulse */
-        {
-            display: none !important;
-        }
-
-        /* Style the SendPulse email input to match your design */
-        .sp-form-control {
-            flex: 1;
-            min-width: 280px;
-            padding: 1.2rem 1.5rem !important;
-            font-size: 1.1rem !important;
-            border: 2px solid rgba(100, 255, 218, 0.3) !important;
-            border-radius: 12px !important;
-            background: rgba(255, 255, 255, 0.05) !important;
-            color: white !important;
-            backdrop-filter: blur(10px) !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .sp-form-control:focus {
-            outline: none !important;
-            border-color: #64ffda !important;
-            box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.2) !important;
-        }
-
-        .sp-form-control::placeholder {
-            color: rgba(255, 255, 255, 0.6) !important;
-        }
-
-        /* Style the SendPulse submit button to match your design */
-        .sp-button {
-            padding: 1.2rem 2.5rem !important; /* Explicit padding */
-            font-size: 1.1rem !important;
-            font-weight: 600 !important;
-            background: linear-gradient(135deg, #64ffda 0%, #bb86fc 100%) !important;
-            color: #000 !important;
-            border: none !important;
-            border-radius: 12px !important;
-            cursor: pointer !important;
-            transition: all 0.3s ease !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.5px !important;
-            width: auto !important; /* Prevent stretching */
-            min-width: 200px; /* Ensure consistent size */
-            height: 60px; /* Match input height for alignment */
-            line-height: 1; /* Prevent text misalignment */
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .sp-button:hover {
-            transform: translateY(-2px) !important;
-            box-shadow: 0 10px 25px rgba(100, 255, 218, 0.3) !important;
-        }
-
-        .sp-button.loading::after {
-            content: "Loading...";
-            font-size: 0.9rem;
-            margin-left: 0.5rem;
-        }
-
-        .sp-button-container {
-            text-align: center !important;
-            display: inline-flex !important; /* Prevent layout shift */
+            flex-direction: column;
             align-items: center;
         }
-
-        .early-offer-button {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 1rem 2rem;
-            background: rgba(207, 102, 121, 0.2);
-            border: 2px solid #cf6679;
-            color: #cf6679;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
+        
+        .waitlist-form input[type="email"] {
+            min-width: 100%;
         }
-
-        .early-offer-button:hover {
-            background: #cf6679;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Screenshots Section */
-        .screenshots-section {
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 3rem;
-            background: linear-gradient(135deg, #ffffff 0%, #64ffda 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
+        
         .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: 1fr;
+            padding: 0 1rem;
         }
+    }
 
-        .screenshot-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(187, 134, 252, 0.1) 100%);
-            border: 2px solid rgba(100, 255, 218, 0.2);
-            transition: all 0.3s ease;
-        }
+    /* Smooth scroll behavior */
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
 
-        .screenshot-container:hover {
-            border-color: rgba(100, 255, 218, 0.4);
-            transform: scale(1.02);
-        }
-
-        .screenshot-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 18px;
-            transition: transform 0.3s ease;
-        }
-
-        .screenshot-image:hover {
-            transform: scale(1.05);
-        }
-
-        .screenshot-placeholder {
-            aspect-ratio: 16/10;
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(187, 134, 252, 0.1) 100%);
-            border: 2px solid rgba(100, 255, 218, 0.2);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.7);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .screenshot-placeholder:hover {
-            border-color: rgba(100, 255, 218, 0.4);
-            transform: scale(1.02);
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            padding: 6rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .faq-question {
-            width: 100%;
-            padding: 1.5rem 2rem;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .faq-question:hover {
-            background: rgba(100, 255, 218, 0.05);
-        }
-
-        .faq-answer {
-            padding: 0 2rem 1.5rem;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        /* About Section */
-        .about-section {
-            padding: 6rem 2rem;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .about-text {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 3rem;
-            line-height: 1.7;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .social-links a {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(100, 255, 218, 0.1);
-            border: 2px solid rgba(100, 255, 218, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64ffda;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: #64ffda;
-            color: #000;
-            transform: translateY(-3px);
-        }
-
-        /* Footer */
-        .footer {
-            padding: 3rem 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 4rem;
-        }
-
-        .footer p {
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 1rem;
-        }
-
-        .footer a {
-            color: #64ffda;
-            text-decoration: none;
-            margin: 0 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer a:hover {
-            color: #bb86fc;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-                padding: 0 1rem;
-            }
-            
-            .waitlist-form {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .sp-form-control {
-                min-width: 100% !important;
-            }
-            
-            .screenshots-grid {
-                grid-template-columns: 1fr;
-                padding: 0 1rem;
-            }
-        }
-
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
 </head>
 <body>
     <!-- Animated background particles -->
     <div class="bg-particles" id="particles"></div>
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Edit 1000 Chapters in No Time.</h1>
+    <p class="tagline">
+        Glub is an all-in-one AI powered workspace for authors, storytellers, legal professionals, editors, and anyone handling sensitive large-sized projects. Whether you're crafting a novel, writing research, or organizing creative chaos, Glub is the ultimate place to build, edit, and organize your work with one click. 
+    </p>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Edit 1000 Chapters in No Time.</h1>
-        <p class="tagline">
-            Glub is an all-in-one AI powered workspace for authors, storytellers, legal professionals, editors, and anyone handling sensitive large-sized projects. Whether you're crafting a novel, writing research, or organizing creative chaos, Glub is the ultimate place to build, edit, and organize your work with one click. 
-        </p>
+    <div class="features-grid">
+        <div class="feature-card">
+            <span class="feature-icon">🧠</span>
+            <div class="feature-title">Ultimate Book Generator</div>
+            <div class="feature-desc">Generate chapters in your voice using AI</div>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">✍️</span>
+            <div class="feature-title">Smart Context-Aware Editing</div>
+            <div class="feature-desc">It reads your entire files before touching it</div>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">📦</span>
+            <div class="feature-title">One-Click Export</div>
+            <div class="feature-desc">Export to PDF, DOCX, Markdown with one click</div>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">📚</span>
+            <div class="feature-title">Custom Workflows</div>
+            <div class="feature-desc">Tailored for writers & creators</div>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🎯</span>
+            <div class="feature-title">Hyper Personalized Guidance</div>
+            <div class="feature-desc">No need to explain context, Glub digests your work realtime to offer all the help you need</div>
+        </div>
+         <div class="feature-card">
+            <span class="feature-icon">🤖</span>
+            <div class="feature-title">Glub Bot</div>
+            <div class="feature-desc">The magician behind the scene, a 24/7 super smart assistant - breaks writer's block and dishes out solutions to any problem in seconds.</div>
+        </div>
+    </div>
+    <div class="cta-section">
+        <form
+            action="https://henry-penflox.kit.com/002a841e13"
+            method="post"
+            class="waitlist-form"
+        >
+            <input
+                type="email"
+                name="email_address"
+                placeholder="Enter your email address"
+                required
+            />
+            <input type="hidden" name="id" value="002a841e13" />
+            <button type="submit">Get Early Access</button>
+        </form>
+        <a class="early-offer-button" href="https://your-payment-page.com" target="_blank" rel="noopener noreferrer">
+            💸 Claim Launch Pricing
+        </a>
+    </div>
+</section>
 
-        <div class="features-grid">
-            <div class="feature-card">
-                <span class="feature-icon">🧠</span>
-                <div class="feature-title">Ultimate Book Generator</div>
-                <div class="feature-desc">Generate chapters in your voice using AI</div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">✍️</span>
-                <div class="feature-title">Smart Context-Aware Editing</div>
-                <div class="feature-desc">It reads your entire files before touching it</div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">📦</span>
-                <div class="feature-title">One-Click Export</div>
-                <div class="feature-desc">Export to PDF, DOCX, Markdown with one click</div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">📚</span>
-                <div class="feature-title">Custom Workflows</div>
-                <div class="feature-desc">Tailored for writers & creators</div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🎯</span>
-                <div class="feature-title">Hyper Personalized Guidance</div>
-                <div class="feature-desc">No need to explain context, Glub digests your work realtime to offer all the help you need</div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🤖</span>
-                <div class="feature-title">Glub Bot</div>
-                <div class="feature-desc">The magician behind the scene, a 24/7 super smart assistant - breaks writer's block and dishes out solutions to any problem in seconds.</div>
-            </div>
+<!-- Screenshots Section -->
+<section class="screenshots-section">
+    <h2 class="section-title">See Glub in Action</h2>
+    <div class="screenshots-grid">
+        <div class="screenshot-container">
+            <img src="https://github.com/Cad-e-t/GlubPagePhhotos/blob/main/glub%20main%20page%20screenshot.png?raw=true"
+                 alt="Home View" 
+                 class="screenshot-image"
+                 onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Home View - Image Loading...</div>'">
         </div>
-        <div class="cta-section">
-            <div class="waitlist-form">
-                <div class="sp-form-outer">
-                    <div id="sp-form-246813" sp-id="246813" sp-hash="e8f8727238178aa1355289e5e61bbb84b501f5956c3fc2fbb21358a73caf9a09" sp-lang="en" class="sp-form sp-form-regular sp-form-embed" sp-show-options="%7B%22satellite%22%3Afalse%2C%22maDomain%22%3A%22login.sendpulse.com%22%2C%22formsDomain%22%3A%22forms.sendpulse.com%22%2C%22condition%22%3A%22onEnter%22%2C%22scrollTo%22%3A25%2C%22delay%22%3A10%2C%22repeat%22%3A3%2C%22background%22%3A%22rgba(0%2C%200%2C%200%2C%200.5)%22%2C%22position%22%3A%22bottom-right%22%2C%22animation%22%3A%22%22%2C%22hideOnMobile%22%3Afalse%2C%22submitRedirectUrl%22%3A%22%22%2C%22urlFilter%22%3Afalse%2C%22urlFilterConditions%22%3A%5B%7B%22force%22%3A%22hide%22%2C%22clause%22%3A%22contains%22%2C%22token%22%3A%22%22%7D%5D%2C%22analytics%22%3A%7B%22ga%22%3A%7B%22eventLabel%22%3A%22Subscription_form_Glub_Pioneers%22%2C%22send%22%3Afalse%7D%7D%2C%22utmEnable%22%3Afalse%7D">
-                        <div class="sp-form-fields-wrapper">
-                            <div class="sp-message"><div></div></div>
-                            <form novalidate="" class="sp-element-container">
-                                <div class="sp-field" sp-id="sp-532f326f-55d7-41e1-a4fc-2ffbfde6c412">
-                                    <div style="font-family: inherit; line-height: 1.2;">Once a week we send a digest with our most popular articles.</div>
-                                </div>
-                                <div class="sp-field" sp-id="sp-921694c7-e511-4535-9b0c-bbb961b9af71">
-                                    <label class="sp-control-label"><span>Email</span><strong>*</strong></label>
-                                    <input type="email" sp-type="email" name="sform[email]" class="sp-form-control" placeholder="username@gmail.com" sp-tips="%7B%22required%22%3A%22Required%20field%22%2C%22wrong%22%3A%22Wrong%20email%22%7D" autocomplete="on" required="required">
-                                </div>
-                                <div class="sp-field sp-button-container" sp-id="sp-7c74a67a-b7dd-41e8-9a2c-814a5d12d204">
-                                    <button id="sp-7c74a67a-b7dd-41e8-9a2c-814a5d12d204" class="sp-button">Get Early Access</button>
-                                </div>
-                            </form>
-                            <div class="sp-link-wrapper sp-brandname__left">
-                                <a class="sp-link" target="_blank" href="https://sendpulse.com/forms-powered-by-sendpulse?from=9095499">
-                                    <span class="sp-link-img"> </span>
-                                    <span translate="FORM.PROVIDED_BY">Provided by SendPulse</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <script type="text/javascript" defer src="//web.webformscr.com/apps/fc3/build/default-handler.js?1744699503990"></script>
-            </div>
-            <a class="early-offer-button" href="https://your-payment-page.com" target="_blank" rel="noopener noreferrer">
-                💸 Claim Launch Pricing
-            </a>
+        <div class="screenshot-container">
+            <img src="https://github.com/Cad-e-t/GlubPagePhhotos/blob/main/glub%20workspace%20screenshot.png?raw=true"
+                 alt="Smart Editing Dashboard" 
+                 class="screenshot-image"
+                 onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Smart Editing Dashboard - Image Loading...</div>'">
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Screenshots Section -->
-    <section class="screenshots-section">
-        <h2 class="section-title">See Glub in Action</h2>
-        <div class="screenshots-grid">
-            <div class="screenshot-container">
-                <img src="https://github.com/Cad-e-t/GlubPagePhhotos/blob/main/glub%20main%20page%20screenshot.png?raw=true"
-                     alt="Home View" 
-                     class="screenshot-image"
-                     onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Home View - Image Loading...</div>'">
-            </div>
-            <div class="screenshot-container">
-                <img src="https://github.com/Cad-e-t/GlubPagePhhotos/blob/main/glub%20workspace%20screenshot.png?raw=true"
-                     alt="Smart Editing Dashboard" 
-                     class="screenshot-image"
-                     onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Smart Editing Dashboard - Image Loading...</div>'">
-            </div>
+<!-- FAQ Section -->
+<section class="faq-section">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+            Is Glub free to use?
+            <span>+</span>
+        </button>
+        <div class="faq-answer" style="display: none;">
+            We will offer a free tier with essential features and a credit system for advanced usage. Perfect for getting started and exploring what Glub can do for your projects.
         </div>
-    </section>
+    </div>
+    <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+            What can I use Glub for?
+            <span>+</span>
+        </button>
+        <div class="faq-answer" style="display: none;">
+            Anything from writing books, managing sensitive documents, to debugging code files. Glub handles large projects with context awareness and intelligent assistance.
+        </div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+            How does the AI understand my writing style?
+            <span>+</span>
+        </button>
+        <div class="faq-answer" style="display: none;">
+            Glub analyzes your existing content to learn your voice, tone, and style patterns. The more you use it, the better it becomes at matching your unique writing approach.
+        </div>
+    </div>
+</section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                Is Glub free to use?
-                <span>+</span>
-            </button>
-            <div class="faq-answer" style="display: none;">
-                We will offer a free tier with essential features and a credit system for advanced usage. Perfect for getting started and exploring what Glub can do for your projects.
-            </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                What can I use Glub for?
-                <span>+</span>
-            </button>
-            <div class="faq-answer" style="display: none;">
-                Anything from writing books, managing sensitive documents, to debugging code files. Glub handles large projects with context awareness and intelligent assistance.
-            </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                How does the AI understand my writing style?
-                <span>+</span>
-            </button>
-            <div class="faq-answer" style="display: none;">
-                Glub analyzes your existing content to learn your voice, tone, and style patterns. The more you use it, the better it becomes at matching your unique writing approach.
-            </div>
-        </div>
-    </section>
+<!-- About Section -->
+<section class="about-section">
+    <h2 class="section-title">Creator's Note</h2>
+    <p class="about-text">
+        I have tried ChatGPT, Grammarly, every major LLM you can think of. Yes they are powerful, but they never gave me what I wanted. I'm building this to help writers, developers, and professionals handle serious work with ease, speed, and no risk of loss.
+    </p>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/penflox100/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.36 8.33h4.24v12H.36v-12zm7.37 0h4.07v1.74h.06c.57-1.08 1.97-2.22 4.05-2.22 4.32 0 5.12 2.84 5.12 6.54v7.94h-4.24v-7.04c0-1.68-.03-3.85-2.35-3.85-2.35 0-2.7 1.83-2.7 3.73v7.16H7.73v-12z"/>
+            </svg>
+        </a>
+        <a href="https://x.com/Cad_e_t" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 4.56a9.83 9.83 0 0 1-2.83.77 4.93 4.93 0 0 0 2.16-2.72 9.92 9.92 0 0 1-3.13 1.2 4.92 4.92 0 0 0-8.38 4.49 13.94 13.94 0 0 1-10.12-5.13 4.93 4.93 0 0 0 1.52 6.56 4.9 4.9 0 0 1-2.23-.62v.06a4.92 4.92 0 0 0 3.95 4.82 4.92 4.92 0 0 1-2.22.08 4.92 4.92 0 0 0 4.59 3.42A9.87 9.87 0 0 1 0 19.54a13.93 13.93 0 0 0 7.55 2.21c9.06 0 14.02-7.5 14.02-14v-.64A9.99 9.99 0 0 0 24 4.56z"/>
+            </svg>
+        </a>
+    </div>
+</section>
 
-    <!-- About Section -->
-    <section class="about-section">
-        <h2 class="section-title">Creator's Note</h2>
-        <p class="about-text">
-            I have tried ChatGPT, Grammarly, every major LLM you can think of. Yes they are powerful, but they never gave me what I wanted. I'm building this to help writers, developers, and professionals handle serious work with ease, speed, and no risk of loss.
-        </p>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/penflox100/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.36 8.33h4.24v12H.36v-12zm7.37 0h4.07v1.74h.06c.57-1.08 1.97-2.22 4.05-2.22 4.32 0 5.12 2.84 5.12 6.54v7.94h-4.24v-7.04c0-1.68-.03-3.85-2.35-3.85-2.35 0-2.7 1.83-2.7 3.73v7.16H7.73v-12z"/>
-                </svg>
-            </a>
-            <a href="https://x.com/Cad_e_t" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M24 4.56a9.83 9.83 0 0 1-2.83.77 4.93 4.93 0 0 0 2.16-2.72 9.92 9.92 0 0 1-3.13 1.2 4.92 4.92 0 0 0-8.38 4.49 13.94 13.94 0 0 1-10.12-5.13 4.93 4.93 0 0 0 1.52 6.56 4.9 4.9 0 0 1-2.23-.62v.06a4.92 4.92 0 0 0 3.95 4.82 4.92 4.92 0 0 1-2.22.08 4.92 4.92 0 0 0 4.59 3.42A9.87 9.87 0 0 1 0 19.54a13.93 13.93 0 0 0 7.55 2.21c9.06 0 14.02-7.5 14.02-14v-.64A9.99 9.99 0 0 0 24 4.56z"/>
-                </svg>
-            </a>
-        </div>
-    </section>
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; 2025 Glub Inc. All rights reserved.</p>
+    <a href="#">Terms</a> | <a href="#">Privacy</a>
+</footer>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>© 2025 Glub Inc. All rights reserved.</p>
-        <a href="#">Terms</a> | <a href="#">Privacy</a>
-    </footer>
-
-    <script>
-        // Create animated background particles
-        function createParticles() {
-            const container = document.getElementById('particles');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
-                container.appendChild(particle);
-            }
+<script>
+    // Create animated background particles
+    function createParticles() {
+        const container = document.getElementById('particles');
+        const particleCount = 50;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            container.appendChild(particle);
         }
+    }
 
-        // Toggle FAQ items
-        function toggleFaq(button) {
-            const answer = button.nextElementSibling;
-            const icon = button.querySelector('span');
-            
-            if (answer.style.display === 'none' || answer.style.display === '') {
-                answer.style.display = 'block';
-                icon.textContent = '−';
-            } else {
-                answer.style.display = 'none';
-                icon.textContent = '+';
-            }
+    // Toggle FAQ items
+    function toggleFaq(button) {
+        const answer = button.nextElementSibling;
+        const icon = button.querySelector('span');
+        
+        if (answer.style.display === 'none' || answer.style.display === '') {
+            answer.style.display = 'block';
+            icon.textContent = '−';
+        } else {
+            answer.style.display = 'none';
+            icon.textContent = '+';
         }
+    }
 
-        // Handle form submission with loading state
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.querySelector('.sp-element-container');
-            const button = document.querySelector('.sp-button');
+    // Initialize particles when page loads
+    document.addEventListener('DOMContentLoaded', createParticles);
 
-            if (form && button) {
-                form.addEventListener('submit', (event) => {
-                    button.classList.add('loading');
-                    button.disabled = true;
-                });
+    // Add scroll-triggered animations
+    function handleScroll() {
+        const elements = document.querySelectorAll('.feature-card, .screenshot-container, .faq-item');
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.8) {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
             }
         });
+    }
 
-        // Initialize particles when page loads
-        document.addEventListener('DOMContentLoaded', createParticles);
-
-        // Add scroll-triggered animations
-        function handleScroll() {
-            const elements = document.querySelectorAll('.feature-card, .screenshot-container, .faq-item');
-            elements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.8) {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                }
-            });
-        }
-
-        // Set initial state for scroll animations
-        document.addEventListener('DOMContentLoaded', () => {
-            const elements = document.querySelectorAll('.feature-card, .screenshot-container, .faq-item');
-            elements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(50px)';
-                el.style.transition = 'all 0.6s ease';
-            });
+    // Set initial state for scroll animations
+    document.addEventListener('DOMContentLoaded', () => {
+        const elements = document.querySelectorAll('.feature-card, .screenshot-container, .faq-item');
+        elements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.6s ease';
         });
+    });
 
-        window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Check initial state
-    </script>
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
+</script>
+
 </body>
 </html>
+
