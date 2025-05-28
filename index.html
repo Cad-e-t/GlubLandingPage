@@ -59,7 +59,7 @@
             background: radial-gradient(ellipse at center, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
         }
 
-        ..hero::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
@@ -71,7 +71,6 @@
             z-index: -1;
             pointer-events: none;
         }
-
 
         .hero h1 {
             font-size: clamp(3rem, 8vw, 8rem);
@@ -257,6 +256,32 @@
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .screenshot-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(187, 134, 252, 0.1) 100%);
+            border: 2px solid rgba(100, 255, 218, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-container:hover {
+            border-color: rgba(100, 255, 218, 0.4);
+            transform: scale(1.02);
+        }
+
+        .screenshot-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .screenshot-image:hover {
+            transform: scale(1.05);
         }
 
         .screenshot-placeholder {
@@ -478,20 +503,22 @@
 
     <!-- Screenshots Section -->
     <section class="screenshots-section">
-    <h2 class="section-title">See Glub in Action</h2>
-    <div class="screenshots-grid">
-        <div class="screenshot-container">
-            <img src="https://drive.google.com/uc?export=view&id=12LqOUhqmZSltp6m82jG5Vg1_WEdVm-Ot"
-                 alt="Home View" 
-                 class="screenshot-image">
-        <div class="screenshot-container">
-            <img src="https://drive.google.com/uc?export=view&id=1owdhOALw2wBcnQiPZg7jE2-vMKzvN1Vu"  
-                 alt="Smart Editing Dashboard" 
-                 class="screenshot-image">
+        <h2 class="section-title">See Glub in Action</h2>
+        <div class="screenshots-grid">
+            <div class="screenshot-container">
+                <img src="https://drive.google.com/uc?export=view&id=12LqOUhqmZSltp6m82jG5Vg1_WEdVm-Ot"
+                     alt="Home View" 
+                     class="screenshot-image"
+                     onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Home View - Image Loading...</div>'">
+            </div>
+            <div class="screenshot-container">
+                <img src="https://drive.google.com/uc?export=view&id=1owdhOALw2wBcnQiPZg7jE2-vMKzvN1Vu"  
+                     alt="Smart Editing Dashboard" 
+                     class="screenshot-image"
+                     onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Smart Editing Dashboard - Image Loading...</div>'">
+            </div>
         </div>
-    </div>
     </section>
-
 
     <!-- FAQ Section -->
     <section class="faq-section">
@@ -586,7 +613,7 @@
 
         // Add scroll-triggered animations
         function handleScroll() {
-            const elements = document.querySelectorAll('.feature-card, .screenshot-placeholder, .faq-item');
+            const elements = document.querySelectorAll('.feature-card, .screenshot-container, .faq-item');
             elements.forEach(el => {
                 const rect = el.getBoundingClientRect();
                 if (rect.top < window.innerHeight * 0.8) {
@@ -598,7 +625,7 @@
 
         // Set initial state for scroll animations
         document.addEventListener('DOMContentLoaded', () => {
-            const elements = document.querySelectorAll('.feature-card, .screenshot-placeholder, .faq-item');
+            const elements = document.querySelectorAll('.feature-card, .screenshot-container, .faq-item');
             elements.forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(50px)';
