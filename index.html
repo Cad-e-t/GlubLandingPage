@@ -163,7 +163,7 @@
             text-align: center;
         }
 
-        .waitlist-form { /* This class is now also on the ConvertKit form tag */
+        .waitlist-form {
             display: flex;
             gap: 1rem;
             max-width: 500px;
@@ -172,15 +172,12 @@
             justify-content: center;
         }
 
-        /* ConvertKit form container */
-        .formkit-form.waitlist-form { /* Specificity for the ConvertKit form */
+        .formkit-form.waitlist-form {
             background: none !important;
             border: none !important;
             padding: 0 !important;
-            /* display, gap, flex-wrap, justify-content, max-width, margin are inherited from .waitlist-form or set below for .formkit-fields */
         }
 
-        /* Hide unnecessary ConvertKit elements */
         .formkit-header,
         .formkit-content,
         .formkit-disclaimer,
@@ -188,7 +185,6 @@
             display: none !important;
         }
 
-        /* Style the email input */
         .formkit-input {
             flex: 1;
             min-width: 280px;
@@ -213,7 +209,6 @@
             color: rgba(255, 255, 255, 0.6) !important;
         }
 
-        /* Style the submit button */
         .formkit-submit {
             padding: 1.2rem 2.5rem !important;
             font-size: 1.1rem !important;
@@ -229,6 +224,10 @@
             letter-spacing: 0.5px !important;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .formkit-submit:hover {
@@ -251,25 +250,46 @@
             left: 100%;
         }
 
-        /* Spinner styles */
         .formkit-spinner {
-            display: none !important; /* Or style as needed if you want to show it */
+            display: none !important;
         }
 
-        /* Ensure the fields container aligns with flex layout */
         .formkit-fields {
             display: flex !important;
             gap: 1rem !important;
-            flex-wrap: wrap !important; /* should be wrap to match .waitlist-form */
-            justify-content: center !important; /* should be center to match .waitlist-form */
-            width: 100%; /* Allow it to take full width of the parent flex container */
-        }
-        
-        .formkit-field { /* Ensure the individual field can grow */
-            flex: 1; 
-            min-width: 280px; /* Match min-width of .formkit-input for consistency */
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            width: 100%;
         }
 
+        .formkit-field {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        /* Custom Loading Spinner */
+        .custom-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #64ffda;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .formkit-submit.loading .custom-spinner {
+            display: inline-block;
+        }
+
+        .formkit-submit.loading .button-text {
+            opacity: 0;
+        }
 
         .early-offer-button {
             display: inline-block;
@@ -349,8 +369,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.7);
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
@@ -473,18 +491,18 @@
                 padding: 0 1rem;
             }
             
-            .formkit-form.waitlist-form, .waitlist-form { /* Apply to both for consistency */
+            .formkit-form.waitlist-form, .waitlist-form {
                 flex-direction: column;
                 align-items: center;
             }
             
-            .formkit-input, .formkit-field { /* Ensure input and its container take full width */
+            .formkit-input, .formkit-field {
                 min-width: 100% !important;
                 width: 100% !important;
             }
 
-            .formkit-submit { /* Ensure button also takes full width in column layout if desired, or adjust */
-                 width: 100% !important; /* Or adjust as preferred */
+            .formkit-submit {
+                width: 100% !important;
             }
             
             .screenshots-grid {
@@ -543,26 +561,23 @@
         <div class="cta-section">
             <div class="waitlist-form">
                 <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
-                <form action="https://app.kit.com/forms/8112942/subscriptions" class="seva-form formkit-form waitlist-form" method="post" data-sv-form="8112942" data-uid="002a841e13" data-format="inline" data-version="5" data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Almost there! Now check your email and confirm your subscription to officially appear in the waitlist.","redirect_url":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":true,"url":"https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}' min-width="400 500 600 700 800" style="border-radius: 0px;">
+                <form action="https://app.kit.com/forms/8112942/subscriptions" class="seva-form formkit-form waitlist-form" id="waitlist-form" method="post" data-sv-form="8112942" data-uid="002a841e13" data-format="inline" data-version="5" data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Almost there! Now check your email and confirm your subscription so you will be appear on the wait-list.","redirect_url":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":false,"url":"https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}' min-width="400 500 600 700 800" style="border-radius: 0px;">
                     <div data-style="full" style="--border-radius: 0px; width: 100%;">
-                        <div class="formkit-background" style="background-image: url(&quot;https://embed.filekitcdn.com/e/2owDSJCEZcjwZhVLK4rMrK/2vJTtpQyc87b2ZVG9bQ3aA&quot;);"></div>
+                        <div class="formkit-background" style="background-image: url('https://embed.filekitcdn.com/e/2owDSJCEZcjwZhVLK4rMrK/2vJTtpQyc87b2ZVG9bQ3aA');"></div>
                         <div class="formkit-container" style="--bg-color: #2E2E2E; --bg-color-07: #2E2E2E12; --bg-color-83: #2E2E2ED4;">
                             <div class="formkit-header" data-element="header" style="color: rgb(255, 255, 255); font-weight: 700;"><h2>Join the waitlist</h2></div>
                             <div class="formkit-content" data-element="content" style="color: rgb(255, 255, 255);"><p>Subscribe below and we’ll notify you when the product is released.</p></div>
                             <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
                             <div data-element="fields" class="seva-fields formkit-fields" style="color: rgb(255, 255, 255);">
                                 <div class="formkit-field">
-                                    <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Email Address" required="" type="email" style="color: rgb(110, 110, 110); font-weight: 400; background-color: rgb(27, 27, 27); border-radius: 4px;">
+                                    <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Email Address" required type="email" style="color: rgb(110, 110, 110); font-weight: 400; background-color: rgb(27, 27, 27); border-radius: 4px;">
                                 </div>
-                                <button data-element="submit" class="formkit-submit formkit-submit" style="color: rgb(255, 255, 255); background-color: rgb(245, 113, 72); border-radius: 4px; font-weight: 700;">
-                                    <div class="formkit-spinner"><div></div><div></div><div></div></div>
-                                    <span class="">Create My Space</span>
+                                <button type="submit" data-element="submit" class="formkit-submit" id="submit-button" style="color: rgb(255, 255, 255); background-color: rgb(245, 113, 72); border-radius: 4px; font-weight: 700;">
+                                    <span class="custom-spinner" id="custom-spinner"></span>
+                                    <span class="button-text">Create My Space</span>
                                 </button>
                             </div>
                             <div class="formkit-disclaimer" data-element="disclaimer" style="color: rgb(203, 203, 203);">We respect your privacy. Unsubscribe at any time.</div>
-                            <div class="formkit-powered-by-convertkit-container">
-                                <a href="https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic" data-element="powered-by" class="formkit-powered-by-convertkit" data-variant="light" target="_blank" rel="nofollow">Built with Kit</a>
-                            </div>
                         </div>
                     </div>
                 </form>
@@ -577,16 +592,10 @@
         <h2 class="section-title">See Glub in Action</h2>
         <div class="screenshots-grid">
             <div class="screenshot-container">
-                <img src="https://github.com/Cad-e-t/GlubPagePhhotos/blob/main/glub%20main%20page%20screenshot.png?raw=true"
-                     alt="Home View" 
-                     class="screenshot-image"
-                     onerror="this.parentElement.innerHTML='<div class=\"screenshot-placeholder\">Home View - Image Loading...</div>'">
+                <img src="https://github.com/Cad-e-t/GlubPagePhhotos/blob/main/glub%20main%20page%20screenshot.png?raw=true" alt="Home View" class="screenshot-image">
             </div>
             <div class="screenshot-container">
-                <img src="https://github.com/Cad-e-t/GlubPagePhhotos/blob/main/glub%20workspace%20screenshot.png?raw=true"
-                     alt="Smart Editing Dashboard" 
-                     class="screenshot-image"
-                     onerror="this.parentElement.innerHTML='<div class=\"screenshot-placeholder\">Smart Editing Dashboard - Image Loading...</div>'">
+                <img src="https://github.com/Cad-e-t/GlubPagePhhotos/blob/main/glub%20workspace%20screenshot.png?raw=true" alt="Smart Editing Dashboard" class="screenshot-image">
             </div>
         </div>
     </section>
@@ -676,7 +685,28 @@
             }
         }
 
-        // Initialize particles when page loads
+        // Handle form submission and spinner
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('waitlist-form');
+            const submitButton = document.getElementById('submit-button');
+
+            form.addEventListener('submit', () => {
+                submitButton.classList.add('loading');
+                submitButton.disabled = true;
+            });
+
+            form.addEventListener('formkit:submit:success', () => {
+                submitButton.classList.remove('loading');
+                submitButton.disabled = false;
+            });
+
+            form.addEventListener('formkit:submit:error', () => {
+                submitButton.classList.remove('loading');
+                submitButton.disabled = false;
+            });
+        });
+
+        // Initialize particles
         document.addEventListener('DOMContentLoaded', createParticles);
 
         // Add scroll-triggered animations
@@ -691,7 +721,6 @@
             });
         }
 
-        // Set initial state for scroll animations
         document.addEventListener('DOMContentLoaded', () => {
             const elements = document.querySelectorAll('.feature-card, .screenshot-container, .faq-item');
             elements.forEach(el => {
@@ -702,7 +731,7 @@
         });
 
         window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Check initial state
+        handleScroll();
     </script>
 </body>
 </html>
