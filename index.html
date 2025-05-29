@@ -159,7 +159,7 @@
 
         /* CTA Section */
         .cta-section {
-            padding: 20px;
+            padding: 4rem 2rem;
             text-align: center;
         }
 
@@ -311,18 +311,15 @@
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            align-items: start; /* Prevent grid items from stretching */
         }
 
         .screenshot-container {
             position: relative;
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: 20px;
             background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(187, 134, 252, 0.1) 100%);
             border: 2px solid rgba(100, 255, 218, 0.2);
             transition: all 0.3s ease;
-            min-height: 200px; /* Ensure minimum size */
-            box-sizing: border-box;
         }
 
         .screenshot-container:hover {
@@ -333,9 +330,8 @@
         .screenshot-image {
             width: 100%;
             height: auto;
-            max-height: 400px; /* Cap image height */
             display: block;
-            border-radius: 10px;
+            border-radius: 18px;
             transition: transform 0.3s ease;
         }
 
@@ -344,10 +340,10 @@
         }
 
         .screenshot-placeholder {
-            min-height: 200px;
+            aspect-ratio: 16/10;
             background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(187, 134, 252, 0.1) 100%);
             border: 2px solid rgba(100, 255, 218, 0.2);
-            border-radius: 12px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
