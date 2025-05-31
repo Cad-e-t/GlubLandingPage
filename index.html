@@ -98,6 +98,76 @@
             line-height: 1.5;
         }
 
+        .problem-section {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+            text-align: left;
+        }
+
+        .problem-title {
+            font-size: 1.5rem;
+            color: #64ffda;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .problem-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .problem-list li {
+            margin: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+        }
+
+        .problem-list li::before {
+            content: "•";
+            color: #cf6679;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .solution-intro {
+            background: rgba(100, 255, 218, 0.05);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .solution-intro h3 {
+            color: #64ffda;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .solution-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .solution-list li {
+            margin: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .solution-list li::before {
+            content: "✓";
+            color: #64ffda;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -161,6 +231,90 @@
         .cta-section {
             padding: 4rem 2rem;
             text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #64ffda 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .early-access-card {
+            background: rgba(100, 255, 218, 0.05);
+            border: 2px solid rgba(100, 255, 218, 0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .early-access-list {
+            list-style: none;
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        .early-access-list li {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+
+        .early-access-list li::before {
+            content: "✓";
+            color: #64ffda;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .discount-highlight {
+            color: #cf6679;
+            font-weight: bold;
+        }
+
+        .early-offer-button {
+            display: inline-block;
+            margin: 1.5rem 0;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #64ffda 0%, #bb86fc 100%);
+            color: #000;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .early-offer-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(100, 255, 218, 0.3);
+        }
+
+        .waitlist-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
         }
 
         .waitlist-form {
@@ -214,8 +368,8 @@
             font-size: 1.1rem !important;
             font-weight: 600 !important;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #64ffda 0%, #bb86fc 100%) !important;
-            color: #000 !important;
+            background: linear-gradient(135deg, #cf6679 0%, #bb86fc 100%) !important;
+            color: #fff !important;
             border: none !important;
             border-radius: 12px !important;
             cursor: pointer !important;
@@ -232,7 +386,7 @@
 
         .formkit-submit:hover {
             transform: translateY(-2px) !important;
-            box-shadow: 0 10px 25px rgba(100, 255, 218, 0.3) !important;
+            box-shadow: 0 10px 25px rgba(207, 102, 121, 0.3) !important;
         }
 
         .formkit-submit::before {
@@ -242,7 +396,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s;
         }
 
@@ -291,30 +445,11 @@
             opacity: 0;
         }
 
-        .early-offer-button {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 1rem 2rem;
-            background: rgba(207, 102, 121, 0.2);
-            border: 2px solid #cf6679;
-            color: #cf6679;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
-
-        .early-offer-button:hover {
-            background: #cf6679;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Screenshots Section */
-        .screenshots-section {
+        /* FAQ Section */
+        .faq-section {
             padding: 6rem 2rem;
-            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .section-title {
@@ -325,64 +460,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
-
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .screenshot-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(187, 134, 252, 0.1) 100%);
-            border: 2px solid rgba(100, 255, 218, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .screenshot-container:hover {
-            border-color: rgba(100, 255, 218, 0.4);
-            transform: scale(1.02);
-        }
-
-        .screenshot-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 18px;
-            transition: transform 0.3s ease;
-        }
-
-        .screenshot-image:hover {
-            transform: scale(1.05);
-        }
-
-        .screenshot-placeholder {
-            aspect-ratio: 16/10;
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(187, 134, 252, 0.1) 100%);
-            border: 2px solid rgba(100, 255, 218, 0.2);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .screenshot-placeholder:hover {
-            border-color: rgba(100, 255, 218, 0.4);
-            transform: scale(1.02);
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            padding: 6rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
+            text-align: center;
         }
 
         .faq-item {
@@ -420,44 +498,19 @@
             line-height: 1.6;
         }
 
-        /* About Section */
-        .about-section {
+        /* Creator's Note Section */
+        .creator-note-section {
             padding: 6rem 2rem;
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
         }
 
-        .about-text {
+        .creator-note-text {
             font-size: 1.3rem;
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             line-height: 1.7;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .social-links a {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(100, 255, 218, 0.1);
-            border: 2px solid rgba(100, 255, 218, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64ffda;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: #64ffda;
-            color: #000;
-            transform: translateY(-3px);
         }
 
         /* Footer */
@@ -504,10 +557,10 @@
             .formkit-submit {
                 width: 100% !important;
             }
-            
-            .screenshots-grid {
-                grid-template-columns: 1fr;
-                padding: 0 1rem;
+
+            .problem-section, .cta-section, .early-access-card, .waitlist-section {
+                margin-left: 1rem;
+                margin-right: 1rem;
             }
         }
 
@@ -523,42 +576,88 @@
     <section class="hero">
         <h1>Edit 1000 Chapters in No Time.</h1>
         <p class="tagline">
-            Glub is an all-in-one AI powered workspace for authors, storytellers, legal professionals, editors, and anyone handling sensitive large-sized projects. Whether you're crafting a novel, writing research, or organizing creative chaos, Glub is the ultimate place to build, edit, and organize your work with one click. 
+            Glub is built for serious creators authors, CEOs, ghost, and fiction writers who face the challenge of managing big projects with countless details.
         </p>
+
+        <div class="problem-section">
+            <p class="problem-title">If you've ever felt stuck juggling consistency, organization, or just keeping your story or work moving forward, you're not alone.</p>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 1rem;">Here's what we know you deal with:</p>
+            <ul class="problem-list">
+                <li>Limited vocabulary holding back your ideas</li>
+                <li>Perfectionism slowing you down</li>
+                <li>Losing track of your story arc or key points</li>
+                <li>The friction of jumping back in after life interrupts</li>
+                <li>Handling thousands of chapters or pages without contradictions or confusion</li>
+            </ul>
+
+            <div class="solution-intro">
+                <h3>Glub's Third-Eye Assistant is designed to read your current chapter and understand your entire project so it can:</h3>
+                <ul class="solution-list">
+                    <li>Tell you if you're missing something important</li>
+                    <li>Check your writing for consistency, tone, and style</li>
+                    <li>Give you real feedback on how you're doing this chapter</li>
+                    <li>Edit your work like a trusted co-writer who's read everything before</li>
+                </ul>
+                <p style="margin-top: 1rem; font-style: italic; color: #64ffda;">All of this without you explaining a thing. It just <em>gets</em> your work and helps you keep moving.</p>
+            </div>
+        </div>
 
         <div class="features-grid">
             <div class="feature-card">
                 <span class="feature-icon">🧠</span>
                 <div class="feature-title">Ultimate Book Generator</div>
-                <div class="feature-desc">Generate chapters in your voice using AI</div>
+                <div class="feature-desc">Generate chapters in your own voice, effortlessly.</div>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">✍️</span>
                 <div class="feature-title">Smart Context-Aware Editing</div>
-                <div class="feature-desc">It reads your entire files before touching it</div>
+                <div class="feature-desc">Glub reads everything you've written before making any changes.</div>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">📦</span>
                 <div class="feature-title">One-Click Export</div>
-                <div class="feature-desc">Export to PDF, DOCX, Markdown with one click</div>
+                <div class="feature-desc">Save your work as PDF, DOCX, or Markdown — easy and fast.</div>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">📚</span>
                 <div class="feature-title">Custom Workflows</div>
-                <div class="feature-desc">Tailored for writers & creators</div>
+                <div class="feature-desc">Tailored to how you work, whether you're writing fiction, reports, or business plans.</div>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">🎯</span>
-                <div class="feature-title">Hyper Personalized Guidance</div>
-                <div class="feature-desc">No need to explain context, Glub digests your work realtime to offer all the help you need</div>
+                <div class="feature-title">Hyper-Personalized Guidance</div>
+                <div class="feature-desc">No need to explain your context. Glub digests your work in real time and offers exactly what you need.</div>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">🤖</span>
-                <div class="feature-title">Glub Bot</div>
-                <div class="feature-desc">The magician behind the scene, a 24/7 super smart assistant - breaks writer's block and dishes out solutions to any problem in seconds.</div>
+                <div class="feature-title">Glub Third-Eye Bot - Your 24/7 Writing Ally</div>
+                <div class="feature-desc">Break through blocks and get instant solutions any time.</div>
             </div>
         </div>
-        <div class="cta-section">
+    </section>
+
+    <section class="cta-section">
+        <h2 class="cta-heading">Help Shape Glub, Join Us Early or Stay in the Loop</h2>
+        <p class="cta-description">
+            If you want a tool that truly understands your work, here’s how you can be part of building it:
+        </p>
+
+        <div class="early-access-card">
+            <ul class="early-access-list">
+                <li>Join a small group of early supporters helping us create Glub for people just like you.</li>
+                <li>Early users get a <span class="discount-highlight">70% lifetime discount</span>  Not to sell you something, but because your feedback will shape the product.</li>
+                <li>We’re keeping this group small, about <strong>25 people</strong> to make sure your voice really matters.</li>
+            </ul>
+            <p style="margin-top: 1.5rem; color: rgba(255,255,255,0.9);">If that sounds like you, we’d love to have you onboard.</p>
+            <a class="early-offer-button" href="https://henryzip.lemonsqueezy.com/buy/1d225bce-5787-4e6d-85e1-05132ffabd26" target="_blank" rel="noopener noreferrer">
+                Count Me In I Want To Help Build Glub
+            </a>
+        </div>
+
+        <div class="waitlist-section">
+            <p style="margin-bottom: 1rem; font-size: 1.1rem;">Not ready yet? That’s okay.</p>
+            <p style="margin-bottom: 1.5rem; color: rgba(255,255,255,0.9);">Join the waitlist to stay updated. You’ll receive a <span class="discount-highlight">20% discount</span> at launch to try Glub knowing it’s built with real creators in mind.</p>
+            
             <div class="waitlist-form">
                 <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
                 <form action="https://app.kit.com/forms/8112942/subscriptions" class="seva-form formkit-form waitlist-form" id="waitlist-form" method="post" data-sv-form="8112942" data-uid="002a841e13" data-format="inline" data-version="5" data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Almost there! Now check your email and confirm your subscription so you will be appear on the wait-list.","redirect_url":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":false,"url":"https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}' min-width="400 500 600 700 800" style="border-radius: 0px;">
@@ -566,7 +665,7 @@
                         <div class="formkit-background" style="background-image: url('https://embed.filekitcdn.com/e/2owDSJCEZcjwZhVLK4rMrK/2vJTtpQyc87b2ZVG9bQ3aA');"></div>
                         <div class="formkit-container" style="--bg-color: #2E2E2E; --bg-color-07: #2E2E2E12; --bg-color-83: #2E2E2ED4;">
                             <div class="formkit-header" data-element="header" style="color: rgb(255, 255, 255); font-weight: 700;"><h2>Join the waitlist</h2></div>
-                            <div class="formkit-content" data-element="content" style="color: rgb(255, 255, 255);"><p>Subscribe below and we’ll notify you when the product is released.</p></div>
+                            <div class="formkit-content" data-element="content" style="color: rgb(255, 255, 255);"><p>Subscribe below and we'll notify you when the product is released.</p></div>
                             <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
                             <div data-element="fields" class="seva-fields formkit-fields" style="color: rgb(255, 255, 255);">
                                 <div class="formkit-field">
@@ -574,7 +673,7 @@
                                 </div>
                                 <button type="submit" data-element="submit" class="formkit-submit" id="submit-button" style="color: rgb(255, 255, 255); background-color: rgb(245, 113, 72); border-radius: 4px; font-weight: 700;">
                                     <span class="custom-spinner" id="custom-spinner"></span>
-                                    <span class="button-text">Join the waitlist</span>
+                                    <span class="button-text">Keep Me Posted — Join The Waitlist</span>
                                 </button>
                             </div>
                             <div class="formkit-disclaimer" data-element="disclaimer" style="color: rgb(203, 203, 203);">We respect your privacy. Unsubscribe at any time.</div>
@@ -582,33 +681,18 @@
                     </div>
                 </form>
             </div>
-            <a class="early-offer-button" href="https://henryzip.lemonsqueezy.com/buy/1d225bce-5787-4e6d-85e1-05132ffabd26" target="_blank" rel="noopener noreferrer">
-                💸 Claim Launch Pricing
-            </a>
-        </div>
-    </section>
-
-    <section class="screenshots-section">
-        <h2 class="section-title">See Glub in Action</h2>
-        <div class="screenshots-grid">
-            <div class="screenshot-container">
-                <img src="https://github.com/Cad-e-t/GlubPagePhhotos/blob/main/glub%20main%20page%20screenshot.png?raw=true" alt="Home View" class="screenshot-image">
-            </div>
-            <div class="screenshot-container">
-                <img src="https://github.com/Cad-e-t/GlubPagePhhotos/blob/main/glub%20workspace%20screenshot.png?raw=true" alt="Smart Editing Dashboard" class="screenshot-image">
-            </div>
         </div>
     </section>
 
     <section class="faq-section">
-        <h2 class="section-title">Frequently Asked Questions</h2>
+        <h2 class="section-title">FAQ</h2>
         <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">
                 Is Glub free to use?
                 <span>+</span>
             </button>
             <div class="faq-answer" style="display: none;">
-                We will offer a free tier with essential features and a credit system for advanced usage. Perfect for getting started and exploring what Glub can do for your projects.
+                We’re starting with early access to a select group. Eventually, Glub will be a subscription service designed to save you time and headaches.
             </div>
         </div>
         <div class="faq-item">
@@ -617,7 +701,7 @@
                 <span>+</span>
             </button>
             <div class="faq-answer" style="display: none;">
-                Anything from writing books, managing sensitive documents, to debugging code files. Glub handles large projects with context awareness and intelligent assistance.
+                Whether you’re writing a novel, managing complex reports, ghostwriting, or crafting detailed business content, Glub adapts to your needs.
             </div>
         </div>
         <div class="faq-item">
@@ -626,112 +710,51 @@
                 <span>+</span>
             </button>
             <div class="faq-answer" style="display: none;">
-                Glub analyzes your existing content to learn your voice, tone, and style patterns. The more you use it, the better it becomes at matching your unique writing approach.
+                Glub reads your entire work, so it learns your voice, style, and story arc making its suggestions feel natural and on-point.
             </div>
         </div>
     </section>
 
-    <section class="about-section">
-        <h2 class="section-title">Creator's Note</h2>
-        <p class="about-text">
-            I have tried ChatGPT, Grammarly, every major LLM you can think of. Yes they are powerful, but they never gave me what I wanted. I'm building this to help writers, developers, and professionals handle serious work with ease, speed, and no risk of loss.
+    <section class="creator-note-section">
+        <h2 class="section-title">Creator’s Note</h2>
+        <p class="creator-note-text">
+            I’ve used every major AI writing tool out there ChatGPT, Grammarly, you name it. They’re powerful, but none gave me exactly what I needed. So I built Glub to help writers, CEOs, and professionals handle serious projects with ease, speed, and zero risk of loss.
         </p>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/penflox100/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.36 8.33h4.24v12H.36v-12zm7.37 0h4.07v1.74h.06c.57-1.08 1.97-2.22 4.05-2.22 4.32 0 5.12 2.84 5.12 6.54v7.94h-4.24v-7.04c0-1.68-.03-3.85-2.35-3.85-2.35 0-2.7 1.83-2.7 3.73v7.16H7.73v-12z"/>
-                </svg>
-            </a>
-            <a href="https://x.com/lofuturetech" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M24 4.56a9.83 9.83 0 0 1-2.83.77 4.93 4.93 0 0 0 2.16-2.72 9.92 9.92 0 0 1-3.13 1.2 4.92 4.92 0 0 0-8.38 4.49 13.94 13.94 0 0 1-10.12-5.13 4.93 4.93 0 0 0 1.52 6.56 4.9 4.9 0 0 1-2.23-.62v.06a4.92 4.92 0 0 0 3.95 4.82 4.92 4.92 0 0 1-2.22.08 4.92 4.92 0 0 0 4.59 3.42A9.87 9.87 0 0 1 0 19.54a13.93 13.93 0 0 0 7.55 2.21c9.06 0 14.02-7.5 14.02-14v-.64A9.99 9.99 0 0 0 24 4.56z"/>
-                </svg>
-            </a>
+    </section>
+
+    <section class="footer">
+        <p>© 2025 Glub Inc. All rights reserved.</p>
+        <div>
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
         </div>
     </section>
 
-    <footer class="footer">
-        <p>© 2025 Glub Inc. All rights reserved.</p>
-        <a href="#">Terms</a> | <a href="#">Privacy</a>
-    </footer>
-
     <script>
-        // Create animated background particles
-        function createParticles() {
-            const container = document.getElementById('particles');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
-                container.appendChild(particle);
-            }
+        // Particle animation
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particlesContainer.appendChild(particle);
         }
 
-        // Toggle FAQ items
+        // FAQ toggle
         function toggleFaq(button) {
             const answer = button.nextElementSibling;
-            const icon = button.querySelector('span');
-            
-            if (answer.style.display === 'none' || answer.style.display === '') {
+            const toggleIcon = button.querySelector('span');
+            const isOpen = answer.style.display === 'block';
+
+            document.querySelectorAll('.faq-answer').forEach(ans => ans.style.display = 'none');
+            document.querySelectorAll('.faq-question span').forEach(icon => icon.textContent = '+');
+
+            if (!isOpen) {
                 answer.style.display = 'block';
-                icon.textContent = '−';
-            } else {
-                answer.style.display = 'none';
-                icon.textContent = '+';
+                toggleIcon.textContent = '−';
             }
         }
-
-        // Handle form submission and spinner
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('waitlist-form');
-            const submitButton = document.getElementById('submit-button');
-
-            form.addEventListener('submit', () => {
-                submitButton.classList.add('loading');
-                submitButton.disabled = true;
-            });
-
-            form.addEventListener('formkit:submit:success', () => {
-                submitButton.classList.remove('loading');
-                submitButton.disabled = false;
-            });
-
-            form.addEventListener('formkit:submit:error', () => {
-                submitButton.classList.remove('loading');
-                submitButton.disabled = false;
-            });
-        });
-
-        // Initialize particles
-        document.addEventListener('DOMContentLoaded', createParticles);
-
-        // Add scroll-triggered animations
-        function handleScroll() {
-            const elements = document.querySelectorAll('.feature-card, .screenshot-container, .faq-item');
-            elements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.8) {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const elements = document.querySelectorAll('.feature-card, .screenshot-container, .faq-item');
-            elements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(50px)';
-                el.style.transition = 'all 0.6s ease';
-            });
-        });
-
-        window.addEventListener('scroll', handleScroll);
-        handleScroll();
     </script>
 </body>
 </html>
