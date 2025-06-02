@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glub – Help Us Build the Future of Longform Writing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      color: #111;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.05);
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    iframe, img.preview {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .poll {
+      margin: 2rem 0;
+    }
+    .poll label {
+      display: block;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+    input[type="radio"] {
+      margin-right: 0.5rem;
+    }
+    input[type="email"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    button {
+      padding: 0.75rem 1.25rem;
+      background-color: #111827;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .hidden {
+      display: none;
+    }
+    .thank-you {
+      margin-top: 2rem;
+      background-color: #f0fdf4;
+      padding: 1.25rem;
+      border-left: 4px solid #22c55e;
+      border-radius: 8px;
+    }
+    footer {
+      font-size: 0.875rem;
+      color: #666;
+      margin-top: 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Does this resonate with your writing flow?</h1>
+    <p>
+      We’re building a writing assistant that understands your entire project — not just the current page. It gently checks for contradictions, forgotten threads, tone shifts, and dropped ideas — and nudges you while you write.
+    </p>
+    <p>
+      It’s designed for long-form creators like you: ghostwriters, CEOs, and authors juggling complex projects.
+    </p><!-- Replace src with actual preview video or screenshot -->
+<img src="preview-placeholder.jpg" alt="Preview of Glub" class="preview">
+
+<div class="poll">
+  <h2>Would this help you write faster or cleaner?</h2>
+  <label><input type="radio" name="poll" value="Yes">Yes, definitely</label>
+  <label><input type="radio" name="poll" value="Maybe">Maybe — depends on details</label>
+  <label><input type="radio" name="poll" value="No">Not really</label>
+  <label><input type="radio" name="poll" value="Other">I use something else</label>
+</div>
+
+<div class="email-signup">
+  <h2>Want to be notified when we launch?</h2>
+  <form id="signup-form">
+    <input type="email" placeholder="you@example.com" required>
+    <button type="submit">Keep Me Posted</button>
+  </form>
+</div>
+
+<div class="thank-you hidden" id="thank-you">
+  <p>You're in! ✨</p>
+  <p>
+    If you're curious, we're offering early supporters:
+    <ul>
+      <li>70% off lifetime deal</li>
+      <li>Private Discord access</li>
+      <li>Early testing access and feature shaping</li>
+    </ul>
+  </p>
+  <p><a href="#">👉 Join the early access list</a> (optional, no pressure)</p>
+</div>
+
+<footer>
+  © 2025 Glub Inc. All rights reserved.
+</footer>
+
+  </div>  <script>
+    const form = document.getElementById('signup-form');
+    const thankYou = document.getElementById('thank-you');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      form.classList.add('hidden');
+      thankYou.classList.remove('hidden');
+    });
+  </script></body>
+</html>
