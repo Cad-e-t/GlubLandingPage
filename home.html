@@ -2,135 +2,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Glub – Help Us Build the Future of Longform Writing</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Glub Preview</title>
   <style>
     body {
+      font-family: system-ui, sans-serif;
+      background: #ffffff;
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #f9fafb;
-      color: #111;
       padding: 2rem;
+      color: #222;
+      line-height: 1.6;
     }
     .container {
-      max-width: 640px;
+      max-width: 700px;
       margin: 0 auto;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 6px 30px rgba(0,0,0,0.05);
       padding: 2rem;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     }
     h1 {
-      font-size: 1.75rem;
+      font-size: 2rem;
       margin-bottom: 1rem;
     }
     p {
-      line-height: 1.6;
-      margin-bottom: 1.25rem;
+      margin: 1rem 0;
     }
-    iframe, img.preview {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-    }
-    .poll {
-      margin: 2rem 0;
-    }
-    .poll label {
-      display: block;
-      margin-bottom: 0.75rem;
-      font-weight: 500;
-    }
-    input[type="radio"] {
-      margin-right: 0.5rem;
-    }
-    input[type="email"] {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-    button {
-      padding: 0.75rem 1.25rem;
-      background-color: #111827;
-      color: #fff;
+    .button-group button {
+      margin-right: 1rem;
+      padding: 0.6rem 1.2rem;
       border: none;
       border-radius: 6px;
-      font-size: 1rem;
       cursor: pointer;
+      font-size: 1rem;
+    }
+    .yes-btn {
+      background: #222;
+      color: #fff;
+    }
+    .no-btn {
+      background: #eee;
+      color: #333;
     }
     .hidden {
       display: none;
     }
-    .thank-you {
-      margin-top: 2rem;
-      background-color: #f0fdf4;
-      padding: 1.25rem;
-      border-left: 4px solid #22c55e;
-      border-radius: 8px;
+    input[type="email"] {
+      padding: 0.6rem;
+      width: 100%;
+      max-width: 400px;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
     }
-    footer {
-      font-size: 0.875rem;
-      color: #666;
-      margin-top: 2rem;
-      text-align: center;
+    .submit-btn {
+      background: #0077ff;
+      color: white;
+      margin-top: 1rem;
+    }
+    .cta-buttons a {
+      display: inline-block;
+      margin-right: 1rem;
+      margin-top: 1rem;
+      padding: 0.6rem 1rem;
+      background: #0077ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.95rem;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Does this resonate with your writing flow?</h1>
-    <p>
-      We’re building a writing assistant that understands your entire project — not just the current page. It gently checks for contradictions, forgotten threads, tone shifts, and dropped ideas — and nudges you while you write.
-    </p>
-    <p>
-      It’s designed for long-form creators like you: ghostwriters, CEOs, and authors juggling complex projects.
-    </p><!-- Replace src with actual preview video or screenshot -->
-<img src="preview-placeholder.jpg" alt="Preview of Glub" class="preview">
+    <h1>👀 Here’s a quick peek at Glub</h1>
+    <p>Glub watches your entire project while you write — so you can stay in flow without losing context or making contradictions. It edits in your voice and helps you stay consistent page by page.</p><p>Does this sound like something you'd want to use?</p>
 
-<div class="poll">
-  <h2>Would this help you write faster or cleaner?</h2>
-  <label><input type="radio" name="poll" value="Yes">Yes, definitely</label>
-  <label><input type="radio" name="poll" value="Maybe">Maybe — depends on details</label>
-  <label><input type="radio" name="poll" value="No">Not really</label>
-  <label><input type="radio" name="poll" value="Other">I use something else</label>
+<div class="button-group">
+  <button class="yes-btn" onclick="handleYes()">Yes</button>
+  <button class="no-btn" onclick="handleNo()">No</button>
 </div>
 
-<div class="email-signup">
-  <h2>Want to be notified when we launch?</h2>
-  <form id="signup-form">
-    <input type="email" placeholder="you@example.com" required>
-    <button type="submit">Keep Me Posted</button>
-  </form>
+<div id="no-response" class="hidden">
+  <p>Thanks for checking it out — it means a lot. If you ever get curious, feel free to check out our <a href="#">Discord</a> and see where it goes.</p>
 </div>
 
-<div class="thank-you hidden" id="thank-you">
-  <p>You're in! ✨</p>
-  <p>
-    If you're curious, we're offering early supporters:
-    <ul>
-      <li>70% off lifetime deal</li>
-      <li>Private Discord access</li>
-      <li>Early testing access and feature shaping</li>
-    </ul>
-  </p>
-  <p><a href="#">👉 Join the early access list</a> (optional, no pressure)</p>
+<div id="yes-response" class="hidden">
+  <p>Awesome. Want to be notified when we launch?</p>
+  <input type="email" id="emailInput" placeholder="Enter your email" />
+  <br>
+  <button class="submit-btn" onclick="handleEmailSubmit()">Notify Me</button>
 </div>
 
-<footer>
-  © 2025 Glub Inc. All rights reserved.
-</footer>
+<div id="offer-section" class="hidden">
+  <p>🎁 You're in! Here’s what you can do next:</p>
+  <div class="cta-buttons">
+    <a href="#">Claim 70% Lifetime Deal</a>
+    <a href="#">Join Discord</a>
+  </div>
+</div>
 
   </div>  <script>
-    const form = document.getElementById('signup-form');
-    const thankYou = document.getElementById('thank-you');
+    function handleYes() {
+      document.getElementById('yes-response').classList.remove('hidden');
+      document.getElementById('no-response').classList.add('hidden');
+    }
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      form.classList.add('hidden');
-      thankYou.classList.remove('hidden');
-    });
+    function handleNo() {
+      document.getElementById('no-response').classList.remove('hidden');
+      document.getElementById('yes-response').classList.add('hidden');
+      document.getElementById('offer-section').classList.add('hidden');
+    }
+
+    function handleEmailSubmit() {
+      const email = document.getElementById('emailInput').value;
+      if (email && email.includes('@')) {
+        document.getElementById('offer-section').classList.remove('hidden');
+      }
+    }
   </script></body>
 </html>
