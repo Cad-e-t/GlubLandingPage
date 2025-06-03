@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Glub — Your Story’s Memory</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Google Analytics Script -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWJW5VH9X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LCWJW5VH9X');
+  </script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -130,13 +138,14 @@
   <script>
     function handlePoll(choice) {
       if (choice === 'yes') {
-        // Log "Yes" click to serverless function
-        fetch('/api/log-click', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ choice: 'yes', timestamp: new Date().toISOString() })
-        }).catch(error => console.error('Error logging click:', error));
-
+        // Track "Yes" click with Google Analytics
+        if (typeof gtag === 'function') {
+          gtag('event', 'poll_click', {
+            'event_category': 'Poll',
+            'event_label': 'Yes'
+          });
+        }
+        // Show email form without redirection
         document.getElementById('email-form').classList.remove('hidden');
       } else {
         document.getElementById('thank-you').classList.remove('hidden');
