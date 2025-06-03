@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Glub — Writing Without Friction</title>
+  <title>Glub — Your Story’s Memory</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -62,40 +62,71 @@
 </head>
 <body>
   <div class="container">
-    <h1>Does this resonate with your writing flow?</h1>
+    <h1>"You remember the story in your head. Glub remembers it on the page."</h1>
+
     <div class="section">
       <p>
-        We’re building a writing assistant that reads and understands your entire project realtime.
-        Glub gently checks for contradictions, forgotten threads, tone shifts, or dropped ideas and nudges you while you write.
+        Glub is a new kind of writing assistant — one that grows with your story.
+        It tracks your characters, remembers your plot, and gently nudges you when you contradict yourself, drop a thread, or shift tone.
       </p>
       <p>
-        It’s designed for long-form creators like you: ghostwriters, CEOs, and authors juggling complex work across hundreds of pages.
+        Built for authors who write long-form — not tweets. If you’re juggling chapters, timelines, or POVs, Glub helps your story stay tight without breaking your creative flow.
       </p>
     </div>
+
+    <div class="section">
+      <h2>Does this sound like your writing process?</h2>
+      <ul>
+        <li>You forget what your character looked like 6 chapters ago</li>
+        <li>You planned a reveal, but it got lost by Chapter 12</li>
+        <li>You write fast but fixing contradictions later drains your energy</li>
+        <li>You ask ChatGPT for help, but it forgets everything after 2 pages</li>
+      </ul>
+      <p>Glub fixes that.</p>
+    </div>
+
+    <div class="section">
+      <h2>What Glub does for you right now:</h2>
+      <ul>
+        <li>•Remembers character traits, settings, arcs, and voice</li>
+        <li>• Flags contradictions as you write new chapters</li>
+        <li>• Tracks what’s been said, what hasn’t, and what changed</li>
+        <li>• Summarizes scenes, keeps tone consistent, and answers “What should happen next?”</li>
+      </ul>
+      <p>
+        It’s like writing beside a second brain one that actually remembers your draft better than you.
+      </p>
+    </div>
+
     <div class="section">
       <h2>Here’s a 1-minute preview:</h2>
       <iframe src="https://www.youtube.com/embed/x5R0BikwJIU" allowfullscreen></iframe>
     </div>
+
     <div class="section">
-      <h2>Would this help you write faster or cleaner?</h2>
+      <h2>Would something like this help your writing?</h2>
       <div class="poll-buttons">
         <button class="button" onclick="handlePoll('yes')">Yes</button>
         <button class="button" onclick="handlePoll('no')">No</button>
       </div>
     </div>
+
     <div class="section hidden" id="thank-you">
-      <p>Thanks for checking it out, it means a lot. If you ever get curious and want to know what became of it, feel free to <a href="https://discord.gg/TDARC4ga">join the Discord</a>.</p>
+      <p>Thanks for checking it out, it means a lot. If you ever get curious and want to see how Glub evolves, feel free to <a href="https://discord.gg/TDARC4ga">join the Discord</a>.</p>
     </div>
+
     <div class="section hidden" id="email-form">
-      <p>Great! Want to be notified when Glub launches?</p>
+      <p>Awesome. Want to try Glub before it launches?</p>
       <input type="email" id="email" placeholder="Enter your email" />
-      <button class="button" onclick="handleEmailSubmit()">Notify Me</button>
+      <button class="button" onclick="handleEmailSubmit()">Join the Waitlist</button>
     </div>
+
     <div class="section hidden" id="final-step">
-      <p>Perfect! You're now early. Want to check out the lifetime deal for early supporters?</p>
-      <a href="https://glub-eight.vercel.app/payment-gate.html" class="button">View lifetime offers</a>
+      <p>Perfect. You're now early. Want to support Glub and lock in lifetime pricing before public launch?</p>
+      <a href="https://glub-eight.vercel.app/payment-gate.html" class="button">View Lifetime Deal</a>
     </div>
   </div>
+
   <script>
     function handlePoll(choice) {
       if (choice === 'yes') {
@@ -105,7 +136,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ choice: 'yes', timestamp: new Date().toISOString() })
         }).catch(error => console.error('Error logging click:', error));
-        
+
         document.getElementById('email-form').classList.remove('hidden');
       } else {
         document.getElementById('thank-you').classList.remove('hidden');
