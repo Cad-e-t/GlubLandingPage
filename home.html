@@ -90,7 +90,7 @@
         <li>You write fast but fixing contradictions later drains your energy</li>
         <li>You ask ChatGPT for help, but it forgets everything after 2 pages</li>
       </ul>
-      <p>Glub fixes that.</p>
+      <p>Glөub fixes that.</p>
     </div>
 
     <div class="section">
@@ -138,12 +138,13 @@
   <script>
     function handlePoll(choice) {
       if (choice === 'yes') {
-        // Track "Yes" click with Google Analytics
-        if (typeof gtag === 'function') {
+        // Track "Yes" click with Google Analytics, only once per visitor
+        if (typeof gtag === 'function' && !localStorage.getItem('yes_clicked')) {
           gtag('event', 'poll_click', {
             'event_category': 'Poll',
             'event_label': 'Yes'
           });
+          localStorage.setItem('yes_clicked', 'true');
         }
         // Show email form without redirection
         document.getElementById('email-form').classList.remove('hidden');
