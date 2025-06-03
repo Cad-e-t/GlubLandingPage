@@ -52,6 +52,9 @@
       cursor: pointer;
       font-weight: 600;
     }
+    .button:hover {
+      background-color: #333;
+    }
     .poll-buttons button {
       margin-right: 1rem;
       margin-top: 1rem;
@@ -59,12 +62,18 @@
     .hidden {
       display: none;
     }
-    input[type="email"] {
+    input[type="email"], textarea {
       padding: 0.6rem;
       border: 1px solid #ccc;
       border-radius: 6px;
       width: 100%;
       margin: 0.75rem 0;
+      font-family: 'Inter', sans-serif;
+      resize: vertical;
+    }
+    textarea {
+      min-height: 80px;
+      max-height: 150px;
     }
     blockquote {
       font-style: italic;
@@ -73,7 +82,36 @@
       padding-left: 1rem;
       margin: 1rem 0;
     }
-    /* ConvertKit form custom styles to match original design */
+    .feedback-form {
+      background-color: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+    .feedback-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    .feedback-option {
+      background-color: white;
+      border: 1px solid #ddd;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+    .feedback-option:hover {
+      background-color: #f0f0f0;
+    }
+    .feedback-option.selected {
+      background-color: #1e1e1e;
+      color: white;
+      border-color: #1e1e1e;
+    }
+    /* ConvertKit form custom styles */
     .formkit-form {
       margin: 0.75rem 0;
     }
@@ -102,7 +140,7 @@
       background-color: #333 !important;
     }
     .formkit-form .formkit-powered-by-convertkit-container {
-      display: none !important; /* Hide Built with Kit branding */
+      display: none !important;
     }
     .formkit-form .formkit-fields {
       display: flex !important;
@@ -112,7 +150,6 @@
     .formkit-form .formkit-field {
       width: 100% !important;
     }
-    /* Hide ConvertKit success message */
     .formkit-alert-success {
       display: none !important;
     }
@@ -131,7 +168,7 @@
         Glub helps you stay sharp as your document grows.
       </p>
       <p>
-        Whether you’re writing long-form reports, thought leadership, knowledge bases, or a nonfiction book, Glub builds memory of your writing so you don’t have to.
+        Whether you're writing long-form reports, thought leadership, knowledge bases, or a nonfiction book, Glub builds memory of your writing so you don't have to.
       </p>
       <p>
         It remembers your arguments, language, structure, and sources. It flags contradictions, lost threads, and tone shifts before your readers do.
@@ -143,7 +180,7 @@
       <ul>
         <li>You forget what stats or claims you used 5 pages back</li>
         <li>A section you outlined never made it into the draft</li>
-        <li>You rewrite the same paragraph 3 times to stay “on message”</li>
+        <li>You rewrite the same paragraph 3 times to stay "on message"</li>
         <li>ChatGPT helps for a minute, then forgets everything</li>
         <li>You're juggling multiple drafts, styles, or collaborators</li>
       </ul>
@@ -157,10 +194,10 @@
         <li>Remembers key facts, claims, and language</li>
         <li>Flags contradictions and broken links in logic</li>
         <li>Keeps writing consistent, purposeful, and aligned to your goal</li>
-        <li>Answers “what did I already say?” and “what’s missing?”</li>
+        <li>Answers "what did I already say?" and "what's missing?"</li>
       </ul>
       <p>
-        It’s like working with a strategist who remembers your entire doc better than you do.
+        It's like working with a strategist who remembers your entire doc better than you do.
       </p>
     </div>
 
@@ -177,8 +214,32 @@
       </div>
     </div>
 
+    <!-- Feedback form for "No" responses -->
+    <div class="section hidden" id="feedback-form">
+      <div class="feedback-form">
+        <h3>Thanks for being honest! Mind sharing what put you off?</h3>
+        <p style="font-size: 0.9rem; color: #666;">This helps us understand what to improve. No worries if you'd rather skip this.</p>
+        
+        <div class="feedback-options">
+          <div class="feedback-option" data-reason="not-my-writing-style">Not my writing style</div>
+          <div class="feedback-option" data-reason="too-expensive">Seems too expensive</div>
+          <div class="feedback-option" data-reason="already-have-solution">Already have a solution</div>
+          <div class="feedback-option" data-reason="dont-need-it">Don't really need it</div>
+          <div class="feedback-option" data-reason="too-complex">Looks too complex</div>
+          <div class="feedback-option" data-reason="privacy-concerns">Privacy concerns</div>
+        </div>
+        
+        <textarea id="feedback-text" placeholder="Anything else you'd like to share? (optional)"></textarea>
+        
+        <div style="display: flex; gap: 1rem;">
+          <button class="button" onclick="submitFeedback()">Share Feedback</button>
+          <button class="button" onclick="skipFeedback()" style="background-color: #666;">Skip</button>
+        </div>
+      </div>
+    </div>
+
     <div class="section hidden" id="thank-you">
-      <p>Thank you for checking it out. If you’re curious to follow Glub’s progress, feel free to <a href="https://discord.gg/xvfXcqK2">join the Discord</a>.</p>
+      <p>Thank you for checking it out. If you're curious to follow Glub's progress, feel free to <a href="https://discord.gg/xvfXcqK2">join the Discord</a>.</p>
     </div>
 
     <div class="section hidden" id="email-form">
@@ -209,10 +270,13 @@
   </div>
 
   <script>
+    let selectedReasons = [];
+
     function handlePoll(choice) {
       if (choice === 'yes') {
         document.getElementById('email-form').classList.remove('hidden');
         document.getElementById('thank-you').classList.add('hidden');
+        document.getElementById('feedback-form').classList.add('hidden');
         if (typeof gtag === 'function' && !localStorage.getItem('yes_clicked')) {
           gtag('event', 'poll_click', {
             event_category: 'poll',
@@ -221,8 +285,9 @@
           localStorage.setItem('yes_clicked', 'true');
         }
       } else {
-        document.getElementById('thank-you').classList.remove('hidden');
+        document.getElementById('feedback-form').classList.remove('hidden');
         document.getElementById('email-form').classList.add('hidden');
+        document.getElementById('thank-you').classList.add('hidden');
         if (typeof gtag === 'function') {
           gtag('event', 'poll_click', {
             event_category: 'poll',
@@ -232,18 +297,98 @@
       }
     }
 
+    // Handle feedback option selection
+    document.querySelectorAll('.feedback-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const reason = this.dataset.reason;
+        
+        if (this.classList.contains('selected')) {
+          // Deselect
+          this.classList.remove('selected');
+          selectedReasons = selectedReasons.filter(r => r !== reason);
+        } else {
+          // Select
+          this.classList.add('selected');
+          selectedReasons.push(reason);
+        }
+      });
+    });
+
+    function submitFeedback() {
+      const feedbackText = document.getElementById('feedback-text').value.trim();
+      const timestamp = new Date().toISOString();
+      
+      const feedbackData = {
+        reasons: selectedReasons,
+        additionalFeedback: feedbackText,
+        timestamp: timestamp,
+        userAgent: navigator.userAgent,
+        url: window.location.href
+      };
+
+      // Store feedback locally (for development/testing)
+      let existingFeedback = JSON.parse(localStorage.getItem('glub_feedback') || '[]');
+      existingFeedback.push(feedbackData);
+      localStorage.setItem('glub_feedback', JSON.stringify(existingFeedback));
+
+      // Send to Google Analytics
+      if (typeof gtag === 'function') {
+        gtag('event', 'feedback_submitted', {
+          event_category: 'feedback',
+          event_label: selectedReasons.join(','),
+          custom_parameters: {
+            feedback_text: feedbackText
+          }
+        });
+      }
+
+      // Send to a webhook or your backend (replace with your endpoint)
+      fetch('https://your-webhook-url.com/feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(feedbackData)
+      }).catch(error => {
+        console.log('Feedback stored locally:', feedbackData);
+      });
+
+      // Show thank you message
+      document.getElementById('feedback-form').classList.add('hidden');
+      document.getElementById('thank-you').classList.remove('hidden');
+    }
+
+    function skipFeedback() {
+      // Track that feedback was skipped
+      if (typeof gtag === 'function') {
+        gtag('event', 'feedback_skipped', {
+          event_category: 'feedback',
+          event_label: 'skipped'
+        });
+      }
+
+      document.getElementById('feedback-form').classList.add('hidden');
+      document.getElementById('thank-you').classList.remove('hidden');
+    }
+
     // Detect ConvertKit form submission
     document.addEventListener('DOMContentLoaded', function() {
       const form = document.querySelector('.formkit-form');
       if (form) {
         form.addEventListener('submit', function() {
-          // Delay to allow ConvertKit to process submission
           setTimeout(function() {
             document.getElementById('final-step').classList.remove('hidden');
-          }, 1000); // Adjust delay if needed
+          }, 1000);
         });
       }
     });
+
+    // Developer function to view collected feedback
+    function viewFeedback() {
+      const feedback = JSON.parse(localStorage.getItem('glub_feedback') || '[]');
+      console.table(feedback);
+      return feedback;
+    }
   </script>
 </body>
 </html>
