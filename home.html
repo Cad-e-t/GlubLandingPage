@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Glub — Your Story’s Memory</title>
+  <title>Glub — Your Story's Memory</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <!-- Google Analytics Script -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWJW5VH9X"></script>
@@ -52,6 +52,9 @@
       cursor: pointer;
       font-weight: 600;
     }
+    .button:hover {
+      background-color: #333;
+    }
     .poll-buttons button {
       margin-right: 1rem;
       margin-top: 1rem;
@@ -59,12 +62,47 @@
     .hidden {
       display: none;
     }
-    input[type="email"] {
+    input[type="email"], textarea {
       padding: 0.6rem;
       border: 1px solid #ccc;
       border-radius: 6px;
       width: 100%;
       margin: 0.75rem 0;
+      font-family: 'Inter', sans-serif;
+      resize: vertical;
+    }
+    textarea {
+      min-height: 80px;
+      max-height: 150px;
+    }
+    .feedback-form {
+      background-color: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+    .feedback-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    .feedback-option {
+      background-color: white;
+      border: 1px solid #ddd;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+    .feedback-option:hover {
+      background-color: #f0f0f0;
+    }
+    .feedback-option.selected {
+      background-color: #1e1e1e;
+      color: white;
+      border-color: #1e1e1e;
     }
   </style>
 </head>
@@ -78,7 +116,7 @@
         It tracks your characters, remembers your plot, and gently nudges you when you contradict yourself, drop a thread, or shift tone.
       </p>
       <p>
-        Built for authors who write long-form not tweets. If you’re juggling chapters, timelines, or POVs, Glub helps your story stay tight without breaking your creative flow.
+        Built for authors who write long-form not tweets. If you're juggling chapters, timelines, or POVs, Glub helps your story stay tight without breaking your creative flow.
       </p>
     </div>
 
@@ -98,16 +136,16 @@
       <ul>
         <li>Remembers character traits, settings, arcs, and voice</li>
         <li>Flags contradictions as you write new chapters</li>
-        <li>Tracks what’s been said, what hasn’t, and what changed</li>
-        <li>Summarizes scenes, keeps tone consistent, and answers “What should happen next?”</li>
+        <li>Tracks what's been said, what hasn't, and what changed</li>
+        <li>Summarizes scenes, keeps tone consistent, and answers "What should happen next?"</li>
       </ul>
       <p>
-        It’s like writing beside a second brain one that actually remembers your draft better than you.
+        It's like writing beside a second brain one that actually remembers your draft better than you.
       </p>
     </div>
 
     <div class="section">
-      <h2>Here’s a 1-minute preview:</h2>
+      <h2>Here's a 1-minute preview:</h2>
       <iframe src="https://www.youtube.com/embed/x5R0BikwJIU" allowfullscreen></iframe>
     </div>
 
@@ -116,6 +154,31 @@
       <div class="poll-buttons">
         <button class="button" onclick="handlePoll('yes')">Yes</button>
         <button class="button" onclick="handlePoll('no')">No</button>
+      </div>
+    </div>
+
+    <!-- Feedback form for "No" responses -->
+    <div class="section hidden" id="feedback-form">
+      <div class="feedback-form">
+        <h3>Thanks for being honest! Mind sharing what put you off?</h3>
+        <p style="font-size: 0.9rem; color: #666;">This helps us understand what to improve. No worries if you'd rather skip this.</p>
+        
+        <div class="feedback-options">
+          <div class="feedback-option" data-reason="not-for-fiction">Don't write fiction</div>
+          <div class="feedback-option" data-reason="too-expensive">Seems too expensive</div>
+          <div class="feedback-option" data-reason="already-have-solution">Already have a solution</div>
+          <div class="feedback-option" data-reason="dont-need-help">Don't need writing help</div>
+          <div class="feedback-option" data-reason="too-complex">Looks too complex</div>
+          <div class="feedback-option" data-reason="prefer-manual">Prefer tracking manually</div>
+          <div class="feedback-option" data-reason="privacy-concerns">Privacy concerns</div>
+        </div>
+        
+        <textarea id="feedback-text" placeholder="Anything else you'd like to share? (optional)"></textarea>
+        
+        <div style="display: flex; gap: 1rem;">
+          <button class="button" onclick="submitFeedback()">Share Feedback</button>
+          <button class="button" onclick="skipFeedback()" style="background-color: #666;">Skip</button>
+        </div>
       </div>
     </div>
 
@@ -149,6 +212,8 @@
   </div>
 
   <script>
+    let selectedReasons = [];
+
     function handlePoll(choice) {
       if (choice === 'yes') {
         // Track "Yes" click with Google Analytics, only once per visitor
@@ -161,9 +226,95 @@
         }
         // Show email form without redirection
         document.getElementById('email-form').classList.remove('hidden');
+        document.getElementById('feedback-form').classList.add('hidden');
+        document.getElementById('thank-you').classList.add('hidden');
       } else {
-        document.getElementById('thank-you').classList.remove('hidden');
+        document.getElementById('feedback-form').classList.remove('hidden');
+        document.getElementById('email-form').classList.add('hidden');
+        document.getElementById('thank-you').classList.add('hidden');
+        if (typeof gtag === 'function') {
+          gtag('event', 'poll_click', {
+            'event_category': 'Poll',
+            'event_label': 'No'
+          });
+        }
       }
+    }
+
+    // Handle feedback option selection
+    document.querySelectorAll('.feedback-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const reason = this.dataset.reason;
+        
+        if (this.classList.contains('selected')) {
+          // Deselect
+          this.classList.remove('selected');
+          selectedReasons = selectedReasons.filter(r => r !== reason);
+        } else {
+          // Select
+          this.classList.add('selected');
+          selectedReasons.push(reason);
+        }
+      });
+    });
+
+    function submitFeedback() {
+      const feedbackText = document.getElementById('feedback-text').value.trim();
+      const timestamp = new Date().toISOString();
+      
+      const feedbackData = {
+        page: 'story',
+        reasons: selectedReasons,
+        additionalFeedback: feedbackText,
+        timestamp: timestamp,
+        userAgent: navigator.userAgent,
+        url: window.location.href
+      };
+
+      // Store feedback locally (for development/testing)
+      let existingFeedback = JSON.parse(localStorage.getItem('glub_story_feedback') || '[]');
+      existingFeedback.push(feedbackData);
+      localStorage.setItem('glub_story_feedback', JSON.stringify(existingFeedback));
+
+      // Send to Google Analytics
+      if (typeof gtag === 'function') {
+        gtag('event', 'feedback_submitted', {
+          event_category: 'feedback',
+          event_label: 'story_page_' + selectedReasons.join(','),
+          custom_parameters: {
+            feedback_text: feedbackText,
+            page_type: 'story'
+          }
+        });
+      }
+
+      // Send to a webhook or your backend (replace with your endpoint)
+      fetch('https://your-webhook-url.com/feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(feedbackData)
+      }).catch(error => {
+        console.log('Feedback stored locally:', feedbackData);
+      });
+
+      // Show thank you message
+      document.getElementById('feedback-form').classList.add('hidden');
+      document.getElementById('thank-you').classList.remove('hidden');
+    }
+
+    function skipFeedback() {
+      // Track that feedback was skipped
+      if (typeof gtag === 'function') {
+        gtag('event', 'feedback_skipped', {
+          event_category: 'feedback',
+          event_label: 'story_page_skipped'
+        });
+      }
+
+      document.getElementById('feedback-form').classList.add('hidden');
+      document.getElementById('thank-you').classList.remove('hidden');
     }
 
     function handleEmailSubmit(event) {
@@ -174,6 +325,13 @@
         document.getElementById('email-form').classList.add('hidden');
         document.getElementById('final-step').classList.remove('hidden');
       }
+    }
+
+    // Developer function to view collected feedback
+    function viewStoryFeedback() {
+      const feedback = JSON.parse(localStorage.getItem('glub_story_feedback') || '[]');
+      console.table(feedback);
+      return feedback;
     }
   </script>
 </body>
