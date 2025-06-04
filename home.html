@@ -1,338 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Glub — Your Story's Memory</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Google Analytics Script -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWJW5VH9X"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-LCWJW5VH9X');
-  </script>
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-      color: #1e1e1e;
-      line-height: 1.6;
-    }
-    .container {
-      max-width: 680px;
-      margin: 4rem auto;
-      padding: 1.5rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
-    }
-    h1 {
-      font-size: 1.9rem;
-      margin-bottom: 1rem;
-    }
-    .section {
-      margin: 2rem 0;
-    }
-    iframe {
-      width: 100%;
-      height: 360px;
-      border: none;
-      border-radius: 10px;
-    }
-    .button {
-      background-color: #1e1e1e;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .button:hover {
-      background-color: #333;
-    }
-    .poll-buttons button {
-      margin-right: 1rem;
-      margin-top: 1rem;
-    }
-    .hidden {
-      display: none;
-    }
-    input[type="email"], textarea {
-      padding: 0.6rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      width: 100%;
-      margin: 0.75rem 0;
-      font-family: 'Inter', sans-serif;
-      resize: vertical;
-    }
-    textarea {
-      min-height: 80px;
-      max-height: 150px;
-    }
-    .feedback-form {
-      background-color: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      border: 1px solid #e9ecef;
-    }
-    .feedback-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 1rem 0;
-    }
-    .feedback-option {
-      background-color: white;
-      border: 1px solid #ddd;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
-    }
-    .feedback-option:hover {
-      background-color: #f0f0f0;
-    }
-    .feedback-option.selected {
-      background-color: #1e1e1e;
-      color: white;
-      border-color: #1e1e1e;
-    }
-  </style>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Glubook — Your Story's Memory</title>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+ <!-- Google Analytics Script -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWJW5VH9X"></script>
+ <script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'G-LCWJW5VH9X', {
+ custom_map: {
+ 'dimension1': 'feedback_text',
+ 'dimension2': 'selected_reasons'
+ }
+ });
+ </script>
+ <style>
+ :root {
+ --primary-font: 'Inter', sans-serif;
+ --primary-color: #1e1e1e;
+ --secondary-color: #333;
+ --border-radius: 8px;
+ --light-gray: #f8f9fa;
+ --border-gray: #ccc;
+ --text-gray: #666;
+ }
+
+ body {
+ font-family: var(--primary-font);
+ margin: 0;
+ padding: 0;
+ background-color: #f9f9f9;
+ color: var(--primary-color);
+ line-height: 1.6;
+ }
+
+ .container {
+ max-width: 680px;
+ margin: 4rem auto;
+ padding: 1.5rem;
+ background: white;
+ border-radius: 12px;
+ box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+ }
+
+ h1 {
+ font-size: 1.9rem;
+ margin-bottom: 1rem;
+ }
+
+ h2 {
+ font-size: 1.5rem;
+ margin-bottom: 0.75rem;
+ }
+
+ .section {
+ margin: 2rem 0;
+ }
+
+ iframe {
+ width: 100%;
+ height: 360px;
+ border: none;
+ border-radius: 10px;
+ }
+
+ @media (max-width: 600px) {
+ iframe {
+ height: 200px;
+ }
+ }
+
+ .button {
+ background-color: var(--primary-color);
+ color: white;
+ padding: 0.75rem 1.5rem;
+ border: none;
+ border-radius: var(--border-radius);
+ cursor: pointer;
+ font-weight: 600;
+ font-family: var(--primary-font);
+ }
+
+ .button:hover {
+ background-color: var(--secondary-color);
+ }
+
+ .poll-buttons button {
+ margin-right: 1rem;
+ margin-top: 1rem;
+ }
+
+ .hidden {
+ display: none;
+ }
+
+ input[type="email"], textarea {
+ padding: 0.6rem;
+ border: 1px solid var(--border-gray);
+ border-radius: 6px;
+ width: 100%;
+ margin: 0.75rem 0;
+ font-family: var(--primary-font);
+ resize: vertical;
+ }
+
+ textarea {
+ min-height: 80px;
+ max-height: 150px;
+ }
+
+ .feedback-form {
+ background-color: var(--light-gray);
+ padding: 1.5rem;
+ border-radius: var(--border-radius);
+ border: 1px solid #e9ecef;
+ }
+
+ .feedback-options {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.5rem;
+ margin: 1rem 0;
+ }
+
+ .feedback-option {
+ background-color: white;
+ border: 1px solid #ddd;
+ padding: 0.5rem 1rem;
+ border-radius: 20px;
+ cursor: pointer;
+ font-size: 0.9rem;
+ transition: all 0.2s ease;
+ }
+
+ .feedback-option:hover {
+ background-color: #f0f0f0;
+ }
+
+ .feedback-option.selected {
+ background-color: var(--primary-color);
+ color: white;
+ border-color: var(--primary-color);
+ }
+
+ .formkit-input {
+ color: #000;
+ border: 1px solid var(--border-gray);
+ border-radius: 6px;
+ font-weight: 400;
+ padding: 0.6rem;
+ width: 100%;
+ margin: 0.75rem 0;
+ font-family: var(--primary-font);
+ }
+
+ .formkit-submit {
+ color: #fff;
+ background-color: var(--primary-color);
+ border-radius: var(--border-radius);
+ font-weight: 600;
+ padding: 0.75rem 1.5rem;
+ border: none;
+ cursor: pointer;
+ font-family: var(--primary-font);
+ }
+
+ .formkit-submit:hover {
+ background-color: var(--secondary-color);
+ }
+ </style>
 </head>
 <body>
-  <div class="container">
-    <h1>You remember the story in your head Glub remembers it on the page.</h1>
+ <div class="container">
+ <div class="section">
+ <hr />
+ <h1>Glubook</h1>
+ <p><strong>Start with a feeling — not a formula.</strong></p>
+ <hr />
+ </div>
 
-    <div class="section">
-      <p>
-        Glub is a new kind of writing assistant one that grows with your story.
-        It tracks your characters, remembers your plot, and gently nudges you when you contradict yourself, drop a thread, or shift tone.
-      </p>
-      <p>
-        Built for authors who write long-form not tweets. If you're juggling chapters, timelines, or POVs, Glub helps your story stay tight without breaking your creative flow.
-      </p>
-    </div>
+ <div class="section">
+ <h2>What if writing wasn’t about structure first?</h2>
+ <p>You don’t start with a spreadsheet.<br />
+ You don’t need to fill forms.<br />
+ You just dream.</p>
+ <p>Glubook lets you brain-dump your story, characters, or feelings into a calm chatspace. You write like you're talking to a friend.<br />
+ No pressure. No structure. Just you, and the story trying to come alive.</p>
+ </div>
 
-    <div class="section">
-      <h2>Does this sound like your writing process?</h2>
-      <ul>
-        <li>You forget what your character looked like 6 chapters ago</li>
-        <li>You planned a reveal, but it got lost by Chapter 12</li>
-        <li>You write fast but fixing contradictions later drains your energy</li>
-        <li>You ask ChatGPT for help, but it forgets everything after 2 pages</li>
-      </ul>
-      <p>Glub fixes that.</p>
-    </div>
+ <div class="section">
+ <h2>Then what?</h2>
+ <p>When you're ready, Glubook gently organizes your chaos:</p>
+ <ul>
+ <li><strong>You say</strong>: “A girl named Elsie walks in. She’s mysterious.”</li>
+ <li>Glubook detects new character: <em>Elsie</em>.</li>
+ <li>Tracks key details without overwhelming forms.</li>
+ </ul>
+ <p>No overwhelming forms. No planning pressure. Just light writing that keeps you in flow.</p>
+ </div>
 
-    <div class="section">
-      <h2>What Glub does for you right now:</h2>
-      <ul>
-        <li>Remembers character traits, settings, arcs, and voice</li>
-        <li>Flags contradictions as you write new chapters</li>
-        <li>Tracks what's been said, what hasn't, and what changed</li>
-        <li>Summarizes scenes, keeps tone consistent, and answers "What should happen next?"</li>
-      </ul>
-      <p>
-        It's like writing beside a second brain one that actually remembers your draft better than you.
-      </p>
-    </div>
+ <div class="section">
+ <h2>What comes next?</h2>
+ <p>You write rough your first chapter, we generate it from your idea.<br />
+ Every time you finish a chapter, Glubook:</p>
+ <ul>
+ <li>Analyzes new scenes, events, and characters</li>
+ <li>Offers optional worldbuilding forms</li>
+ <li>Suggests smart next steps</li>
+ </ul>
+ <p>You keep writing. Or dreaming. Or asking,</p>
+ <blockquote>“What should happen next?”</blockquote>
+ </div>
 
-    <div class="section">
-      <h2>Here's a 1-minute preview:</h2>
-      <iframe src="https://www.youtube.com/embed/x5R0BikwJIU" allowfullscreen></iframe>
-    </div>
+ <div class="section">
+ <h2>This isn’t AI writing for you.</h2>
+ <p>It’s AI dreaming with you.</p>
+ <p>Because the best stories don’t start from a plan. They start from a feeling.</p>
+ </div>
 
-    <div class="section">
-      <h2>Would something like this help your writing?</h2>
-      <div class="poll-buttons">
-        <button class="button" onclick="handlePoll('yes')">Yes</button>
-        <button class="button" onclick="handlePoll('no')">No</button>
-      </div>
-    </div>
+ <div class="section">
+ <h2>For writers who feel more than they plan.</h2>
+ <p>For worlds that don’t fit outlines.<br />
+ For characters who whisper, not shout.</p>
+ <p><strong>Glubook</strong><br />
+ Write with soul. Build with ease.</p>
+ </div>
 
-    <!-- Feedback form for "No" responses -->
-    <div class="section hidden" id="feedback-form">
-      <div class="feedback-form">
-        <h3>Thanks for being honest! Mind sharing what put you off?</h3>
-        <p style="font-size: 0.9rem; color: #666;">This helps us understand what to improve. No worries if you'd rather skip this.</p>
-        
-        <div class="feedback-options">
-          <div class="feedback-option" data-reason="not-for-fiction">Don't write fiction</div>
-          <div class="feedback-option" data-reason="too-expensive">Seems too expensive</div>
-          <div class="feedback-option" data-reason="already-have-solution">Already have a solution</div>
-          <div class="feedback-option" data-reason="dont-need-help">Don't need writing help</div>
-          <div class="feedback-option" data-reason="too-complex">Looks too complex</div>
-          <div class="feedback-option" data-reason="prefer-manual">Prefer tracking manually</div>
-          <div class="feedback-option" data-reason="privacy-concerns">Privacy concerns</div>
-        </div>
-        
-        <textarea id="feedback-text" placeholder="Anything else you'd like to share? (optional)"></textarea>
-        
-        <div style="display: flex; gap: 1rem;">
-          <button class="button" onclick="submitFeedback()">Share Feedback</button>
-          <button class="button" onclick="skipFeedback()" style="background-color: #666;">Skip</button>
-        </div>
-      </div>
-    </div>
+ <div class="section">
+ <h2>Here's a 1-minute preview:</h2かって
 
-    <div class="section hidden" id="thank-you">
-      <p>Thanks for checking it out, it means a lot. If you ever get curious and want to see how Glub evolves, feel free to <a href="https://discord.gg/37zKMJ9xA4">join the Discord</a>.</p>
-    </div>
+System: <iframe src="https://www.youtube.com/embed/x5R0BikwJIU" title="Glubook Preview Video" loading="lazy" allowfullscreen></iframe>
+ </div>
 
-    <div class="section hidden" id="email-form">
-      <p>Awesome. Want to try Glub before it launches?</p>
-      <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
-      <form action="https://app.kit.com/forms/8135418/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="8135418" data-uid="da463f9e09" data-format="inline" data-version="5" data-options='{"settings":{"after_subscribe":{"action":"message","success_message":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":false,"url":"https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}' min-width="400 500 600 700 800" onsubmit="handleEmailSubmit(event)">
-        <div data-style="clean">
-          <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
-          <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
-            <div class="formkit-field">
-              <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Enter your email" required="" type="email" style="color: rgb(0, 0, 0); border-color: rgb(204, 204, 204); border-radius: 6px; font-weight: 400; padding: 0.6rem; width: 100%; margin: 0.75rem 0; font-family: 'Inter', sans-serif;">
-            </div>
-            <button data-element="submit" class="formkit-submit formkit-submit button" style="color: rgb(255, 255, 255); background-color: rgb(30, 30, 30); border-radius: 8px; font-weight: 600; padding: 0.75rem 1.5rem; border: none; cursor: pointer; font-family: 'Inter', sans-serif;">
-              <div class="formkit-spinner"><div></div><div></div><div></div></div>
-              <span>Notify Me</span>
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+ <div class="section">
+ <h2>Would something like this help your writing?</h2>
+ <div class="poll-buttons">
+ <button class="button" onclick="handlePoll('yes')" aria-label="Yes">Yes</button>
+ <button class="button" onclick="handlePoll('no')" aria-label="No">No</button>
+ </div>
+ </div>
 
-    <div class="section hidden" id="final-step">
-      <p>Perfect. You're now early. Want to support Glub and lock in lifetime pricing before public launch?</p>
-      <a href="https://glub-eight.vercel.app/payment-gate.html" class="button">View Lifetime Deal</a>
-    </div>
-  </div>
+ <!-- Feedback form for "No" responses -->
+ <div class="section hidden" id="feedback-form">
+ <div class="feedback-form">
+ <h2>Thanks for being honest! Mind sharing what put you off?</h2>
 
-  <script>
-    let selectedReasons = [];
+ <div class="feedback-options">
+ <div class="feedback-option" data-reason="not-for-fiction">Don't write fiction</div>
+ <div class="feedback-option" data-reason="too-expensive">Seems too expensive</div>
+ <div class="feedback-option" data-reason="already-have-solution">Already have a solution</div>
+ <div class="feedback-option" data-reason="dont-need-help">Don't need writing help</div>
+ <div class="feedback-option" data-reason="too-complex">Looks too complex</div>
+ <div class="feedback-option" data-reason="prefer-manual">Prefer tracking manually</div>
+ <div class="feedback-option" data-reason="privacy-concerns">Privacy concerns</div>
+ </div>
+ 
+ <textarea id="feedback-text" placeholder="Anything else you'd like to share? (optional)"></textarea>
+ 
+ <div style="display: flex; gap: 1rem;">
+ <button class="button" onclick="submitFeedback()" aria-label="Submit feedback">Share Feedback</button>
+ <button class="button" onclick="skipFeedback()" style="background-color: var(--text-gray);" aria-label="Skip feedback">Skip</button>
+ </div>
+ </div>
+ </div>
 
-    function handlePoll(choice) {
-      if (choice === 'yes') {
-        // Track "Yes" click with Google Analytics, only once per visitor
-        if (typeof gtag === 'function' && !localStorage.getItem('yes_clicked')) {
-          gtag('event', 'poll_click', {
-            'event_category': 'Poll',
-            'event_label': 'Yes'
-          });
-          localStorage.setItem('yes_clicked', 'true');
-        }
-        // Show email form without redirection
-        document.getElementById('email-form').classList.remove('hidden');
-        document.getElementById('feedback-form').classList.add('hidden');
-        document.getElementById('thank-you').classList.add('hidden');
-      } else {
-        document.getElementById('feedback-form').classList.remove('hidden');
-        document.getElementById('email-form').classList.add('hidden');
-        document.getElementById('thank-you').classList.add('hidden');
-        if (typeof gtag === 'function') {
-          gtag('event', 'poll_click', {
-            'event_category': 'Poll',
-            'event_label': 'No'
-          });
-        }
-      }
-    }
+ <div class="section hidden" id="thank-you">
+ <p>Thanks for checking it out, it means a lot. If you ever get curious and want to see how Glub evolves, feel free to <a href="https://discord.gg/37zKMJ9xA4">join the Discord</a>.</p>
+ </div>
 
-    // Handle feedback option selection
-    document.querySelectorAll('.feedback-option').forEach(option => {
-      option.addEventListener('click', function() {
-        const reason = this.dataset.reason;
-        
-        if (this.classList.contains('selected')) {
-          // Deselect
-          this.classList.remove('selected');
-          selectedReasons = selectedReasons.filter(r => r !== reason);
-        } else {
-          // Select
-          this.classList.add('selected');
-          selectedReasons.push(reason);
-        }
-      });
-    });
+ <div class="section hidden" id="email-form">
+ <p>Awesome. Want to try Glub before it launches?</p>
+ <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+ <form action="https://app.kit.com/forms/8135418/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="8135418" data-uid="da463f9 e09" data-format="inline" data-version="5" data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Thanks for signing up! Check your email for confirmation."},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":false,"url":"https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}' min-width="400 500 600 700 800">
+ <div data-style="clean">
+ <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert" aria-live="polite"></ul>
+ <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+ <div class="formkit-field">
+ <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Enter your email" required type="email">
+ </div>
+ <button data-element="submit" class="formkit-submit formkit-submit button">
+ <div class="formkit-spinner"><div></div><div></div><div></div></div>
+ <span>Notify Me</span>
+ </button>
+ </div>
+ </div>
+ </form>
+ </div>
 
-    function submitFeedback() {
-      const feedbackText = document.getElementById('feedback-text').value.trim();
-      const timestamp = new Date().toISOString();
-      
-      const feedbackData = {
-        page: 'story',
-        reasons: selectedReasons,
-        additionalFeedback: feedbackText,
-        timestamp: timestamp,
-        userAgent: navigator.userAgent,
-        url: window.location.href
-      };
+ <div class="section hidden" id="final-step">
+ <p>Perfect. You're now early. Want to support Glub and lock in lifetime pricing before public launch?</p>
+ <a href="https://glub-eight.vercel.app/payment-gate.html" class="button" aria-label="Get Lifetime Access to Glubook">Get Lifetime Access</a>
+ </div>
+ </div>
 
-      // Store feedback locally (for development/testing)
-      let existingFeedback = JSON.parse(localStorage.getItem('glub_story_feedback') || '[]');
-      existingFeedback.push(feedbackData);
-      localStorage.setItem('glub_story_feedback', JSON.stringify(existingFeedback));
+ <script>
+ let selectedReasons = [];
 
-      // Send to Google Analytics
-      if (typeof gtag === 'function') {
-        gtag('event', 'feedback_submitted', {
-          event_category: 'feedback',
-          event_label: 'story_page_' + selectedReasons.join(','),
-          custom_parameters: {
-            feedback_text: feedbackText,
-            page_type: 'story'
-          }
-        });
-      }
+ function handlePoll(choice) {
+ if (choice === 'yes') {
+ document.getElementById('email-form').classList.remove('hidden');
+ document.getElementById('thank-you').classList.add('hidden');
+ document.getElementById('feedback-form').classList.add('hidden');
+ } else {
+ document.getElementById('feedback-form').classList.remove('hidden');
+ document.getElementById('email-form').classList.add('hidden');
+ document.getElementById('thank-you').classList.add('hidden');
+ }
+ }
 
-      // Send to a webhook or your backend (replace with your endpoint)
-      fetch('https://your-webhook-url.com/feedback', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(feedbackData)
-      }).catch(error => {
-        console.log('Feedback stored locally:', feedbackData);
-      });
+ // Feedback option selection with event delegation
+ document.querySelector('.feedback-options').addEventListener('click', (e) => {
+ const option = e.target.closest('.feedback-option');
+ if (!option) return;
+ if (option.classList.contains('selected')) {
+ option.classList.remove('selected');
+ selectedReasons = selectedReasons.filter(r => r !== option.dataset.reason);
+ } else {
+ option.classList.add('selected');
+ selectedReasons.push(option.dataset.reason);
+ }
+ });
 
-      // Show thank you message
-      document.getElementById('feedback-form').classList.add('hidden');
-      document.getElementById('thank-you').classList.remove('hidden');
-    }
+ function submitFeedback() {
+ const feedbackText = document.getElementById('feedback-text').value;
+ if (typeof gtag === 'function') {
+ gtag('event', 'feedback', {
+ feedback_text: feedbackText,
+ selected_reasons: selectedReasons.join(',')
+ });
+ }
+ document.getElementById('feedback-form').classList.add('hidden');
+ document.getElementById('thank-you').classList.remove('hidden');
+ }
 
-    function skipFeedback() {
-      // Track that feedback was skipped
-      if (typeof gtag === 'function') {
-        gtag('event', 'feedback_skipped', {
-          event_category: 'feedback',
-          event_label: 'story_page_skipped'
-        });
-      }
+ function skipFeedback() {
+ document.getElementById('feedback-form').classList.add('hidden');
+ document.getElementById('thank-you').classList.remove('hidden');
+ }
 
-      document.getElementById('feedback-form').classList.add('hidden');
-      document.getElementById('thank-you').classList.remove('hidden');
-    }
-
-    function handleEmailSubmit(event) {
-      event.preventDefault();
-      const email = document.querySelector('#email-form input[name="email_address"]').value;
-      if (email) {
-        // Allow Kit to handle email submission in the background
-        document.getElementById('email-form').classList.add('hidden');
-        document.getElementById('final-step').classList.remove('hidden');
-      }
-    }
-
-    // Developer function to view collected feedback
-    function viewStoryFeedback() {
-      const feedback = JSON.parse(localStorage.getItem('glub_story_feedback') || '[]');
-      console.table(feedback);
-      return feedback;
-    }
-  </script>
+ // Handle ConvertKit form submission
+ document.querySelector('.formkit-form').addEventListener('submit', (e) => {
+ const email = e.target.querySelector('input[name="email_address"]').value;
+ if (/^\S+@\S+\.\S+$/.test(email)) {
+ // Allow ConvertKit to handle submission, then show final step
+ setTimeout(() => {
+ document.getElementById('email-form').classList.add('hidden');
+ document.getElementById('final-step').classList.remove('hidden');
+ }, 1000); // Delay to allow ConvertKit to process
+ } else {
+ e.preventDefault();
+ alert('Please enter a valid email address.');
+ }
+ });
+ </script>
 </body>
 </html>
