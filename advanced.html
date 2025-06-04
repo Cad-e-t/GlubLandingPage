@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Glub — Your Third Eye for Superhuman Writing</title>
+  <title>Glubook — Your Machine Arm for Superhuman Writing</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWJW5VH9X"></script>
   <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
@@ -11,7 +11,12 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-LCWJW5VH9X');
+    gtag('config', 'G-LCWJW5VH9X', {
+      custom_map: {
+        'dimension1': 'feedback_text',
+        'dimension2': 'selected_reasons'
+      }
+    });
   </script>
   <style>
     body {
@@ -157,48 +162,54 @@
 </head>
 <body>
   <div class="container">
-    <h1>Glub — Your Third Eye For Superhuman writing</h1>
+    <h1>Glubook — You Don’t Write. You Talk.</h1>
 
     <div class="section">
-      <blockquote>You track the big ideas. Glub tracks everything else.</blockquote>
+      <blockquote>You don’t write a book. You just talk to your audience.</blockquote>
     </div>
 
     <div class="section">
-      <p>
-        Glub helps you stay sharp as your document grows.
-      </p>
-      <p>
-        Whether you're writing long-form reports, thought leadership, knowledge bases, or a nonfiction book, Glub builds memory of your writing so you don't have to.
-      </p>
-      <p>
-        It remembers your arguments, language, structure, and sources. It flags contradictions, lost threads, and tone shifts before your readers do.
-      </p>
+      <h2>🧠 Entrepreneurs don’t have time to “write”</h2>
+      <p>But they <strong>know what matters</strong>. Ideas. Opinions. Lessons. Truths.</p>
+      <p>So don’t write. Don’t overthink. Just <strong>say it</strong>.</p>
+      <blockquote>
+        "The biggest mistake I made was hiring fast."<br />
+        "People don’t trust themselves enough. That’s why they burn out."<br />
+        "If your product can’t sell without you, you don’t have a business."
+      </blockquote>
     </div>
 
     <div class="section">
-      <h2>Sound familiar?</h2>
+      <h2>🎙️ Glubook lets you <em>speak your book into existence</em></h2>
       <ul>
-        <li>You forget what stats or claims you used 5 pages back</li>
-        <li>A section you outlined never made it into the draft</li>
-        <li>You rewrite the same paragraph 3 times to stay "on message"</li>
-        <li>ChatGPT helps for a minute, then forgets everything</li>
-        <li>You're juggling multiple drafts, styles, or collaborators</li>
+        <li>Drop your thoughts in: bullets, paragraphs, rants doesn’t matter.</li>
+        <li>For each big point, Glubook asks:
+          <blockquote>
+            "Want to tell a story behind this?"<br />
+            "Want to expand this into a chapter?"
+          </blockquote>
+        </li>
       </ul>
-      <p><strong>Glub fixes that.</strong></p>
+      <p><strong>No structure. No editing. No pressure.</strong> You’re not writing you’re <em>talking to your future readers.</em></p>
     </div>
 
     <div class="section">
-      <h2>What Glub does for you right now:</h2>
+      <h2>📘 When you're ready, hit <strong>“Generate Book.”</strong></h2>
+      <p>Glubook takes all your raw thoughts, rants, and insights and:</p>
       <ul>
-        <li>Tracks structure, ideas, and tone across drafts</li>
-        <li>Remembers key facts, claims, and language</li>
-        <li>Flags contradictions and broken links in logic</li>
-        <li>Keeps writing consistent, purposeful, and aligned to your goal</li>
-        <li>Answers "what did I already say?" and "what's missing?"</li>
+        <li>Organizes them into <strong>chapters and flow</strong></li>
+        <li>Adds smooth transitions and narrative logic</li>
+        <li>Suggests titles, quotes, chapter hooks</li>
+        <li>Preserves your <strong>voice</strong> and <strong>pace</strong> no corporate AI fluff</li>
       </ul>
-      <p>
-        It's like working with a strategist who remembers your entire doc better than you do.
-      </p>
+    </div>
+
+    <div class="section">
+      <h2>📣 Your job: Share the truth.</h2>
+      <p>Glubook’s job: Shape it into a book that hits.</p>
+      <p><strong>Founders, coaches, leaders your voice is your value.</strong></p>
+      <p>Don’t waste time writing. <strong>Just talk.</strong></p>
+      <p><strong>Glubook SpeakDraft</strong><br />Talk your book. We’ll write it.</p>
     </div>
 
     <div class="section">
@@ -239,7 +250,7 @@
     </div>
 
     <div class="section hidden" id="thank-you">
-      <p>Thank you for checking it out. If you're curious to follow Glub's progress, feel free to <a href="https://discord.gg/xvfXcqK2">join the Discord</a>.</p>
+      <p>Thank you for checking it out. If you're curious to follow Glubook's progress, feel free to <a href="https://discord.gg/xvfXcqK2">join the Discord</a>.</p>
     </div>
 
     <div class="section hidden" id="email-form">
@@ -277,21 +288,27 @@
         document.getElementById('email-form').classList.remove('hidden');
         document.getElementById('thank-you').classList.add('hidden');
         document.getElementById('feedback-form').classList.add('hidden');
-        if (typeof gtag === 'function' && !localStorage.getItem('yes_clicked')) {
-          gtag('event', 'poll_click', {
-            event_category: 'poll',
-            event_label: 'yes'
+        
+        // Track "Yes" click as separate event
+        if (typeof gtag === 'function' && !sessionStorage.getItem('yes_clicked')) {
+          gtag('event', 'yes_click', {
+            event_category: 'poll_interaction',
+            event_label: 'interested_in_product',
+            non_interaction: false
           });
-          localStorage.setItem('yes_clicked', 'true');
+          sessionStorage.setItem('yes_clicked', 'true');
         }
       } else {
         document.getElementById('feedback-form').classList.remove('hidden');
         document.getElementById('email-form').classList.add('hidden');
         document.getElementById('thank-you').classList.add('hidden');
+        
+        // Track "No" click as separate event
         if (typeof gtag === 'function') {
-          gtag('event', 'poll_click', {
-            event_category: 'poll',
-            event_label: 'no'
+          gtag('event', 'no_click', {
+            event_category: 'poll_interaction',
+            event_label: 'not_interested_in_product',
+            non_interaction: false
           });
         }
       }
@@ -310,6 +327,17 @@
           // Select
           this.classList.add('selected');
           selectedReasons.push(reason);
+        }
+
+        // Track individual reason selection
+        if (typeof gtag === 'function') {
+          gtag('event', 'feedback_reason_selected', {
+            event_category: 'feedback_interaction',
+            event_label: reason,
+            custom_parameters: {
+              action: this.classList.contains('selected') ? 'selected' : 'deselected'
+            }
+          });
         }
       });
     });
@@ -331,18 +359,45 @@
       existingFeedback.push(feedbackData);
       localStorage.setItem('glub_feedback', JSON.stringify(existingFeedback));
 
-      // Send to Google Analytics
+      // Enhanced Google Analytics tracking for feedback submission
       if (typeof gtag === 'function') {
+        // Main feedback submission event
         gtag('event', 'feedback_submitted', {
-          event_category: 'feedback',
-          event_label: selectedReasons.join(','),
+          event_category: 'user_feedback',
+          event_label: 'negative_feedback_submitted',
+          non_interaction: false,
           custom_parameters: {
-            feedback_text: feedbackText
+            feedback_text: feedbackText,
+            selected_reasons: selectedReasons.join(','),
+            reason_count: selectedReasons.length,
+            has_additional_feedback: feedbackText.length > 0
           }
         });
+
+        // Track each individual reason as a separate event for detailed analysis
+        selectedReasons.forEach(reason => {
+          gtag('event', 'feedback_reason_submitted', {
+            event_category: 'feedback_reasons',
+            event_label: reason,
+            custom_parameters: {
+              submission_context: 'negative_poll_response'
+            }
+          });
+        });
+
+        // Track if additional text feedback was provided
+        if (feedbackText.length > 0) {
+          gtag('event', 'additional_feedback_provided', {
+            event_category: 'feedback_quality',
+            event_label: 'text_feedback_given',
+            custom_parameters: {
+              feedback_length: feedbackText.length
+            }
+          });
+        }
       }
 
-      // Send to a webhook or your backend (replace with your endpoint)
+      // Send to webhook/backend (placeholder URL as requested)
       fetch('https://your-webhook-url.com/feedback', {
         method: 'POST',
         headers: {
@@ -356,14 +411,26 @@
       // Show thank you message
       document.getElementById('feedback-form').classList.add('hidden');
       document.getElementById('thank-you').classList.remove('hidden');
+
+      // Track completion of feedback flow
+      if (typeof gtag === 'function') {
+        gtag('event', 'feedback_flow_completed', {
+          event_category: 'user_journey',
+          event_label: 'negative_feedback_flow_complete'
+        });
+      }
     }
 
     function skipFeedback() {
-      // Track that feedback was skipped
+      // Track that feedback was skipped with more detail
       if (typeof gtag === 'function') {
         gtag('event', 'feedback_skipped', {
-          event_category: 'feedback',
-          event_label: 'skipped'
+          event_category: 'user_feedback',
+          event_label: 'declined_to_provide_feedback',
+          custom_parameters: {
+            reasons_selected_before_skip: selectedReasons.length,
+            had_text_input: document.getElementById('feedback-text').value.trim().length > 0
+          }
         });
       }
 
@@ -376,6 +443,15 @@
       const form = document.querySelector('.formkit-form');
       if (form) {
         form.addEventListener('submit', function() {
+          // Track email form submission
+          if (typeof gtag === 'function') {
+            gtag('event', 'email_signup', {
+              event_category: 'conversion',
+              event_label: 'early_access_signup',
+              non_interaction: false
+            });
+          }
+
           setTimeout(function() {
             document.getElementById('final-step').classList.remove('hidden');
           }, 1000);
@@ -389,6 +465,16 @@
       console.table(feedback);
       return feedback;
     }
+
+    // Track page engagement
+    window.addEventListener('load', function() {
+      if (typeof gtag === 'function') {
+        gtag('event', 'page_view', {
+          event_category: 'engagement',
+          event_label: 'glub_landing_page'
+        });
+      }
+    });
   </script>
 </body>
 </html>
