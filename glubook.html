@@ -169,6 +169,91 @@
  iframe[src*="tally.so"] ~ div[style*="center"] {
  display: none !important;
  }
+
+ /* Prototype Link Styles */
+ .prototype-link {
+ display: block;
+ text-decoration: none;
+ color: inherit;
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+ border-radius: 12px;
+ padding: 2rem;
+ margin: 2rem 0;
+ position: relative;
+ overflow: hidden;
+ box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+ transition: all 0.3s ease;
+ }
+
+ .prototype-link:hover {
+ transform: translateY(-5px);
+ box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+ }
+
+ .prototype-content {
+ position: relative;
+ z-index: 2;
+ text-align: center;
+ color: white;
+ }
+
+ .prototype-title {
+ font-size: 1.4rem;
+ font-weight: 600;
+ margin-bottom: 0.5rem;
+ }
+
+ .prototype-subtitle {
+ font-size: 1rem;
+ opacity: 0.9;
+ margin-bottom: 1rem;
+ }
+
+ .prototype-cta {
+ display: inline-flex;
+ align-items: center;
+ gap: 0.5rem;
+ background: rgba(255,255,255,0.2);
+ padding: 0.75rem 1.5rem;
+ border-radius: 8px;
+ font-weight: 600;
+ backdrop-filter: blur(10px);
+ border: 1px solid rgba(255,255,255,0.3);
+ transition: all 0.3s ease;
+ }
+
+ .prototype-cta:hover {
+ background: rgba(255,255,255,0.3);
+ }
+
+ .prototype-background {
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+ opacity: 0.3;
+ }
+
+ .play-icon {
+ width: 20px;
+ height: 20px;
+ }
+
+ @media (max-width: 600px) {
+ .prototype-link {
+ padding: 1.5rem;
+ }
+ 
+ .prototype-title {
+ font-size: 1.2rem;
+ }
+ 
+ .prototype-subtitle {
+ font-size: 0.9rem;
+ }
+ }
  </style>
 </head>
 <body>
@@ -227,8 +312,23 @@
  </div>
 
  <div class="section">
-    <h2>Here's a 1-minute preview:</h2>
-    <iframe src="https://www.youtube.com/embed/x5R0BikwJIU" title="Glubook Preview Video" loading="lazy" allowfullscreen></iframe>
+    <h2>Ready to see it in action?</h2>
+    <a href="https://glubook.glub.online" target="_blank" class="prototype-link" onclick="trackPrototypeClick()">
+      <div class="prototype-background"></div>
+      <div class="prototype-content">
+        <div class="prototype-title">✨ Try Glubook Now</div>
+        <div class="prototype-subtitle">Experience the magic of feeling-first writing</div>
+        <div class="prototype-cta">
+          <svg class="play-icon" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 5v10l8-5-8-5z"/>
+          </svg>
+          Launch Prototype
+        </div>
+      </div>
+    </a>
+    <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
+      No signup required • Start writing immediately
+    </p>
  </div>
 
  <div class="section">
@@ -278,6 +378,15 @@
  </div>
 
  <script>
+ function trackPrototypeClick() {
+ if (typeof gtag === 'function') {
+ gtag('event', 'prototype_clicked', {
+ event_category: 'engagement',
+ event_label: 'glubook_prototype_access'
+ });
+ }
+ }
+
  function handlePoll(choice) {
  if (choice === 'yes') {
  // Track "Yes" click event
