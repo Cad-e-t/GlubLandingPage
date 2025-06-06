@@ -254,6 +254,29 @@
  font-size: 0.9rem;
  }
  }
+
+ /* Collapsible FAQ Styles */
+ details {
+ margin-bottom: 1rem;
+ }
+
+ summary {
+ font-weight: 600;
+ font-size: 1.1rem;
+ color: var(--primary-color);
+ cursor: pointer;
+ padding: 0.5rem 0;
+ }
+
+ details[open] summary {
+ color: var(--secondary-color);
+ }
+
+ details p {
+ margin: 0.5rem 0 0 1rem;
+ color: var(--text-gray);
+ font-size: 1rem;
+ }
  </style>
 </head>
 <body>
@@ -362,7 +385,33 @@
  <p>Perfect. You're now early. Want to support Glubook and lock in lifetime pricing before public launch?</p>
  <a href="https://glub-eight.vercel.app/payment-gate.html" class="button" aria-label="Get Lifetime Access to Glubook">Get Lifetime Access</a>
  </div>
+
+ <div class="section">
+ <h2>Frequently Asked Questions</h2>
+ <details>
+   <summary>What is Glubook?</summary>
+   <p>Glubook is an AI-powered writing tool that helps you stay in the creative flow by using {brackets} to mark placeholders for words, memories, or research. The AI fills these in later, so you can keep writing without interruptions. The prototype has been thoroughly tested before being released to the public. You can try the prototype now without signing up, and we’re working on making the full version available soon.</p>
+ </details>
+ <details>
+   <summary>Is Glubook free?</summary>
+   <p>For now Glubook offers only a prototype for you to experience without any sign-up. For the full version, we’re exploring pricing options, including a potential free tier with core features and premium plans for advanced functionality. Join our email list or Discord to stay updated on pricing details.</p>
+ </details>
+ <details>
+   <summary>Who can use Glubook?</summary>
+   <p>Glubook is designed for writers of all kinds—novelists, bloggers, screenwriters, or anyone who wants to maintain their creative flow without interruptions. Whether you’re a beginner or a seasoned author, Glubook’s intuitive AI tools can help you write more efficiently.</p>
+ </details>
  </div>
+
+ <div class="section">
+    <h2>Connect With Us</h2>
+    <p>Join our community and follow our developer for updates!</p>
+    <div class="poll-buttons">
+        <a href="https://discord.gg/37zKMJ9xA4" target="_blank" class="button" aria-label="Join the Discord">Join the Discord</a>
+        <a href="https://x.com/lofuturetech" target="_blank" class="button" aria-label="See Developer on X.com">See Developer on X.com</a>
+    </div>
+ </div>
+
+ </div> <!-- Closing .container -->
 
  <script>
  function trackPrototypeClick() {
@@ -375,6 +424,21 @@
  }
 
  function handlePoll(choice) {
+ console.log('handlePoll called with choice:', choice); // Debugging log
+ try {
+ const emailForm = document.getElementById('email-form');
+ const thankYou = document.getElementById('thank-you');
+ const feedbackForm = document.getElementById('feedback-form');
+
+ if (!emailForm || !thankYou || !feedbackForm) {
+ console.error('One or more elements not found:', {
+ emailForm: !!emailForm,
+ thankYou: !!thankYou,
+ feedbackForm: !!feedbackForm
+ });
+ return;
+ }
+
  if (choice === 'yes') {
  // Track "Yes" click event
  if (typeof gtag === 'function') {
@@ -383,9 +447,9 @@
  event_label: 'user_interest_yes'
  });
  }
- document.getElementById('email-form').classList.remove('hidden');
- document.getElementById('thank-you').classList.add('hidden');
- document.getElementById('feedback-form').classList.add('hidden');
+ emailForm.classList.remove('hidden');
+ thankYou.classList.add('hidden');
+ feedbackForm.classList.add('hidden');
  } else {
  // Track "No" click event
  if (typeof gtag === 'function') {
@@ -394,9 +458,12 @@
  event_label: 'user_interest_no'
  });
  }
- document.getElementById('feedback-form').classList.remove('hidden');
- document.getElementById('email-form').classList.add('hidden');
- document.getElementById('thank-you').classList.add('hidden');
+ feedbackForm.classList.remove('hidden');
+ emailForm.classList.add('hidden');
+ thankYou.classList.add('hidden');
+ }
+ } catch (error) {
+ console.error('Error in handlePoll:', error);
  }
  }
 
@@ -422,6 +489,13 @@
  const tallyBranding = document.querySelectorAll('[data-tally-branding], .tally-branding');
  tallyBranding.forEach(el => el.style.display = 'none');
  }, 2000);
+ });
+
+ // Debugging: Log when buttons are clicked
+ document.querySelectorAll('.poll-buttons button').forEach(button => {
+ button.addEventListener('click', () => {
+ console.log('Button clicked:', button.textContent);
+ });
  });
  </script>
 </body>
