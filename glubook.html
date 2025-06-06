@@ -5,7 +5,126 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
  <title>Glubook — Your Story's Memory</title>
  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
- <!-- Google Analytics Script -->
+ <!-- Google Analytics Script --><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glubook Prototype</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: #f7f6f3;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    .bracket {
+      background-color: #ffe9a7;
+      padding: 0.1rem 0.3rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    #nextBtn, #cleanBtn {
+      background: #333;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #nextBtn:hover, #cleanBtn:hover {
+      background: #555;
+    }
+    #loading {
+      display: none;
+      text-align: center;
+      font-style: italic;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Glubook Prototype</h1>
+  <p style="text-align: center; color: gray; font-size: 0.9rem">⚠️ This is a simulated demo — no real AI yet. Just imagine the flow.</p>
+
+  <div id="chapter" class="section">
+    <p>
+      The nun’s walked silently down the marble hallway, their habits swaying gently. They wore <span class="bracket">{#describe: what nun’s wear}</span>. One of them, Sister Clara, paused. Her eyes locked onto the boy.
+    </p>
+    <p>
+      “You don’t belong here,” she said, her voice <span class="bracket">{#tone: calm but warning}</span>. The boy looked down, unsure of himself. He was used to <span class="bracket">{#memory: how he reacts to confrontation}</span>, but this was different.
+    </p>
+    <p>
+      Sister Clara noticed the boy’s hands trembling. She remembered <span class="bracket">{#memory: the boy’s first visit}</span> and how he had smiled.
+    </p>
+  </div>
+
+  <div id="loading">✨ Enhancing story… Glubook is working on your suggestions…</div>
+
+  <div style="text-align: center">
+    <button id="nextBtn">Done Writing</button>
+    <button id="cleanBtn" style="display:none">Remove Brackets</button>
+  </div>
+
+  <script>
+    const chapter = document.getElementById('chapter');
+    const nextBtn = document.getElementById('nextBtn');
+    const cleanBtn = document.getElementById('cleanBtn');
+    const loading = document.getElementById('loading');
+
+    const editedContent = `
+      <p>
+        The nun’s walked silently down the marble hallway, their habits swaying gently. They wore long charcoal-gray habits, pressed and silent as shadows. One of them, Sister Clara, paused. Her eyes locked onto the boy.
+      </p>
+      <p>
+        “You don’t belong here,” she said, her voice soft but edged like a blade. The boy looked down, unsure of himself. He was used to shutting down in fear, shrinking into silence, but this was different.
+      </p>
+      <p>
+        Sister Clara noticed the boy’s hands trembling. She remembered his first visit — the nervous smile that didn’t quite reach his eyes.
+      </p>
+    `;
+
+    const cleanContent = `
+      <p>
+        The nun’s walked silently down the marble hallway, their habits swaying gently. They wore long charcoal-gray habits, pressed and silent as shadows. One of them, Sister Clara, paused. Her eyes locked onto the boy.
+      </p>
+      <p>
+        “You don’t belong here,” she said, her voice soft but edged like a blade. The boy looked down, unsure of himself. He was used to shutting down in fear, shrinking into silence, but this was different.
+      </p>
+      <p>
+        Sister Clara noticed the boy’s hands trembling. She remembered his first visit — the nervous smile that didn’t quite reach his eyes.
+      </p>
+    `;
+
+    nextBtn.onclick = () => {
+      nextBtn.style.display = 'none';
+      loading.style.display = 'block';
+
+      setTimeout(() => {
+        loading.style.display = 'none';
+        chapter.innerHTML = editedContent;
+        cleanBtn.style.display = 'inline-block';
+      }, 2000);
+    };
+
+    cleanBtn.onclick = () => {
+      chapter.innerHTML = cleanContent;
+      cleanBtn.style.display = 'none';
+    };
+  </script>
+</body>
+</html>
+
  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWJW5VH9X"></script>
  <script>
  window.dataLayer = window.dataLayer || [];
