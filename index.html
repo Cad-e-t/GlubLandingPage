@@ -123,9 +123,17 @@
 
  .tally-feedback-container iframe {
  width: 100%;
- min-height: 400px;
+ height: 600px;
+ min-height: 600px;
  border: none;
  border-radius: var(--border-radius);
+ }
+
+ @media (max-width: 600px) {
+ .tally-feedback-container iframe {
+ height: 650px;
+ min-height: 650px;
+ }
  }
 
  .formkit-input {
@@ -277,29 +285,6 @@
  color: var(--text-gray);
  font-size: 1rem;
  }
-
- /* Loading Indicator Styles */
- .loading-spinner {
- display: flex;
- justify-content: center;
- align-items: center;
- min-height: 400px;
- }
-
- .loading-spinner::before {
- content: '';
- width: 40px;
- height: 40px;
- border: 4px solid var(--border-gray);
- border-top: 4px solid var(--primary-color);
- border-radius: 50%;
- animation: spin 1s linear infinite;
- }
-
- @keyframes spin {
- 0% { transform: rotate(0deg); }
- 100% { transform: rotate(360deg); }
- }
  </style>
 </head>
 <body>
@@ -307,7 +292,7 @@
  <div class="section">
  <hr />
  <h1>Write Without Leaving</h1>
- <p><strong>Don’t plan. Don’t research. Just write.</strong></p>
+ <p><strong>Don't plan. Don't research. Just write.</strong></p>
  <hr />
  </div>
 
@@ -318,7 +303,7 @@
   <li>Need a better word? He was {#word intense but quiet}</li>
   <li>Forget her eye color? Her eyes were {#memory}</li>
   <li>Unsure about nun attire? They wore {#research}</li>
-  <li>Glubook fills in the blanks when you’re done, so you never lose momentum.</li>
+  <li>Glubook fills in the blanks when you're done, so you never lose momentum.</li>
  </ul>
  </div>
 
@@ -339,10 +324,10 @@
  <h2>How It Works</h2>
  <p>Write freely and let Glubook handle the rest:</p>
  <ol>
-  <li>Write your chapter, using {brackets} for anything you don’t want to stop for.</li>
-  <li>Click “Done Writing” - Glubook AI processes all {brackets} in context.</li>
+  <li>Write your chapter, using {brackets} for anything you don't want to stop for.</li>
+  <li>Click "Done Writing" - Glubook AI processes all {brackets} in context.</li>
   <li>Review suggestions for words, memories, or research, and accept or revise.</li>
-  <li>Click “Remove Brackets” for a clean, polished chapter.</li>
+  <li>Click "Remove Brackets" for a clean, polished chapter.</li>
  </ol>
  <p>Stay in control while Glubook keeps your ideas flowing.</p>
  </div>
@@ -373,12 +358,10 @@
  </div>
 
  <!-- Tally feedback form for "No" responses -->
- <div class="section" id="feedback-form">
+ <div class="section hidden" id="feedback-form">
  <div class="tally-feedback-container">
  <h2>Thanks for being honest! Mind sharing what put you off?</h2>
- <div class="loading-spinner"></div>
- <iframe data-tally-src="https://tally.so/embed/mRaXll?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Feedback Form"></iframe>
- <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[onload*="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.head.appendChild(s);}</script>
+ <iframe src="https://tally.so/embed/mRaXll?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Feedback Form"></iframe>
  </div>
  </div>
 
@@ -414,15 +397,15 @@
  <h2>Frequently Asked Questions</h2>
  <details>
    <summary>What is Glubook?</summary>
-   <p>Glubook is an AI-powered writing tool that helps you stay in the creative flow by using {brackets} to mark placeholders for words, memories, or research. The AI fills these in later, so you can keep writing without interruptions. The prototype has been thoroughly tested before being released to the public. You can try the prototype now without signing up, and we’re working on making the full version available soon.</p>
+   <p>Glubook is an AI-powered writing tool that helps you stay in the creative flow by using {brackets} to mark placeholders for words, memories, or research. The AI fills these in later, so you can keep writing without interruptions. The prototype has been thoroughly tested before being released to the public. You can try the prototype now without signing up, and we're working on making the full version available soon.</p>
  </details>
  <details>
    <summary>Is Glubook free?</summary>
-   <p>For now Glubook offers only a prototype for you to experience without any sign-up. For the full version, we’re exploring pricing options, including a potential free tier with core features and premium plans for advanced functionality. Join our email list or Discord to stay updated on pricing details.</p>
+   <p>For waitlist members Glubook offers only a prototype for you to experience without any sign-up. For the full version, we're exploring pricing options, including a potential free tier with core features and premium plans for advanced functionality. Join our email list or Discord to stay updated on pricing details.</p>
  </details>
  <details>
    <summary>Who can use Glubook?</summary>
-   <p>Glubook is designed for writers of all kinds—novelists, bloggers, screenwriters, or anyone who wants to maintain their creative flow without interruptions. Whether you’re a beginner or a seasoned author, Glubook’s intuitive AI tools can help you write more efficiently.</p>
+   <p>Glubook is designed for writers of all kinds—novelists, bloggers, screenwriters, or anyone who wants to maintain their creative flow without interruptions. Whether you're a beginner or a seasoned author, Glubook's intuitive AI tools can help you write more efficiently.</p>
  </details>
  </div>
 
@@ -485,13 +468,8 @@
  feedbackForm.classList.remove('hidden');
  emailForm.classList.add('hidden');
  thankYou.classList.add('hidden');
- // Hide loading spinner once form is visible
- const spinner = feedbackForm.querySelector('.loading-spinner');
- if (spinner) {
- setTimeout(() => {
- spinner.classList.add('hidden');
- }, 2000); // Adjust delay based on typical form load time
- }
+ // Scroll to feedback form
+ feedbackForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
  }
  } catch (error) {
  console.error('Error in handlePoll:', error);
@@ -513,14 +491,8 @@
  }
  });
 
- // Preload Tally form and hide Tally branding
- window.addEventListener('load', function() {
- // Preload the form by ensuring it's not hidden
- const feedbackForm = document.getElementById('feedback-form');
- if (feedbackForm) {
- feedbackForm.classList.remove('hidden');
- }
  // Hide Tally branding
+ window.addEventListener('load', function() {
  setTimeout(function() {
  const tallyBranding = document.querySelectorAll('[data-tally-branding], .tally-branding');
  tallyBranding.forEach(el => el.style.display = 'none');
