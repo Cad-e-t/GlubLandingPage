@@ -277,6 +277,29 @@
  color: var(--text-gray);
  font-size: 1rem;
  }
+
+ /* Loading Indicator Styles */
+ .loading-spinner {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 400px;
+ }
+
+ .loading-spinner::before {
+ content: '';
+ width: 40px;
+ height: 40px;
+ border: 4px solid var(--border-gray);
+ border-top: 4px solid var(--primary-color);
+ border-radius: 50%;
+ animation: spin 1s linear infinite;
+ }
+
+ @keyframes spin {
+ 0% { transform: rotate(0deg); }
+ 100% { transform: rotate(360deg); }
+ }
  </style>
 </head>
 <body>
@@ -350,9 +373,10 @@
  </div>
 
  <!-- Tally feedback form for "No" responses -->
- <div class="section hidden" id="feedback-form">
+ <div class="section" id="feedback-form">
  <div class="tally-feedback-container">
  <h2>Thanks for being honest! Mind sharing what put you off?</h2>
+ <div class="loading-spinner"></div>
  <iframe data-tally-src="https://tally.so/embed/mRaXll?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Feedback Form"></iframe>
  <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[onload*="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.head.appendChild(s);}</script>
  </div>
@@ -461,6 +485,13 @@
  feedbackForm.classList.remove('hidden');
  emailForm.classList.add('hidden');
  thankYou.classList.add('hidden');
+ // Hide loading spinner once form is visible
+ const spinner = feedbackForm.querySelector('.loading-spinner');
+ if (spinner) {
+ setTimeout(() => {
+ spinner.classList.add('hidden');
+ }, 2000); // Adjust delay based on typical form load time
+ }
  }
  } catch (error) {
  console.error('Error in handlePoll:', error);
@@ -482,20 +513,18 @@
  }
  });
 
- // Hide Tally branding when form is loaded
+ // Preload Tally form and hide Tally branding
  window.addEventListener('load', function() {
+ // Preload the form by ensuring it's not hidden
+ const feedbackForm = document.getElementById('feedback-form');
+ if (feedbackForm) {
+ feedbackForm.classList.remove('hidden');
+ }
+ // Hide Tally branding
  setTimeout(function() {
- // Additional attempts to hide Tally branding
  const tallyBranding = document.querySelectorAll('[data-tally-branding], .tally-branding');
  tallyBranding.forEach(el => el.style.display = 'none');
  }, 2000);
- });
-
- // Debugging: Log when buttons are clicked
- document.querySelectorAll('.poll-buttons button').forEach(button => {
- button.addEventListener('click', () => {
- console.log('Button clicked:', button.textContent);
- });
  });
  </script>
 </body>
