@@ -4,7 +4,7 @@
  <meta charset="UTF-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
  <title>Write Stories. Remember Everything.</title>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
  <!-- Google Analytics Script -->
  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWJW5VH9X"></script>
  <script>
@@ -22,79 +22,93 @@
  :root {
  --primary-font: 'Inter', sans-serif;
  --primary-color: #1e1e1e;
- --secondary-color: #333;
- --border-radius: 8px;
- --light-gray: #f8f9fa;
- --border-gray: #ccc;
- --text-gray: #666;
+ --secondary-color: #2c2c2c;
+ --accent-color: #7c3aed;
+ --border-radius: 12px;
+ --light-gray: #f9fafb;
+ --border-gray: #e5e7eb;
+ --text-gray: #4b5563;
+ --spacing-unit: 8px;
  }
 
  body {
  font-family: var(--primary-font);
  margin: 0;
- padding: 2rem 1rem;
- background-color: #ffffff;
+ padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2);
+ background-color: var(--light-gray);
  color: var(--primary-color);
- line-height: 1.6;
+ line-height: 1.7;
+ font-size: 16px;
  }
 
  .container {
- max-width: 680px;
+ max-width: 720px;
  margin: 0 auto;
- padding: 0;
- background: transparent;
+ padding: 0 calc(var(--spacing-unit) * 2);
  }
 
  h1 {
- font-size: 1.9rem;
- margin-bottom: 1rem;
+ font-size: 2.25rem;
+ font-weight: 700;
+ margin-bottom: calc(var(--spacing-unit) * 3);
  }
 
  h2 {
- font-size: 1.5rem;
- margin-bottom: 0.75rem;
+ font-size: 1.75rem;
+ font-weight: 600;
+ margin-bottom: calc(var(--spacing-unit) * 2);
  }
 
  .section {
- margin: 2rem 0;
+ margin: calc(var(--spacing-unit) * 5) 0;
  }
 
  iframe {
  width: 100%;
- height: 360px;
+ height: 400px;
  border: none;
- border-radius: 10px;
+ border-radius: var(--border-radius);
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
  }
 
  @media (max-width: 600px) {
  iframe {
- height: 200px;
+ height: 300px;
  }
  body {
- padding: 1rem 0.5rem;
+ padding: calc(var(--spacing-unit) * 2);
  }
  }
 
  .button {
- background-color: var(--primary-color);
+ background-color: var(--accent-color);
  color: white;
- padding: 0.75rem 1.5rem;
+ padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
  border: none;
  border-radius: var(--border-radius);
  cursor: pointer;
  font-weight: 600;
+ font-size: 1rem;
  font-family: var(--primary-font);
  text-decoration: none;
- display: inline-block;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ transition: all 0.3s ease;
  }
 
  .button:hover {
- background-color: var(--secondary-color);
+ background-color: #6d28d9;
+ transform: translateY(-2px);
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
  }
 
- .poll-buttons button {
- margin-right: 1rem;
- margin-top: 1rem;
+ .poll-buttons {
+ display: flex;
+ gap: calc(var(--spacing-unit) * 2);
+ justify-content: center;
+ flex-wrap: wrap;
+ margin-top: calc(var(--spacing-unit) * 2);
  }
 
  .hidden {
@@ -102,136 +116,179 @@
  }
 
  input[type="email"], textarea {
- padding: 0.6rem;
+ padding: calc(var(--spacing-unit) * 1.5);
  border: 1px solid var(--border-gray);
- border-radius: 6px;
+ border-radius: var(--border-radius);
  width: 100%;
- margin: 0.75rem 0;
+ margin: calc(var(--spacing-unit) * 1.5) 0;
  font-family: var(--primary-font);
+ font-size: 1rem;
  resize: vertical;
+ transition: border-color 0.3s ease;
+ }
+
+ input[type="email"]:focus, textarea:focus {
+ border-color: var(--accent-color);
+ outline: none;
  }
 
  textarea {
- min-height: 80px;
- max-height: 150px;
+ min-height: 100px;
+ max-height: 200px;
  }
 
  .tally-feedback-container {
- margin: 2rem 0;
+ margin: calc(var(--spacing-unit) * 4) 0;
+ padding: calc(var(--spacing-unit) * 3);
+ background: white;
  border-radius: var(--border-radius);
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
  }
 
  .tally-feedback-container iframe {
- width: 100%;
- height: 600px;
- min-height: 600px;
- border: none;
- border-radius: var(--border-radius);
+ height: 500px;
+ min-height: 500px;
  }
 
  @media (max-width: 600px) {
  .tally-feedback-container iframe {
- height: 650px;
- min-height: 650px;
+ height: 600px;
+ min-height: 600px;
  }
  }
 
  .formkit-input {
- color: #000;
+ color: var(--primary-color);
  border: 1px solid var(--border-gray);
- border-radius: 6px;
+ border-radius: var(--border-radius);
  font-weight: 400;
- padding: 0.6rem;
+ padding: calc(var(--spacing-unit) * 1.5);
  width: 100%;
- margin: 0.75rem 0;
+ margin: calc(var(--spacing-unit) * 1.5) 0;
  font-family: var(--primary-font);
  }
 
  .formkit-submit {
- color: #fff;
- background-color: var(--primary-color);
+ color: white;
+ background-color: var(--accent-color);
  border-radius: var(--border-radius);
  font-weight: 600;
- padding: 0.75rem 1.5rem;
+ padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
  border: none;
  cursor: pointer;
  font-family: var(--primary-font);
+ transition: all 0.3s ease;
  }
 
  .formkit-submit:hover {
- background-color: var(--secondary-color);
+ background-color: #6d28d9;
+ transform: translateY(-2px);
  }
 
  /* Hide Tally branding */
- [data-tally-branding] {
- display: none !important;
- }
- 
- .tally-branding {
- display: none !important;
- }
- 
- /* Additional selectors to hide "Made with Tally" */
- iframe[src*="tally.so"] + div,
+ [data-tally-branding], .tally-branding, iframe[src*="tally.so"] + div,
  iframe[src*="tally.so"] ~ div[style*="text-align"],
  iframe[src*="tally.so"] ~ div[style*="center"] {
  display: none !important;
  }
 
- /* Prototype Link Styles */
+ /* Hero Section */
+ .hero-section {
+ text-align: center;
+ background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+ color: white;
+ padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 3);
+ margin: calc(var(--spacing-unit) * -4) calc(var(--spacing-unit) * -2) calc(var(--spacing-unit) * 5);
+ border-radius: 0 0 24px 24px;
+ box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+ }
+
+ .hero-title {
+ font-size: 2.75rem;
+ font-weight: 800;
+ margin-bottom: calc(var(--spacing-unit) * 2);
+ line-height: 1.3;
+ }
+
+ .hero-subtitle {
+ font-size: 1.25rem;
+ margin-bottom: calc(var(--spacing-unit) * 4);
+ opacity: 0.9;
+ max-width: 640px;
+ margin-left: auto;
+ margin-right: auto;
+ }
+
+ /* Feature Cards */
+ .features-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: calc(var(--spacing-unit) * 3);
+ margin: calc(var(--spacing-unit) * 5) 0;
+ }
+
+ .feature-card {
+ background: white;
+ border-radius: var(--border-radius);
+ padding: calc(var(--spacing-unit) * 3);
+ text-align: center;
+ box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+ border: 1px solid rgba(0, 0, 0, 0.05);
+ transition: all 0.3s ease;
+ }
+
+ .feature-card:hover {
+ transform: translateY(-6px);
+ box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+ }
+
+ .feature-card::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ height: 5px;
+ background: linear-gradient(90deg, #7c3aed, #4c1d95);
+ }
+
+ .feature-icon {
+ font-size: 2.5rem;
+ margin-bottom: calc(var(--spacing-unit) * 2);
+ filter: grayscale(0.1);
+ }
+
+ .feature-title {
+ font-size: 1.4rem;
+ font-weight: 700;
+ margin-bottom: calc(var(--spacing-unit) * 1.5);
+ color: var(--primary-color);
+ }
+
+ .feature-desc {
+ font-size: 1rem;
+ color: var(--text-gray);
+ line-height: 1.7;
+ }
+
+ /* Prototype Link */
  .prototype-link {
  display: block;
  text-decoration: none;
- color: inherit;
- background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
- border-radius: 12px;
- padding: 2rem;
- margin: 2rem 0;
+ color: white;
+ background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+ border-radius: 16px;
+ padding: calc(var(--spacing-unit) * 4);
+ margin: calc(var(--spacing-unit) * 5) 0;
  position: relative;
  overflow: hidden;
- box-shadow: 0 10px 25px rgba(0,0,0,0.15);
- transition: all 0.3s ease;
+ box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+ transition: all 0.4s ease;
  }
 
  .prototype-link:hover {
- transform: translateY(-5px);
- box-shadow: 0 15px 35px rgba(0,0,0,0.2);
- }
-
- .prototype-content {
- position: relative;
- z-index: 2;
- text-align: center;
- color: white;
- }
-
- .prototype-title {
- font-size: 1.4rem;
- font-weight: 600;
- margin-bottom: 0.5rem;
- }
-
- .prototype-subtitle {
- font-size: 1rem;
- opacity: 0.9;
- margin-bottom: 1rem;
- }
-
- .prototype-cta {
- display: inline-flex;
- align-items: center;
- gap: 0.5rem;
- background: rgba(255,255,255,0.2);
- padding: 0.75rem 1.5rem;
- border-radius: 8px;
- font-weight: 600;
- backdrop-filter: blur(10px);
- border: 1px solid rgba(255,255,255,0.3);
- transition: all 0.3s ease;
- }
-
- .prototype-cta:hover {
- background: rgba(255,255,255,0.3);
+ transform: translateY(-6px);
+ box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
  }
 
  .prototype-background {
@@ -241,248 +298,165 @@
  right: 0;
  bottom: 0;
  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
- opacity: 0.3;
+ opacity: 0.2;
+ }
+
+ .prototype-content {
+ position: relative;
+ z-index: 2;
+ text-align: center;
+ }
+
+ .prototype-title {
+ font-size: 1.5rem;
+ font-weight: 700;
+ margin-bottom: calc(var(--spacing-unit) * 1);
+ }
+
+ .prototype-subtitle {
+ font-size: 1.1rem;
+ opacity: 0.9;
+ margin-bottom: calc(var(--spacing-unit) * 2);
+ }
+
+ .prototype-cta {
+ display: inline-flex;
+ align-items: center;
+ gap: calc(var(--spacing-unit));
+ background: rgba(255, 255, 255, 0.15);
+ padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+ border-radius: var(--border-radius);
+ font-weight: 600;
+ border: 1px solid rgba(255, 255, 255, 0.2);
+ transition: all 0.3s ease;
+ }
+
+ .prototype-cta:hover {
+ background: rgba(255, 255, 255, 0.25);
+ transform: scale(1.05);
  }
 
  .play-icon {
- width: 20px;
- height: 20px;
- }
-
- @media (max-width: 600px) {
- .prototype-link {
- padding: 1.5rem;
- }
- 
- .prototype-title {
- font-size: 1.2rem;
- }
- 
- .prototype-subtitle {
- font-size: 0.9rem;
- }
- }
-
- /* Collapsible FAQ Styles */
- details {
- margin-bottom: 1rem;
- }
-
- summary {
- font-weight: 600;
- font-size: 1.1rem;
- color: var(--primary-color);
- cursor: pointer;
- padding: 0.5rem 0;
- }
-
- details[open] summary {
- color: var(--secondary-color);
- }
-
- details p {
- margin: 0.5rem 0 0 1rem;
- color: var(--text-gray);
- font-size: 1rem;
- }
-
- /* Hero Section */
- .hero-section {
- text-align: center;
- background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
- color: white;
- padding: 4rem 2rem;
- margin: -2rem -1rem 3rem -1rem;
- border-radius: 0 0 20px 20px;
- }
-
- .hero-title {
- font-size: 2.5rem;
- font-weight: 700;
- margin-bottom: 1rem;
- line-height: 1.2;
- }
-
- .hero-subtitle {
- font-size: 1.2rem;
- margin-bottom: 3rem;
- opacity: 0.95;
- max-width: 600px;
- margin-left: auto;
- margin-right: auto;
- }
-
- /* Feature Cards Styles */
- .features-grid {
- display: grid;
- grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
- gap: 2rem;
- margin: 3rem 0;
- }
-
- .feature-card {
- background: white;
- border-radius: 16px;
- padding: 2rem;
- text-align: center;
- box-shadow: 0 8px 32px rgba(0,0,0,0.08);
- border: 1px solid rgba(0,0,0,0.04);
- transition: all 0.3s ease;
- position: relative;
- overflow: hidden;
- }
-
- .feature-card:hover {
- transform: translateY(-8px);
- box-shadow: 0 16px 48px rgba(0,0,0,0.15);
- }
-
- .feature-card::before {
- content: '';
- position: absolute;
- top: 0;
- left: 0;
- right: 0;
- height: 4px;
- background: linear-gradient(90deg, #667eea, #764ba2);
- }
-
- .feature-icon {
- font-size: 3rem;
- margin-bottom: 1.5rem;
- filter: grayscale(0.2);
- }
-
- .feature-title {
- font-size: 1.3rem;
- font-weight: 700;
- margin-bottom: 1rem;
- color: var(--primary-color);
- }
-
- .feature-desc {
- font-size: 1rem;
- color: var(--text-gray);
- line-height: 1.6;
+ width: 24px;
+ height: 24px;
  }
 
  /* Main Question Section */
  .main-question {
- background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+ background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
  border-radius: 16px;
- padding: 3rem 2rem;
+ padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 3);
  text-align: center;
- margin: 4rem 0;
- border: 1px solid rgba(102, 126, 234, 0.1);
+ margin: calc(var(--spacing-unit) * 5) 0;
+ border: 1px solid rgba(124, 58, 237, 0.1);
  }
 
  .main-question h2 {
- font-size: 1.8rem;
- margin-bottom: 2rem;
+ font-size: 1.875rem;
+ margin-bottom: calc(var(--spacing-unit) * 3);
  color: var(--primary-color);
  }
 
- .poll-buttons {
- display: flex;
- gap: 1rem;
- justify-content: center;
- flex-wrap: wrap;
- }
-
  .poll-buttons .button {
- padding: 1rem 2rem;
- font-size: 1.1rem;
- border-radius: 12px;
- transition: all 0.3s ease;
- min-width: 120px;
+ padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+ font-size: 1.125rem;
+ border-radius: var(--border-radius);
+ min-width: 140px;
  }
 
  .poll-buttons .button:hover {
- transform: translateY(-2px);
- box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+ transform: translateY(-3px);
+ box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
  }
 
  /* Connect Section */
  .connect-minimal {
  text-align: center;
- margin: 3rem 0 1rem 0;
- padding: 1rem 0;
+ margin: calc(var(--spacing-unit) * 4) 0 calc(var(--spacing-unit) * 2);
+ padding: calc(var(--spacing-unit) * 2) 0;
  }
 
  .connect-text {
  color: var(--text-gray);
- font-size: 0.9rem;
+ font-size: 0.875rem;
  margin: 0;
  }
 
  .minimal-link {
- color: var(--secondary-color);
+ color: var(--accent-color);
  text-decoration: none;
  font-weight: 500;
  }
 
  .minimal-link:hover {
- color: var(--primary-color);
+ color: #6d28d9;
  text-decoration: underline;
  }
 
- /* Enhanced Prototype Link */
- .prototype-link {
- display: block;
- text-decoration: none;
- color: inherit;
- background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
- border-radius: 20px;
- padding: 3rem 2rem;
- margin: 3rem 0;
- position: relative;
- overflow: hidden;
- box-shadow: 0 16px 40px rgba(102, 126, 234, 0.3);
- transition: all 0.4s ease;
+ /* Collapsible FAQ Styles */
+ details {
+ margin-bottom: calc(var(--spacing-unit) * 2);
  }
 
- .prototype-link:hover {
- transform: translateY(-8px) scale(1.02);
- box-shadow: 0 24px 60px rgba(102, 126, 234, 0.4);
+ summary {
+ font-weight: 600;
+ font-size: 1.125rem;
+ color: var(--primary-color);
+ cursor: pointer;
+ padding: calc(var(--spacing-unit) * 1) 0;
  }
 
+ details[open] summary {
+ color: var(--accent-color);
+ }
+
+ details p {
+ margin: calc(var(--spacing-unit) * 1) 0 0 calc(var(--spacing-unit) * 2);
+ color: var(--text-gray);
+ font-size: 1rem;
+ }
+
+ /* Responsive Adjustments */
  @media (max-width: 600px) {
  .hero-section {
- padding: 3rem 1rem;
- margin: -1rem -0.5rem 2rem -0.5rem;
+ padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2);
+ margin: calc(var(--spacing-unit) * -2) calc(var(--spacing-unit) * -1) calc(var(--spacing-unit) * 3);
  }
- 
  .hero-title {
  font-size: 2rem;
  }
- 
  .hero-subtitle {
- font-size: 1.1rem;
- margin-bottom: 2rem;
+ font-size: 1.125rem;
+ margin-bottom: calc(var(--spacing-unit) * 3);
  }
- 
  .features-grid {
  grid-template-columns: 1fr;
- gap: 1.5rem;
- margin: 2rem 0;
+ gap: calc(var(--spacing-unit) * 2);
+ margin: calc(var(--spacing-unit) * 3) 0;
  }
- 
  .feature-card {
- padding: 1.5rem;
+ padding: calc(var(--spacing-unit) * 2);
  }
- 
  .main-question {
- padding: 2rem 1rem;
+ padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 2);
  }
- 
  .poll-buttons {
  flex-direction: column;
  align-items: center;
+ gap: calc(var(--spacing-unit) * 1.5);
  }
- 
  .poll-buttons .button {
  width: 100%;
- max-width: 200px;
+ max-width: 220px;
+ }
+ .prototype-link {
+ padding: calc(var(--spacing-unit) * 3);
+ }
+ .prototype-title {
+ font-size: 1.25rem;
+ }
+ .prototype-subtitle {
+ font-size: 0.875rem;
  }
  }
  </style>
@@ -496,38 +470,38 @@
 
  <div class="section">
  <div class="features-grid">
-   <div class="feature-card">
-     <div class="feature-icon">🔍</div>
-     <h3 class="feature-title">Ask Anything</h3>
-     <p class="feature-desc">What did Lyla say in Chapter 3? Where did Michael first appear? Get exact answers.</p>
-   </div>
-   <div class="feature-card">
-     <div class="feature-icon">📝</div>
-     <h3 class="feature-title">Smart Edits, Light Touch</h3>
-     <p class="feature-desc">Your writing, but smoother — grammar, flow, and clarity edits after every session.</p>
-   </div>
-   <div class="feature-card">
-     <div class="feature-icon">🧷</div>
-     <h3 class="feature-title">Memory that Builds With You</h3>
-     <p class="feature-desc">Characters, locations, quotes, plot points — automatically remembered, no setup needed.</p>
-   </div>
+ <div class="feature-card">
+ <div class="feature-icon">🔍</div>
+ <h3 class="feature-title">Ask Anything</h3>
+ <p class="feature-desc">What did Lyla say in Chapter 3? Where did Michael first appear? Get exact answers.</p>
+ </div>
+ <div class="feature-card">
+ <div class="feature-icon">📝</div>
+ <h3 class="feature-title">Smart Edits, Light Touch</h3>
+ <p class="feature-desc">Your writing, but smoother — grammar, flow, and clarity edits after every session.</p>
+ </div>
+ <div class="feature-card">
+ <div class="feature-icon">🧷</div>
+ <h3 class="feature-title">Memory that Builds With You</h3>
+ <p class="feature-desc">Characters, locations, quotes, plot points — automatically remembered, no setup needed.</p>
+ </div>
  </div>
  </div>
 
  <div class="section">
  <h2>Ready to see it in action?</h2>
  <a href="https://glub-eight.vercel.app/glubook.html" target="_blank" class="prototype-link" onclick="trackPrototypeClick()">
-   <div class="prototype-background"></div>
-   <div class="prototype-content">
-     <div class="prototype-title">✨ Try Glubook Prototype - No Signups Required</div>
-     <div class="prototype-subtitle">See what your AI writing partner would feel like</div>
-     <div class="prototype-cta">
-       <svg class="play-icon" fill="currentColor" viewBox="0 0 20 20">
-         <path d="M8 5v10l8-5-8-5z"/>
-       </svg>
-       Launch Prototype
-     </div>
-   </div>
+ <div class="prototype-background"></div>
+ <div class="prototype-content">
+ <div class="prototype-title">✨ Try Glubook Prototype - No Signups Required</div>
+ <div class="prototype-subtitle">See what your AI writing partner would feel like</div>
+ <div class="prototype-cta">
+ <svg class="play-icon" fill="currentColor" viewBox="0 0 20 20">
+ <path d="M8 5v10l8-5-8-5z"/>
+ </svg>
+ Launch Prototype
+ </div>
+ </div>
  </a>
  </div>
 
@@ -539,7 +513,6 @@
  </div>
  </div>
 
- <!-- Tally feedback form for "No" responses -->
  <div class="section hidden" id="feedback-form">
  <div class="tally-feedback-container">
  <h2>Thanks for being honest! Mind sharing what put you off?</h2>
@@ -554,7 +527,7 @@
  <div class="section hidden" id="email-form">
  <p>Awesome. Want to try your AI writing partner before it launches?</p>
  <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
- <form action="https://app.kit.com/forms/8135418/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="8135418" data-uid="da463f9e09" data-format="inline" data-version="5" data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Thanks for signing up! Check your email for confirmation."},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":false,"url":"https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}' min-width="400 500 600 700 800">
+ <form action="https://app.kit.com/forms/8135418/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="8135418" data-uid="da463f9e09" data-format="inline" data-version="5" data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Thanks for signing up! Check your email for confirmation."},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":false,"url":"https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15 }},"version":"5"}' min-width="400 500 600 700 800">
  <div data-style="clean">
  <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert" aria-live="polite"></ul>
  <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
@@ -576,12 +549,11 @@
  </div>
 
  <div class="section connect-minimal">
-    <p class="connect-text">
-        Questions? Join our <a href="https://discord.gg/37zKMJ9xA4" target="_blank" class="minimal-link">Discord</a> or follow <a href="https://x.com/lofuturetech" target="_blank" class="minimal-link">@lofuturetech</a>
-    </p>
+ <p class="connect-text">
+ Questions? Join our <a href="https://discord.gg/37zKMJ9xA4" target="_blank" class="minimal-link">Discord</a> or follow <a href="https://x.com/lofuturetech" target="_blank" class="minimal-link">@lofuturetech</a>
+ </p>
  </div>
-
- </div> <!-- Closing .container -->
+ </div>
 
  <script>
  function trackPrototypeClick() {
@@ -594,7 +566,7 @@
  }
 
  function handlePoll(choice) {
- console.log('handlePoll called with choice:', choice); // Debugging log
+ console.log('handlePoll called with choice:', choice);
  try {
  const emailForm = document.getElementById('email-form');
  const thankYou = document.getElementById('thank-you');
@@ -610,7 +582,6 @@
  }
 
  if (choice === 'yes') {
- // Track "Yes" click event
  if (typeof gtag === 'function') {
  gtag('event', 'poll_yes_clicked', {
  event_category: 'engagement',
@@ -621,7 +592,6 @@
  thankYou.classList.add('hidden');
  feedbackForm.classList.add('hidden');
  } else {
- // Track "No" click event
  if (typeof gtag === 'function') {
  gtag('event', 'poll_no_clicked', {
  event_category: 'engagement',
@@ -631,7 +601,6 @@
  feedbackForm.classList.remove('hidden');
  emailForm.classList.add('hidden');
  thankYou.classList.add('hidden');
- // Scroll to feedback form
  feedbackForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
  }
  } catch (error) {
@@ -639,22 +608,19 @@
  }
  }
 
- // Handle ConvertKit form submission
  document.querySelector('.formkit-form').addEventListener('submit', (e) => {
  const email = e.target.querySelector('input[name="email_address"]').value;
  if (/^\S+@\S+\.\S+$/.test(email)) {
- // Allow ConvertKit to handle submission, then show final step
  setTimeout(() => {
  document.getElementById('email-form').classList.add('hidden');
  document.getElementById('final-step').classList.remove('hidden');
- }, 1000); // Delay to allow ConvertKit to process
+ }, 1000);
  } else {
  e.preventDefault();
  alert('Please enter a valid email address.');
  }
  });
 
- // Hide Tally branding
  window.addEventListener('load', function() {
  setTimeout(function() {
  const tallyBranding = document.querySelectorAll('[data-tally-branding], .tally-branding');
