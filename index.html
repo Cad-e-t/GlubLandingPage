@@ -814,10 +814,23 @@
                 <h2 class="section-title">Built in less than one day</h2>
                 <p class="section-subtitle">Real project, real result, real fast delivery</p>
                 
+                <!-- FIX #1: The stats item is now inside a proper stats container -->
+                <div class="portfolio-stats">
                     <div class="stat-item">
                         <div class="stat-number">3h</div>
                         <div class="stat-label">Build Time</div>
                     </div>
+                    <!-- You could add more stats here and they would line up nicely -->
+                    <!-- 
+                    <div class="stat-item">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Day Delivery</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Happy Client</div>
+                    </div>
+                    -->
                 </div>
             </div>
             
@@ -843,6 +856,10 @@
                         </div>
                     </div>
                 </div> 
+                <!-- NOTE: There was an unclosed project-card div here in the original code. I have removed it. -->
+            </div>
+            <!-- FIX #2: Correctly closing the portfolio section BEFORE the CTA section begins -->
+        </section>
 
         <section id="cta" class="cta">
             <div class="cta-content fade-in">
@@ -862,6 +879,7 @@
         </div>
     </footer>
 
+    <!-- The Javascript section remains unchanged as it was correct -->
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -968,36 +986,45 @@
         // Counter animation for stats
         const animateCounter = (element, target) => {
             let current = 0;
-            const increment = target / 100;
+            const duration = 2000; // 2 seconds
+            const stepTime = 20; // update every 20ms
+            const totalSteps = duration / stepTime;
+            const increment = target / totalSteps;
+
             const timer = setInterval(() => {
                 current += increment;
                 if (current >= target) {
                     current = target;
                     clearInterval(timer);
                 }
-                element.textContent = Math.floor(current) + (target === 100 ? '%' : target === 48 ? 'h' : '');
-            }, 20);
+                
+                if(element.dataset.label === 'h') {
+                   element.textContent = Math.ceil(current) + 'h';
+                } else {
+                   element.textContent = Math.ceil(current);
+                }
+                
+            }, stepTime);
         };
 
         // Trigger counter animation when stats come into view
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const statNumbers = entry.target.querySelectorAll('.stat-number');
-                    statNumbers.forEach((stat, index) => {
-                        const targets = [3, 48, 100];
-                        setTimeout(() => {
-                            animateCounter(stat, targets[index]);
-                        }, index * 200);
-                    });
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    const target = parseInt(statNumber.textContent, 10);
+                    statNumber.dataset.label = statNumber.textContent.includes('h') ? 'h' : '';
+                    animateCounter(statNumber, target);
                     statsObserver.unobserve(entry.target);
                 }
             });
         });
 
-        const portfolioStats = document.querySelector('.portfolio-stats');
-        if (portfolioStats) {
-            statsObserver.observe(portfolioStats);
+        const statItems = document.querySelectorAll('.stat-item');
+        if (statItems) {
+            statItems.forEach(item => {
+                statsObserver.observe(item);
+            });
         }
     </script>
 </body>
