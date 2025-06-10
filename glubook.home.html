@@ -1149,8 +1149,25 @@
       lazyElements.forEach(el => lazyObserver.observe(el));
     }
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.location.hash === '#final-step') {
+        // Show the final-step section
+        var finalStep = document.getElementById('final-step');
+        if (finalStep) {
+          finalStep.classList.remove('hidden');
+          finalStep.style.opacity = '1';
+          finalStep.style.transform = 'translateY(0)';
+          // Optionally scroll to it
+          finalStep.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    });
+  </script>
 </body>
-</html></section>
+</html>
+
+</section>
 
   <!-- Features Section -->
   <section id="features" class="features-section">
