@@ -1,632 +1,1236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>Write Stories. Remember Everything.</title>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
- <!-- Google Analytics Script -->
- <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWJW5VH9X"></script>
- <script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
- gtag('config', 'G-LCWJW5VH9X', {
- custom_map: {
- 'dimension1': 'feedback_text',
- 'dimension2': 'selected_reasons'
- }
- });
- </script>
- <style>
- :root {
- --primary-font: 'Inter', sans-serif;
- --primary-color: #1e1e1e;
- --secondary-color: #2c2c2c;
- --accent-color: #7c3aed;
- --border-radius: 12px;
- --light-gray: #f9fafb;
- --border-gray: #e5e7eb;
- --text-gray: #4b5563;
- --spacing-unit: 8px;
- }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Write Stories. Remember Everything.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Google Analytics Script -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWJW5VH9X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LCWJW5VH9X');
+  </script>
+  <style>
+    :root {
+      --primary-font: 'Inter', sans-serif;
+      --primary-color: #0f172a;
+      --secondary-color: #1e293b;
+      --accent-color: #7c3aed;
+      --accent-secondary: #a855f7;
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+      --danger-color: #ef4444;
+      --background: #fafafa;
+      --surface: #ffffff;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --text-muted: #94a3b8;
+      --border-color: #e2e8f0;
+      --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-accent: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+      --gradient-surface: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --blur-sm: blur(4px);
+      --blur-md: blur(8px);
+    }
 
- body {
- font-family: var(--primary-font);
- margin: 0;
- padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2);
- background-color: var(--light-gray);
- color: var(--primary-color);
- line-height: 1.7;
- font-size: 16px;
- }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
- .container {
- max-width: 720px;
- margin: 0 auto;
- padding: 0 calc(var(--spacing-unit) * 2);
- }
+    body {
+      font-family: var(--primary-font);
+      background: var(--background);
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
 
- h1 {
- font-size: 2.25rem;
- font-weight: 700;
- margin-bottom: calc(var(--spacing-unit) * 3);
- }
+    /* Animated Background */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(45deg, #f0f9ff, #faf5ff, #f0fdf4);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
 
- h2 {
- font-size: 1.75rem;
- font-weight: 600;
- margin-bottom: calc(var(--spacing-unit) * 2);
- }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
- .section {
- margin: calc(var(--spacing-unit) * 5) 0;
- }
+    /* Floating Elements */
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
 
- iframe {
- width: 100%;
- height: 400px;
- border: none;
- border-radius: var(--border-radius);
- box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
- }
+    .floating-element {
+      position: absolute;
+      opacity: 0.1;
+      animation: float 20s infinite ease-in-out;
+    }
 
- @media (max-width: 600px) {
- iframe {
- height: 300px;
- }
- body {
- padding: calc(var(--spacing-unit) * 2);
- }
- }
+    .floating-element:nth-child(1) {
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+      font-size: 2rem;
+    }
 
- .button {
- background-color: var(--accent-color);
- color: white;
- padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
- border: none;
- border-radius: var(--border-radius);
- cursor: pointer;
- font-weight: 600;
- font-size: 1rem;
- font-family: var(--primary-font);
- text-decoration: none;
- display: inline-flex;
- align-items: center;
- justify-content: center;
- transition: all 0.3s ease;
- }
+    .floating-element:nth-child(2) {
+      top: 60%;
+      right: 15%;
+      animation-delay: 5s;
+      font-size: 1.5rem;
+    }
 
- .button:hover {
- background-color: #6d28d9;
- transform: translateY(-2px);
- box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
- }
+    .floating-element:nth-child(3) {
+      bottom: 30%;
+      left: 20%;
+      animation-delay: 10s;
+      font-size: 1.8rem;
+    }
 
- .poll-buttons {
- display: flex;
- gap: calc(var(--spacing-unit) * 2);
- justify-content: center;
- flex-wrap: wrap;
- margin-top: calc(var(--spacing-unit) * 2);
- }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(5deg); }
+      66% { transform: translateY(10px) rotate(-3deg); }
+    }
 
- .hidden {
- display: none;
- }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
- input[type="email"], textarea {
- padding: calc(var(--spacing-unit) * 1.5);
- border: 1px solid var(--border-gray);
- border-radius: var(--border-radius);
- width: 100%;
- margin: calc(var(--spacing-unit) * 1.5) 0;
- font-family: var(--primary-font);
- font-size: 1rem;
- resize: vertical;
- transition: border-color 0.3s ease;
- }
+    /* Enhanced Hero Section */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: var(--gradient-primary);
+      background-size: 200% 200%;
+      animation: gradientShift 20s ease infinite;
+      overflow: hidden;
+    }
 
- input[type="email"]:focus, textarea:focus {
- border-color: var(--accent-color);
- outline: none;
- }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
 
- textarea {
- min-height: 100px;
- max-height: 200px;
- }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: var(--blur-sm);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 16px;
+      border-radius: 50px;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 32px;
+      animation: fadeInUp 1s ease 0.2s both;
+    }
 
- .tally-feedback-container {
- margin: calc(var(--spacing-unit) * 4) 0;
- padding: calc(var(--spacing-unit) * 3);
- background: white;
- border-radius: var(--border-radius);
- box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
- }
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 900;
+      color: white;
+      margin-bottom: 24px;
+      line-height: 1.1;
+      animation: fadeInUp 1s ease 0.4s both;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
 
- .tally-feedback-container iframe {
- height: 500px;
- min-height: 500px;
- }
+    .hero-subtitle {
+      font-size: clamp(1.125rem, 3vw, 1.5rem);
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 48px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+      animation: fadeInUp 1s ease 0.6s both;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
 
- @media (max-width: 600px) {
- .tally-feedback-container iframe {
- height: 600px;
- min-height: 600px;
- }
- }
+    .hero-cta {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease 0.8s both;
+    }
 
- .formkit-input {
- color: var(--primary-color);
- border: 1px solid var(--border-gray);
- border-radius: var(--border-radius);
- font-weight: 400;
- padding: calc(var(--spacing-unit) * 1.5);
- width: 100%;
- margin: calc(var(--spacing-unit) * 1.5) 0;
- font-family: var(--primary-font);
- }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      position: relative;
+      overflow: hidden;
+    }
 
- .formkit-submit {
- color: white;
- background-color: var(--accent-color);
- border-radius: var(--border-radius);
- font-weight: 600;
- padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
- border: none;
- cursor: pointer;
- font-family: var(--primary-font);
- transition: all 0.3s ease;
- }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
 
- .formkit-submit:hover {
- background-color: #6d28d9;
- transform: translateY(-2px);
- }
+    .btn:hover::before {
+      left: 100%;
+    }
 
- /* Hide Tally branding */
- [data-tally-branding], .tally-branding, iframe[src*="tally.so"] + div,
- iframe[src*="tally.so"] ~ div[style*="text-align"],
- iframe[src*="tally.so"] ~ div[style*="center"] {
- display: none !important;
- }
+    .btn-primary {
+      background: white;
+      color: var(--accent-color);
+      box-shadow: var(--shadow-lg);
+    }
 
- /* Hero Section */
- .hero-section {
- text-align: center;
- background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
- color: white;
- padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 3);
- margin: calc(var(--spacing-unit) * -4) calc(var(--spacing-unit) * -2) calc(var(--spacing-unit) * 5);
- border-radius: 0 0 24px 24px;
- box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
- }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-xl);
+      background: #f8fafc;
+    }
 
- .hero-title {
- font-size: 2.75rem;
- font-weight: 800;
- margin-bottom: calc(var(--spacing-unit) * 2);
- line-height: 1.3;
- }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: var(--blur-sm);
+    }
 
- .hero-subtitle {
- font-size: 1.25rem;
- margin-bottom: calc(var(--spacing-unit) * 4);
- opacity: 0.9;
- max-width: 640px;
- margin-left: auto;
- margin-right: auto;
- }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
 
- /* Feature Cards */
- .features-grid {
- display: grid;
- grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
- gap: calc(var(--spacing-unit) * 3);
- margin: calc(var(--spacing-unit) * 5) 0;
- }
+    /* Geometric Decorations */
+    .hero-decoration {
+      position: absolute;
+      pointer-events: none;
+    }
 
- .feature-card {
- background: white;
- border-radius: var(--border-radius);
- padding: calc(var(--spacing-unit) * 3);
- text-align: center;
- box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
- border: 1px solid rgba(0, 0, 0, 0.05);
- transition: all 0.3s ease;
- }
+    .decoration-1 {
+      top: 10%;
+      left: 5%;
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 15s infinite ease-in-out;
+    }
 
- .feature-card:hover {
- transform: translateY(-6px);
- box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
- }
+    .decoration-2 {
+      bottom: 15%;
+      right: 8%;
+      width: 150px;
+      height: 150px;
+      background: rgba(255, 255, 255, 0.05);
+      transform: rotate(45deg);
+      animation: float 20s infinite ease-in-out reverse;
+    }
 
- .feature-card::before {
- content: '';
- position: absolute;
- top: 0;
- left: 0;
- right: 0;
- height: 5px;
- background: linear-gradient(90deg, #7c3aed, #4c1d95);
- }
+    /* Enhanced Features Section */
+    .features-section {
+      padding: 120px 0;
+      background: var(--surface);
+      position: relative;
+    }
 
- .feature-icon {
- font-size: 2.5rem;
- margin-bottom: calc(var(--spacing-unit) * 2);
- filter: grayscale(0.1);
- }
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
 
- .feature-title {
- font-size: 1.4rem;
- font-weight: 700;
- margin-bottom: calc(var(--spacing-unit) * 1.5);
- color: var(--primary-color);
- }
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
 
- .feature-desc {
- font-size: 1rem;
- color: var(--text-gray);
- line-height: 1.7;
- }
+    .section-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
- /* Prototype Link */
- .prototype-link {
- display: block;
- text-decoration: none;
- color: white;
- background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
- border-radius: 16px;
- padding: calc(var(--spacing-unit) * 4);
- margin: calc(var(--spacing-unit) * 5) 0;
- position: relative;
- overflow: hidden;
- box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
- transition: all 0.4s ease;
- }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
 
- .prototype-link:hover {
- transform: translateY(-6px);
- box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
- }
+    .feature-card {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 40px 32px;
+      position: relative;
+      border: 1px solid var(--border-color);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
 
- .prototype-background {
- position: absolute;
- top: 0;
- left: 0;
- right: 0;
- bottom: 0;
- background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
- opacity: 0.2;
- }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
 
- .prototype-content {
- position: relative;
- z-index: 2;
- text-align: center;
- }
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
 
- .prototype-title {
- font-size: 1.5rem;
- font-weight: 700;
- margin-bottom: calc(var(--spacing-unit) * 1);
- }
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow: var(--shadow-xl);
+      border-color: rgba(124, 58, 237, 0.2);
+    }
 
- .prototype-subtitle {
- font-size: 1.1rem;
- opacity: 0.9;
- margin-bottom: calc(var(--spacing-unit) * 2);
- }
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-accent);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
 
- .prototype-cta {
- display: inline-flex;
- align-items: center;
- gap: calc(var(--spacing-unit));
- background: rgba(255, 255, 255, 0.15);
- padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
- border-radius: var(--border-radius);
- font-weight: 600;
- border: 1px solid rgba(255, 255, 255, 0.2);
- transition: all 0.3s ease;
- }
+    .feature-icon::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+      animation: shimmer 3s infinite;
+    }
 
- .prototype-cta:hover {
- background: rgba(255, 255, 255, 0.25);
- transform: scale(1.05);
- }
+    @keyframes shimmer {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
- .play-icon {
- width: 24px;
- height: 24px;
- }
+    .feature-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
 
- /* Main Question Section */
- .main-question {
- background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
- border-radius: 16px;
- padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 3);
- text-align: center;
- margin: calc(var(--spacing-unit) * 5) 0;
- border: 1px solid rgba(124, 58, 237, 0.1);
- }
+    .feature-description {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
 
- .main-question h2 {
- font-size: 1.875rem;
- margin-bottom: calc(var(--spacing-unit) * 3);
- color: var(--primary-color);
- }
+    /* Interactive Demo Section */
+    .demo-section {
+      padding: 120px 0;
+      background: var(--gradient-surface);
+      position: relative;
+    }
 
- .poll-buttons .button {
- padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
- font-size: 1.125rem;
- border-radius: var(--border-radius);
- min-width: 140px;
- }
+    .demo-container {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 60px 40px;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
 
- .poll-buttons .button:hover {
- transform: translateY(-3px);
- box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
- }
+    .demo-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient-accent);
+      opacity: 0.03;
+      pointer-events: none;
+    }
 
- /* Connect Section */
- .connect-minimal {
- text-align: center;
- margin: calc(var(--spacing-unit) * 4) 0 calc(var(--spacing-unit) * 2);
- padding: calc(var(--spacing-unit) * 2) 0;
- }
+    .prototype-link {
+      display: block;
+      text-decoration: none;
+      background: var(--gradient-accent);
+      color: white;
+      border-radius: 20px;
+      padding: 48px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 40px 0;
+      box-shadow: var(--shadow-lg);
+    }
 
- .connect-text {
- color: var(--text-gray);
- font-size: 0.875rem;
- margin: 0;
- }
+    .prototype-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="60" height="60" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+    }
 
- .minimal-link {
- color: var(--accent-color);
- text-decoration: none;
- font-weight: 500;
- }
+    .prototype-link:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-xl);
+    }
 
- .minimal-link:hover {
- color: #6d28d9;
- text-decoration: underline;
- }
+    .prototype-content {
+      position: relative;
+      z-index: 2;
+    }
 
- /* Collapsible FAQ Styles */
- details {
- margin-bottom: calc(var(--spacing-unit) * 2);
- }
+    .prototype-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
 
- summary {
- font-weight: 600;
- font-size: 1.125rem;
- color: var(--primary-color);
- cursor: pointer;
- padding: calc(var(--spacing-unit) * 1) 0;
- }
+    .prototype-subtitle {
+      font-size: 1.125rem;
+      opacity: 0.9;
+      margin-bottom: 32px;
+    }
 
- details[open] summary {
- color: var(--accent-color);
- }
+    .prototype-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: var(--blur-sm);
+      transition: all 0.3s ease;
+    }
 
- details p {
- margin: calc(var(--spacing-unit) * 1) 0 0 calc(var(--spacing-unit) * 2);
- color: var(--text-gray);
- font-size: 1rem;
- }
+    .prototype-cta:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.05);
+    }
 
- /* Responsive Adjustments */
- @media (max-width: 600px) {
- .hero-section {
- padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2);
- margin: calc(var(--spacing-unit) * -2) calc(var(--spacing-unit) * -1) calc(var(--spacing-unit) * 3);
- }
- .hero-title {
- font-size: 2rem;
- }
- .hero-subtitle {
- font-size: 1.125rem;
- margin-bottom: calc(var(--spacing-unit) * 3);
- }
- .features-grid {
- grid-template-columns: 1fr;
- gap: calc(var(--spacing-unit) * 2);
- margin: calc(var(--spacing-unit) * 3) 0;
- }
- .feature-card {
- padding: calc(var(--spacing-unit) * 2);
- }
- .main-question {
- padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 2);
- }
- .poll-buttons {
- flex-direction: column;
- align-items: center;
- gap: calc(var(--spacing-unit) * 1.5);
- }
- .poll-buttons .button {
- width: 100%;
- max-width: 220px;
- }
- .prototype-link {
- padding: calc(var(--spacing-unit) * 3);
- }
- .prototype-title {
- font-size: 1.25rem;
- }
- .prototype-subtitle {
- font-size: 0.875rem;
- }
- }
- </style>
+    /* Enhanced Poll Section */
+    .poll-section {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .poll-container {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 60px 40px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-color);
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .poll-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--gradient-accent);
+    }
+
+    .poll-question {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 40px;
+      line-height: 1.3;
+    }
+
+    .poll-buttons {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .poll-btn {
+      padding: 20px 40px;
+      font-size: 1.125rem;
+      border-radius: 12px;
+      min-width: 120px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .poll-btn.yes {
+      background: var(--gradient-accent);
+      color: white;
+    }
+
+    .poll-btn.no {
+      background: var(--surface);
+      color: var(--text-primary);
+      border: 2px solid var(--border-color);
+    }
+
+    /* Form Sections */
+    .form-section {
+      padding: 80px 0;
+      background: var(--surface);
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 50px 40px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-color);
+    }
+
+    .form-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .form-subtitle {
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 16px 20px;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      font-size: 16px;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      margin-bottom: 24px;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--gradient-accent);
+      color: white;
+      padding: 18px 32px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 60px 0 40px;
+      background: var(--text-primary);
+      color: white;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: white;
+    }
+
+    .footer-text {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 14px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    /* Utility Classes */
+    .hidden {
+      display: none !important;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero-content {
+        padding: 40px 16px;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .feature-card {
+        padding: 32px 24px;
+      }
+
+      .poll-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .poll-btn {
+        width: 100%;
+        max-width: 200px;
+      }
+
+      .demo-container,
+      .form-container,
+      .poll-container {
+        padding: 40px 24px;
+        margin: 0 16px;
+      }
+
+      .prototype-link {
+        padding: 40px 24px;
+        margin: 24px 16px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+
+    /* Hover Effects for Interactive Elements */
+    .interactive-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .interactive-hover:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--background);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-color);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-secondary);
+    }
+  </style>
 </head>
 <body>
- <div class="container">
- <div class="hero-section">
- <h1 class="hero-title">Write Stories - Remember Everything.</h1>
- <p class="hero-subtitle">Your AI-powered writing partner that tracks your characters, past chapters, and improves your prose — automatically.</p>
- </div>
+  <!-- Animated Background -->
+  <div class="animated-bg"></div>
+  
+  <!-- Floating Elements -->
+  <div class="floating-elements">
+    <div class="floating-element">📚</div>
+    <div class="floating-element">✨</div>
+    <div class="floating-element">🖋️</div>
+  </div>
 
- <div class="section">
- <div class="features-grid">
- <div class="feature-card">
- <div class="feature-icon">🔍</div>
- <h3 class="feature-title">Ask Anything</h3>
- <p class="feature-desc">What did Lyla say in Chapter 3? Where did Michael first appear? Get exact answers.</p>
- </div>
- <div class="feature-card">
- <div class="feature-icon">📝</div>
- <h3 class="feature-title">Smart Edits, Light Touch</h3>
- <p class="feature-desc">Your writing, but smoother grammar, flow, and clarity edits after every session.</p>
- </div>
- <div class="feature-card">
- <div class="feature-icon">🧷</div>
- <h3 class="feature-title">Memory that Builds With You</h3>
- <p class="feature-desc">Characters, locations, quotes, plot points automatically remembered, no setup needed.</p>
- </div>
- </div>
- </div>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-decoration decoration-1"></div>
+    <div class="hero-decoration decoration-2"></div>
+    
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span>✨</span>
+        <span>AI-Powered Writing Assistant</span>
+      </div>
+      
+      <h1 class="hero-title">Write Stories.<br>Remember Everything.</h1>
+      
+      <p class="hero-subtitle">
+        Your intelligent writing companion that tracks characters, remembers plot details, 
+        and elevates your prose — all automatically, so you can focus on what matters: the story.
+      </p>
+      
+      <div class="hero-cta">
+        <a href="https://glub-eight.vercel.app/glubook.html" target="_blank" class="btn btn-primary" onclick="trackPrototypeClick()">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 5v10l8-5-8-5z"/>
+          </svg>
+          Try Live Demo
+        </a>
+        <button class="btn btn-secondary" onclick="scrollToSection('features')">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"/>
+          </svg>
+          Learn More
+        </button>
+      </div>
+    </div>
+  </section>
 
- <div class="section">
- <h2>Ready to see it in action?</h2>
- <a href="https://glub-eight.vercel.app/glubook.html" target="_blank" class="prototype-link" onclick="trackPrototypeClick()">
- <div class="prototype-background"></div>
- <div class="prototype-content">
- <div class="prototype-title">✨ Try Glubook Prototype - No Signups Required</div>
- <div class="prototype-subtitle">See what your AI writing partner would feel like</div>
- <div class="prototype-cta">
- <svg class="play-icon" fill="currentColor" viewBox="0 0 20 20">
- <path d="M8 5v10l8-5-8-5z"/>
- </svg>
- Launch Prototype
- </div>
- </div>
- </a>
- </div>
+  <!-- Feedback Form (Hidden) -->
+  <section id="feedback-form" class="form-section hidden">
+    <div class="container">
+      <div class="form-container">
+        <h2 class="form-title">Help Us Improve</h2>
+        <p class="form-subtitle">
+          Thanks for your honesty! What would make Glubook more appealing to you?
+        </p>
+        <iframe src="https://tally.so/embed/mRaXll?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                width="100%" height="400" frameborder="0" style="border-radius: 12px;"></iframe>
+      </div>
+    </div>
+  </section>
 
- <div class="main-question">
- <h2>Would something like this help your writing?</h2>
- <div class="poll-buttons">
- <button class="button" onclick="handlePoll('yes')" aria-label="Yes">Yes</button>
- <button class="button" onclick="handlePoll('no')" aria-label="No">No</button>
- </div>
- </div>
+  <!-- Email Form (Hidden) -->
+  <section id="email-form" class="form-section hidden">
+    <div class="container">
+      <div class="form-container">
+        <h2 class="form-title">🎉 Join Our Beta Community</h2>
+        <p class="form-subtitle">
+          <strong>Be among the first to experience Glubook's magic.</strong><br>
+          Early testers get lifetime benefits, priority support, and direct input on features. 
+          Plus, you'll lock in special pricing before our public launch.
+        </p>
+        
+        <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+        <form action="https://app.kit.com/forms/8135418/subscriptions" class="seva-form formkit-form" method="post">
+          <div data-style="clean">
+            <div data-element="fields" class="seva-fields formkit-fields">
+              <div class="formkit-field">
+                <input class="form-input formkit-input" 
+                       name="email_address" 
+                       aria-label="Email Address" 
+                       placeholder="Enter your email address" 
+                       required 
+                       type="email">
+              </div>
+              <button data-element="submit" class="form-submit formkit-submit">
+                <span>🚀 Reserve My Beta Spot</span>
+              </button>
+            </div>
+          </div>
+        </form>
+        
+        <p style="font-size: 14px; color: var(--text-muted); text-align: center; margin-top: 20px;">
+          ✨ No spam, ever. Unsubscribe anytime with one click.
+        </p>
+      </div>
+    </div>
+  </section>
 
- <div class="section hidden" id="feedback-form">
- <div class="tally-feedback-container">
- <h2>Thanks for being honest! Mind sharing what put you off?</h2>
- <iframe src="https://tally.so/embed/mRaXll?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Feedback Form"></iframe>
- </div>
- </div>
+  <!-- Final Step (Hidden) -->
+  <section id="final-step" class="form-section hidden">
+    <div class="container">
+      <div class="form-container text-center">
+        <div style="font-size: 3rem; margin-bottom: 24px;">🎉</div>
+        <h2 class="form-title">You're In! Welcome to the Beta</h2>
+        <p class="form-subtitle">
+          <strong>Final step:</strong> Secure your early access perks by adding your card below. 
+          <em>You won't be charged unless you decide to purchase when we launch.</em>
+        </p>
 
- <div class="section hidden" id="thank-you">
- <p>Thanks for checking it out, it means a lot. If you ever get curious and want to see how your AI writing partner evolves, feel free to <a href="https://discord.gg/37zKMJ9xA4">join the Discord</a>.</p>
- </div>
+        <a href="https://yourstore.lemonsqueezy.com/checkout/buy/your-product-id" 
+           class="btn btn-primary" 
+           style="display: inline-flex; margin: 32px 0; padding: 20px 40px; font-size: 18px;"
+           aria-label="Secure Early Access – No Charge">
+           🔒 Secure Early Access – No Charge
+        </a>
 
- <div class="section hidden" id="email-form">
- <p>Awesome. Want to try your AI writing partner before it launches?</p>
- <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
- <form action="https://app.kit.com/forms/8135418/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="8135418" data-uid="da463f9e09" data-format="inline" data-version="5" data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Thanks for signing up! Check your email for confirmation."},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":false,"url":"https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15 }},"version":"5"}' min-width="400 500 600 700 800">
- <div data-style="clean">
- <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert" aria-live="polite"></ul>
- <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
- <div class="formkit-field">
- <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Enter your email" required type="email">
- </div>
- <button data-element="submit" class="formkit-submit formkit-submit button">
- <div class="formkit-spinner"><div></div><div></div><div></div></div>
- <span>Join the Waitlist →</span>
- </button>
- </div>
- </div>
- </form>
- </div>
+        <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; padding: 20px; margin: 32px 0;">
+          <p style="color: var(--success-color); font-weight: 600; margin: 0;">
+            🔒 100% secure checkout. Cancel anytime. We'll notify you before any charges.
+          </p>
+        </div>
 
- <div class="section hidden" id="final-step">
- <p>Perfect. You're now early. Want to support your AI writing partner and lock in lifetime pricing before public launch?</p>
- <a href="https://glub-eight.vercel.app/payment-gate.html" class="button" aria-label="Get Lifetime Access">Get Lifetime Access</a>
- </div>
+        <div style="border-top: 1px solid var(--border-color); padding-top: 32px; margin-top: 32px;">
+          <p style="color: var(--text-secondary); font-size: 16px; margin-bottom: 16px;">
+            Prefer to just stay updated?
+          </p>
+          <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;">
+            <a href="https://discord.gg/37zKMJ9xA4" target="_blank" class="btn btn-secondary">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0190 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9460 2.4189-2.1568 2.4189Z"/>
+              </svg>
+              Join Discord
+            </a>
+            <a href="https://x.com/lofuturetech" target="_blank" class="btn btn-secondary">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+              Follow Updates
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
- <div class="section connect-minimal">
- <p class="connect-text">
- Questions? Join our <a href="https://discord.gg/37zKMJ9xA4" target="_blank" class="minimal-link">Discord</a> or follow <a href="https://x.com/lofuturetech" target="_blank" class="minimal-link">@lofuturetech</a>
- </p>
- </div>
- </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://discord.gg/37zKMJ9xA4" target="_blank" class="footer-link">Discord Community</a>
+        <a href="https://x.com/lofuturetech" target="_blank" class="footer-link">Twitter Updates</a>
+        <a href="https://glub-eight.vercel.app/glubook.html" target="_blank" class="footer-link">Try Demo</a>
+        <a href="mailto:hello@glubook.com" class="footer-link">Contact</a>
+      </div>
+      <p class="footer-text">
+        © 2025 Glubook. Crafted with ❤️ for writers everywhere.
+      </p>
+    </div>
+  </footer>
 
- <script>
- function trackPrototypeClick() {
- if (typeof gtag === 'function') {
- gtag('event', 'prototype_clicked', {
- event_category: 'engagement',
- event_label: 'glubook_prototype_access'
- });
- }
- }
+  <script>
+    // Enhanced Analytics Tracking
+    function trackPrototypeClick() {
+      if (typeof gtag === 'function') {
+        gtag('event', 'prototype_clicked', {
+          event_category: 'engagement',
+          event_label: 'glubook_prototype_access',
+          value: 1
+        });
+      }
+      
+      // Optional: Add additional tracking
+      console.log('Prototype demo accessed');
+    }
 
- function handlePoll(choice) {
- console.log('handlePoll called with choice:', choice);
- try {
- const emailForm = document.getElementById('email-form');
- const thankYou = document.getElementById('thank-you');
- const feedbackForm = document.getElementById('feedback-form');
+    // Enhanced Poll Handling
+    function handlePoll(choice) {
+      const emailForm = document.getElementById('email-form');
+      const feedbackForm = document.getElementById('feedback-form');
+      const pollSection = document.querySelector('.poll-section');
+      
+      // Track the poll response
+      if (typeof gtag === 'function') {
+        gtag('event', 'poll_response', {
+          event_category: 'user_feedback',
+          event_label: choice,
+          value: choice === 'yes' ? 1 : 0
+        });
+      }
 
- if (!emailForm || !thankYou || !feedbackForm) {
- console.error('One or more elements not found:', {
- emailForm: !!emailForm,
- thankYou: !!thankYou,
- feedbackForm: !!feedbackForm
- });
- return;
- }
+      // Hide poll section with smooth transition
+      pollSection.style.transform = 'translateY(-20px)';
+      pollSection.style.opacity = '0';
+      
+      setTimeout(() => {
+        pollSection.classList.add('hidden');
+        
+        if (choice === 'yes') {
+          emailForm.classList.remove('hidden');
+          emailForm.style.opacity = '0';
+          emailForm.style.transform = 'translateY(20px)';
+          
+          // Animate in
+          setTimeout(() => {
+            emailForm.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            emailForm.style.opacity = '1';
+            emailForm.style.transform = 'translateY(0)';
+          }, 50);
+          
+          // Scroll to form
+          setTimeout(() => {
+            emailForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 300);
+          
+        } else {
+          feedbackForm.classList.remove('hidden');
+          feedbackForm.style.opacity = '0';
+          feedbackForm.style.transform = 'translateY(20px)';
+          
+          // Animate in
+          setTimeout(() => {
+            feedbackForm.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            feedbackForm.style.opacity = '1';
+            feedbackForm.style.transform = 'translateY(0)';
+          }, 50);
+          
+          // Scroll to form
+          setTimeout(() => {
+            feedbackForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 300);
+        }
+      }, 400);
+    }
 
- if (choice === 'yes') {
- if (typeof gtag === 'function') {
- gtag('event', 'poll_yes_clicked', {
- event_category: 'engagement',
- event_label: 'user_interest_yes'
- });
- }
- emailForm.classList.remove('hidden');
- thankYou.classList.add('hidden');
- feedbackForm.classList.add('hidden');
- } else {
- if (typeof gtag === 'function') {
- gtag('event', 'poll_no_clicked', {
- event_category: 'engagement',
- event_label: 'user_interest_no'
- });
- }
- feedbackForm.classList.remove('hidden');
- emailForm.classList.add('hidden');
- thankYou.classList.add('hidden');
- feedbackForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
- }
- } catch (error) {
- console.error('Error in handlePoll:', error);
- }
- }
+    // Enhanced Form Submission
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.querySelector('.formkit-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          const email = e.target.querySelector('input[name="email_address"]').value;
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          
+          if (!emailRegex.test(email)) {
+            e.preventDefault();
+            showNotification('Please enter a valid email address.', 'error');
+            return;
+          }
 
- document.querySelector('.formkit-form').addEventListener('submit', (e) => {
- const email = e.target.querySelector('input[name="email_address"]').value;
- if (/^\S+@\S+\.\S+$/.test(email)) {
- setTimeout(() => {
- document.getElementById('email-form').classList.add('hidden');
- document.getElementById('final-step').classList.remove('hidden');
- }, 1000);
- } else {
- e.preventDefault();
- alert('Please enter a valid email address.');
- }
- });
+          // Track email signup
+          if (typeof gtag === 'function') {
+            gtag('event', 'email_signup', {
+              event_category: 'conversion',
+              event_label: 'beta_signup',
+              value: 1
+            });
+          }
 
- window.addEventListener('load', function() {
- setTimeout(function() {
- const tallyBranding = document.querySelectorAll('[data-tally-branding], .tally-branding');
- tallyBranding.forEach(el => el.style.display = 'none');
- }, 2000);
- });
- </script>
+          // Show loading state
+          const submitBtn = e.target.querySelector('.formkit-submit');
+          const originalText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<span>🚀 Securing your spot...</span>';
+          submitBtn.disabled = true;
+
+          // Simulate form processing
+          setTimeout(() => {
+            document.getElementById('email-form').classList.add('hidden');
+            document.getElementById('final-step').classList.remove('hidden');
+            
+            // Scroll to final step
+            setTimeout(() => {
+              document.getElementById('final-step').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+              });
+            }, 100);
+            
+            // Reset button (in case user goes back)
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+          }, 2000);
+        });
+      }
+    });
+
+    // Smooth Scrolling for Navigation
+    function scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+    }
+
+    // Notification System
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 16px 24px;
+        border-radius: 12px;
+        color: white;
+        font-weight: 600;
+        z-index: 10000;
+        transform: translateX(400px);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        max-width: 350px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      `;
+      
+      notification.style.background = type === 'error' ? 
+        'linear-gradient(135deg, #ef4444, #dc2626)' : 
+        'linear-gradient(135deg, #10b981, #059669)';
+      
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      
+      // Animate in
+      setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+      }, 100);
+      
+      // Remove after delay
+      setTimeout(() => {
+        notification.style.transform = 'translateX(400px)';
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 4000);
+    }
+
+    // Intersection Observer for Animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements for animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const animateElements = document.querySelectorAll('.feature-card, .demo-container, .poll-container, .form-container');
+      animateElements.forEach(el => observer.observe(el));
+    });
+
+    // Enhanced Mobile Menu (if needed in future)
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Add scroll-based effects here if needed
+      if (scrollTop > lastScrollTop) {
+        // Scrolling down
+      } else {
+        // Scrolling up
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+
+    // Keyboard Navigation Enhancement
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        // Close any open modals or forms if implemented
+      }
+    });
+
+    // Performance Optimization: Lazy Load Heavy Content
+    if ('IntersectionObserver' in window) {
+      const lazyElements = document.querySelectorAll('[data-lazy]');
+      const lazyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            // Load heavy content when it comes into view
+            lazyObserver.unobserve(element);
+          }
+        });
+      });
+      
+      lazyElements.forEach(el => lazyObserver.observe(el));
+    }
+  </script>
 </body>
-</html>
+</html></section>
+
+  <!-- Features Section -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Everything You Need to Write Better</h2>
+        <p class="section-subtitle">
+          Powerful features designed to enhance your creative process without getting in the way
+        </p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card interactive-hover">
+          <div class="feature-icon">🔍</div>
+          <h3 class="feature-title">Instant Story Memory</h3>
+          <p class="feature-description">
+            Ask anything about your story. "What did Sarah say in Chapter 3?" Get exact quotes and context instantly. 
+            Never lose track of details again.
+          </p>
+        </div>
+        
+        <div class="feature-card interactive-hover">
+          <div class="feature-icon">✨</div>
+          <h3 class="feature-title">Intelligent Editing</h3>
+          <p class="feature-description">
+            Light-touch improvements to grammar, flow, and clarity after each writing session. 
+            Your voice stays authentic while your prose gets polished.
+          </p>
+        </div>
+        
+        <div class="feature-card interactive-hover">
+          <div class="feature-icon">🧠</div>
+          <h3 class="feature-title">Automatic Context Building</h3>
+          <p class="feature-description">
+            Characters, locations, relationships, and plot points are automatically tracked and organized. 
+            Zero setup required — just start writing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Demo Section -->
+  <section class="demo-section">
+    <div class="container">
+      <div class="demo-container">
+        <div class="section-header">
+          <h2 class="section-title">See Glubook in Action</h2>
+          <p class="section-subtitle">
+            Experience the future of AI-assisted writing with our live prototype
+          </p>
+        </div>
+        
+        <a href="https://glub-eight.vercel.app/glubook.html" target="_blank" class="prototype-link" onclick="trackPrototypeClick()">
+          <div class="prototype-content">
+            <div class="prototype-title">🚀 Interactive Prototype Available</div>
+            <div class="prototype-subtitle">
+              No signups, no waiting — jump in and see how Glubook transforms your writing process
+            </div>
+            <div class="prototype-cta">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 5v10l8-5-8-5z"/>
+              </svg>
+              Launch Demo Now
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Poll Section -->
+  <section class="poll-section">
+    <div class="container">
+      <div class="poll-container">
+        <h2 class="poll-question">Would this help transform your writing?</h2>
+        <div class="poll-buttons">
+          <button class="btn poll-btn yes" onclick="handlePoll('yes')">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Absolutely!
+          </button>
+          <button class="btn poll-btn no" onclick="handlePoll('no')">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+            Not for me
+          </button>
+        </div>
+      </div>
+    </div>
